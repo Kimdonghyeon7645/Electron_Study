@@ -11,7 +11,7 @@ npm instsall --save electron-is-dev
 
 ## 2. 일렉트론 기본 js 파일 추가
 ```js
-// 경로 : src/main.js
+// 경로 : ./src/main.js
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
@@ -59,7 +59,7 @@ app.on("activate", () => {
 
 ## 3. `package.json` 수정
 ```json
- "main": "./public/electron.js",
+ "main": "./src/main.js",
   "homepage": "./",
   "build": {
     "productName": "react-electron",
