@@ -38,7 +38,7 @@ export const BoardWrapper = styled.div`
   ${SrollBar}
 `;
 
-export const Board = styled.canvas`
+export const Board = styled.div`
   background-size: 10px, 40px, 10px 10px, 40px 40px;
   background-image: linear-gradient(
       90deg,

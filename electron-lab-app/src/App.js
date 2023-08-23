@@ -6,8 +6,9 @@ function App() {
   const [isClicking, setIsClicking] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [points, setPoints] = useState([]);
+  const [lines, setLines] = useState([]);
   const wrapper = useRef(null);
-  const canvas = useRef(null);
+  const board = useRef(null);
 
   const handleMouseDown = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
@@ -40,7 +41,6 @@ function App() {
     if (!isDragging) {
       const wpr = wrapper.current;
       const top = wpr.getBoundingClientRect().top;
-      // alert(`x: ${wrapper.current.scrollLeft+e.clientX}, y: ${wrapper.current.scrollTop+e.clientY}`);
       if (points.length === 1) {
         setPoints((v) => [
           ...v,
@@ -57,28 +57,13 @@ function App() {
   };
 
   useEffect(() => {
-    if (canvas?.current) {
-      const cvs = canvas.current;
-      const ctx = cvs.getContext("2d");
-      const ratio = 2;
-      cvs.width = 3000 * ratio;
-      cvs.height = 3000 * ratio;
-      ctx.scale(ratio, ratio);
-    }
-  }, [canvas]);
-
-  useEffect(() => {
     if (points.length !== 2) return;
-
-    const cvs = canvas.current;
-    const ctx = cvs.getContext("2d");
-    ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-    ctx.lineTo(points[1].x, points[1].y);
-    ctx.strokeStyle = "#7e0000";
-    ctx.lineWidth = 0.9;
-    ctx.stroke();
-    ctx.closePath();
+    setLines((v) =>
+      v.concat({
+        start: { x: points[0].x, y: points[0].y },
+        end: { x: points[1].x, y: points[1].y },
+      })
+    );
   }, [points]);
 
   return (
@@ -92,7 +77,21 @@ function App() {
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        <Board ref={canvas} style={{ width: 3000, height: 3000 }}></Board>
+        <Board ref={board} style={{ width: 3000, height: 3000 }}>
+          <svg style={{ height: 3000, width: 3000, background: "transparent" }}>
+            {lines.map((line, index) => (
+              <line
+                key={index}
+                x1={line.start.x}
+                y1={line.start.y}
+                x2={line.end.x}
+                y2={line.end.y}
+                stroke="black"
+                strokeWidth="1.2"
+              />
+            ))}
+          </svg>
+        </Board>
       </BoardWrapper>
     </div>
   );
