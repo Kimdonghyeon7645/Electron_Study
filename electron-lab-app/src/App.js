@@ -1,5 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Board, BoardWrapper, RibbonMenu } from "./Styles";
+import {
+  Board,
+  BoardWrapper,
+  RibbonMenu,
+  RibbonMenuElement,
+  RibbonMenuSection,
+  RibbonTapElement,
+  RibbonTapGroup,
+  RibbonTapSection,
+  StatusBar,
+} from "./Styles";
 
 function App() {
   const [isDragging, setIsDragging] = useState(false);
@@ -66,9 +76,33 @@ function App() {
     );
   }, [points]);
 
+  const [tabIndex, setTabIndex] = useState(0);
+  const tabInfo = [
+    { title: "홈" },
+    { title: "삽입" },
+    { title: "형식" },
+    { title: "파일" },
+  ];
+
   return (
     <div>
-      <RibbonMenu></RibbonMenu>
+      <RibbonMenu>
+        <RibbonTapSection>
+          <RibbonTapGroup>
+            {tabInfo.map((tab, index) => (
+              <RibbonTapElement
+                active={tabIndex === index}
+                onClick={() => setTabIndex(index)}
+              >
+                {tab.title}
+              </RibbonTapElement>
+            ))}
+          </RibbonTapGroup>
+        </RibbonTapSection>
+        <RibbonMenuSection>
+          <RibbonMenuElement>선택모드</RibbonMenuElement>
+        </RibbonMenuSection>
+      </RibbonMenu>
       <BoardWrapper
         ref={wrapper}
         isDragging={isDragging}
@@ -93,6 +127,7 @@ function App() {
           </svg>
         </Board>
       </BoardWrapper>
+      <StatusBar></StatusBar>
     </div>
   );
 }
