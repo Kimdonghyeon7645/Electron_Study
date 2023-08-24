@@ -33,6 +33,7 @@ function App() {
   const [isDragging, setIsDragging] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [prePoints, setPrePoints] = useState({ active: false, x: 0, y: 0 });
   const [points, setPoints] = useState([]);
   const [lines, setLines] = useState([]);
   const wrapper = useRef(null);
@@ -44,15 +45,28 @@ function App() {
   };
 
   const handleMouseMove = (e) => {
-    if (!isClicking) return;
+    if (!isClicking) {
+      if (points.length === 1) {
+        console.log("hhh");
+        const wpr = wrapper.current;
+        const top = wpr.getBoundingClientRect().top;
+        setPrePoints({
+          active: true,
+          x: wpr.scrollLeft + e.clientX,
+          y: wpr.scrollTop + e.clientY - top,
+        });
+      }
+      return;
+    }
 
+    const wpr = wrapper.current;
     const deltaX = e.clientX - mousePosition.x;
     const deltaY = e.clientY - mousePosition.y;
-    const scrollLeft = wrapper.current.scrollLeft - deltaX;
-    const scrollTop = wrapper.current.scrollTop - deltaY;
+    const scrollLeft = wpr.scrollLeft - deltaX;
+    const scrollTop = wpr.scrollTop - deltaY;
 
-    wrapper.current.scrollLeft = scrollLeft;
-    wrapper.current.scrollTop = scrollTop;
+    wpr.scrollLeft = scrollLeft;
+    wpr.scrollTop = scrollTop;
 
     if (!isDragging) {
       const distanceMoved = Math.sqrt(
@@ -74,6 +88,7 @@ function App() {
           ...v,
           { x: wpr.scrollLeft + e.clientX, y: wpr.scrollTop + e.clientY - top },
         ]);
+        setPrePoints({ active: false, x: 0, y: 0 });
       } else {
         setPoints([
           { x: wpr.scrollLeft + e.clientX, y: wpr.scrollTop + e.clientY - top },
@@ -279,7 +294,7 @@ function App() {
             }}
           >
             {lines.map((line, index) => {
-              console.log(line)
+              console.log(line);
               return (
                 <line
                   key={index}
@@ -290,8 +305,18 @@ function App() {
                   stroke="black"
                   strokeWidth="1.5"
                 />
-              )
+              );
             })}
+            {points.length === 1 && prePoints.active && (
+              <line
+                x1={points[0].x}
+                y1={points[0].y}
+                x2={prePoints.x}
+                y2={prePoints.y}
+                stroke="#999999"
+                strokeWidth="1.5"
+              />
+            )}
           </svg>
           {/* <div
             style={{
