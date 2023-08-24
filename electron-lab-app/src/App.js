@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import {
   Board,
   BoardWrapper,
+  CircularSymbol,
   RibbonMenu,
   RibbonMenuElement,
   RibbonMenuSection,
@@ -10,6 +11,12 @@ import {
   RibbonTapSection,
   StatusBar,
 } from "./Styles";
+
+import Line from "./assets/symbol/Line.tsx";
+import PushBtnA from "./assets/symbol/PushBtnA.tsx";
+import PushBtnB from "./assets/symbol/PushBtnB.tsx";
+import RelayAContact from "./assets/symbol/RelayAContact.tsx";
+import RelayBContact from "./assets/symbol/RelayBContact.tsx";
 
 function App() {
   const [isDragging, setIsDragging] = useState(false);
@@ -80,8 +87,9 @@ function App() {
   const tabInfo = [
     { title: "홈" },
     { title: "삽입" },
-    { title: "형식" },
+    { title: "스타일" },
     { title: "파일" },
+    { title: "시뮬레이션" },
   ];
 
   return (
@@ -100,7 +108,63 @@ function App() {
           </RibbonTapGroup>
         </RibbonTapSection>
         <RibbonMenuSection>
-          <RibbonMenuElement>선택모드</RibbonMenuElement>
+          <RibbonMenuElement>
+            <Line />
+            <div style={{ marginTop: 6 }}>
+              전선
+              <br />
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <PushBtnA />
+            <div style={{ marginTop: 6 }}>
+              푸쉬버튼
+              <br />
+              <small>(A접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <PushBtnB />
+            <div style={{ marginTop: 6 }}>
+              푸쉬버튼
+              <br />
+              <small>(B접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <CircularSymbol>
+              <span>R</span>
+            </CircularSymbol>
+            <div style={{ marginTop: 6 }}>릴레이</div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <RelayAContact />
+            <div style={{ marginTop: 6 }}>
+              릴레이접점
+              <br />
+              <small>(A접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <RelayBContact />
+            <div style={{ marginTop: 6 }}>
+              릴레이접점
+              <br />
+              <small>(B접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <CircularSymbol>
+              <span>T</span>
+            </CircularSymbol>
+            <div style={{ marginTop: 6 }}>타이머</div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <CircularSymbol>
+              <span>L</span>
+            </CircularSymbol>
+            <div style={{ marginTop: 6 }}>램프</div>
+          </RibbonMenuElement>
         </RibbonMenuSection>
       </RibbonMenu>
       <BoardWrapper
@@ -111,8 +175,18 @@ function App() {
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        <Board ref={board} style={{ width: 3000, height: 3000 }}>
-          <svg style={{ height: 3000, width: 3000, background: "transparent" }}>
+        <Board
+          ref={board}
+          style={{ width: 3000, height: 3000, position: "relative" }}
+        >
+          <svg
+            style={{
+              height: 3000,
+              width: 3000,
+              background: "transparent",
+              position: "absolute",
+            }}
+          >
             {lines.map((line, index) => (
               <line
                 key={index}
@@ -121,10 +195,20 @@ function App() {
                 x2={line.end.x}
                 y2={line.end.y}
                 stroke="black"
-                strokeWidth="1.2"
+                strokeWidth="1.7"
               />
             ))}
           </svg>
+          {/* <div
+            style={{
+              position: "absolute",
+              margin: "100px 0 0 115px",
+              background: "transparent",
+            }}
+          >
+            <PushBtnA />
+            <span>PB1</span>
+          </div> */}
         </Board>
       </BoardWrapper>
       <StatusBar></StatusBar>

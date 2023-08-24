@@ -12,9 +12,13 @@ const SrollBar = css`
     /* 스크롤바 막대 */
     background: ${(props) => (props.isDragging ? "#00080052" : "#00080025")};
     border-radius: 10px;
+    &:hover {
+      background: #00080052;
+    }
   }
-  &::-webkit-scrollbar-thumb:hover {
-    background: #00080052;
+  &::-webkit-scrollbar-track {
+    /* 스크롤바 트랙 영역 */
+    background: transparent;
   }
 `;
 
@@ -73,11 +77,28 @@ export const RibbonMenuSection = styled.div`
 
   flex-grow: 1;
   display: flex;
+  margin: 0 6px;
 `;
 
 export const RibbonMenuElement = styled.div`
-  font-size: 14px;
-  letter-spacing: -0.2px;
+  height: full;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8px;
+  padding-top: 6px;
+
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  line-height: 12px;
+  text-align: center;
+
+  &:hover {
+    font-weight: 500;
+    cursor: pointer;
+  }
 `;
 
 export const BoardWrapper = styled.div`
@@ -121,4 +142,22 @@ export const StatusBar = styled.div`
 
   border-top: #cccccc 0.5px solid;
   background-color: #e8e8e8;
+`;
+
+export const CircularSymbol = styled.div`
+  height: 30px;
+  width: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 999px;
+  border: 2.4px solid;
+
+  & > * {
+    padding: 3px 1px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
 `;
