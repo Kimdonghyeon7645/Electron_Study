@@ -14,8 +14,8 @@ const Line = ({ width = "4", height = "40" }) => {
             <rect x="155" y="137" width="60" height="1132"/>
         </clipPath>
     </defs>
-    <g clip-path="url(#clip1)" transform="translate(-155 -137)">
-        <path d="M186.5 141.5 186.501 1238.15" stroke="#000000" stroke-width="55" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="8" stroke-opacity="1" fill="none" fill-rule="evenodd"/>
+    <g clipPath="url(#clip1)" transform="translate(-155 -137)">
+        <path d="M186.5 141.5 186.501 1238.15" stroke="#000000" strokeWidth="55" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="8" strokeOpacity="1" fill="none" fillRule="evenodd"/>
     </g>
     </svg>
   );

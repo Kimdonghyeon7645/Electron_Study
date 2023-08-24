@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import {
   Board,
   BoardWrapper,
+  Body,
   CircularSymbol,
   RibbonMenu,
   RibbonMenuElement,
@@ -15,8 +16,14 @@ import {
 import Line from "./assets/symbol/Line.tsx";
 import PushBtnA from "./assets/symbol/PushBtnA.tsx";
 import PushBtnB from "./assets/symbol/PushBtnB.tsx";
+import KnifeSwitchA from "./assets/symbol/KnifeSwitchA.tsx";
+import KnifeSwitchB from "./assets/symbol/KnifeSwitchB.tsx";
+import LimitSwitchA from "./assets/symbol/LimitSwitchA.tsx";
+import LimitSwitchB from "./assets/symbol/LimitSwitchB.tsx";
 import RelayAContact from "./assets/symbol/RelayAContact.tsx";
 import RelayBContact from "./assets/symbol/RelayBContact.tsx";
+import RelayManualAContact from "./assets/symbol/RelayManualAContact.tsx";
+import RelayManualBContact from "./assets/symbol/RelayManualAContact.tsx";
 import TimerOnDelayAContact from "./assets/symbol/TimerOnDelayAContact.tsx";
 import TimerOnDelayBContact from "./assets/symbol/TimerOnDelayBContact.tsx";
 import TimerOffDelayAContact from "./assets/symbol/TimerOffDelayAContact.tsx";
@@ -97,7 +104,7 @@ function App() {
   ];
 
   return (
-    <div>
+    <Body>
       <RibbonMenu>
         <RibbonTapSection>
           <RibbonTapGroup>
@@ -136,6 +143,38 @@ function App() {
             </div>
           </RibbonMenuElement>
           <RibbonMenuElement>
+            <KnifeSwitchA />
+            <div style={{ marginTop: 6 }}>
+              나이프스위치
+              <br />
+              <small>(A접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <KnifeSwitchB />
+            <div style={{ marginTop: 6 }}>
+              나이프스위치
+              <br />
+              <small>(B접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <LimitSwitchA />
+            <div style={{ marginTop: 6 }}>
+              리밋스위치
+              <br />
+              <small>(A접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <LimitSwitchB />
+            <div style={{ marginTop: 6 }}>
+              리밋스위치
+              <br />
+              <small>(B접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
             <CircularSymbol>
               <span>R</span>
             </CircularSymbol>
@@ -153,6 +192,22 @@ function App() {
             <RelayBContact />
             <div style={{ marginTop: 6 }}>
               릴레이접점
+              <br />
+              <small>(B접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <RelayManualAContact />
+            <div style={{ marginTop: 6 }}>
+              수동복귀접점
+              <br />
+              <small>(A접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <RelayManualBContact />
+            <div style={{ marginTop: 6 }}>
+              수동복귀접점
               <br />
               <small>(B접점)</small>
             </div>
@@ -223,23 +278,25 @@ function App() {
               position: "absolute",
             }}
           >
-            {lines.map((line, index) => (
-              <line
-                key={index}
-                x1={line.start.x}
-                y1={line.start.y}
-                x2={line.end.x}
-                y2={line.end.y}
-                stroke="black"
-                strokeWidth="1.7"
-              />
-            ))}
+            {lines.map((line, index) => {
+              console.log(line)
+              return (
+                <line
+                  key={index}
+                  x1={line.start.x}
+                  y1={line.start.y}
+                  x2={line.end.x}
+                  y2={line.end.y}
+                  stroke="black"
+                  strokeWidth="1.5"
+                />
+              )
+            })}
           </svg>
           {/* <div
             style={{
               position: "absolute",
-              margin: "100px 0 0 115px",
-              background: "transparent",
+              margin: "100px 0 0 113px",
             }}
           >
             <PushBtnA />
@@ -248,7 +305,7 @@ function App() {
         </Board>
       </BoardWrapper>
       <StatusBar></StatusBar>
-    </div>
+    </Body>
   );
 }
 

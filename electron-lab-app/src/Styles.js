@@ -1,3 +1,4 @@
+import './App.css';
 import styled, { css } from "styled-components";
 
 const gridLineColor = "#00000010";
@@ -20,6 +21,11 @@ const SrollBar = css`
     /* 스크롤바 트랙 영역 */
     background: transparent;
   }
+`;
+
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const RibbonMenu = styled.div`
@@ -60,7 +66,7 @@ export const RibbonTapElement = styled.div`
     props.active ? "5px 11px 0 11px" : "2.5px 11px 0 11px"};
 
   font-size: 14px;
-  letter-spacing: -0.2px;
+  letter-spacing: 0px;
   color: ${(props) => (props.active ? "#333333" : "#333333")};
   font-weight: ${(props) => (props.active ? "700" : "400")};
 
@@ -87,23 +93,24 @@ export const RibbonMenuElement = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 8px;
+  margin: 0 7px;
   padding-top: 6px;
 
   font-size: 12px;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.1px;
   line-height: 12px;
   text-align: center;
 
   &:hover {
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
   }
 `;
 
 export const BoardWrapper = styled.div`
+  /* flex-grow: 1; */
   width: calc(100vw - 2.5px);
-  height: calc(100vh - 141px);
+  height: calc(100vh - 143px);
 
   background-color: #ffffff;
   overflow: auto;
@@ -156,8 +163,8 @@ export const CircularSymbol = styled.div`
   border: 2.4px solid;
 
   & > * {
-    padding: 3px 1px 0 0;
-    font-size: 15px;
+    padding: 0 0.5px 1.5px 0;
+    font-size: 16px;
     font-weight: 600;
   }
 `;
