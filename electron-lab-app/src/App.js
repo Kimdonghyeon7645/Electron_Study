@@ -17,6 +17,10 @@ import PushBtnA from "./assets/symbol/PushBtnA.tsx";
 import PushBtnB from "./assets/symbol/PushBtnB.tsx";
 import RelayAContact from "./assets/symbol/RelayAContact.tsx";
 import RelayBContact from "./assets/symbol/RelayBContact.tsx";
+import TimerOnDelayAContact from "./assets/symbol/TimerOnDelayAContact.tsx";
+import TimerOnDelayBContact from "./assets/symbol/TimerOnDelayBContact.tsx";
+import TimerOffDelayAContact from "./assets/symbol/TimerOffDelayAContact.tsx";
+import TimerOffDelayBContact from "./assets/symbol/TimerOffDelayBContact.tsx";
 
 function App() {
   const [isDragging, setIsDragging] = useState(false);
@@ -158,6 +162,38 @@ function App() {
               <span>T</span>
             </CircularSymbol>
             <div style={{ marginTop: 6 }}>타이머</div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <TimerOnDelayAContact />
+            <div style={{ marginTop: 6 }}>
+              한시동작접점
+              <br />
+              <small>(A접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <TimerOnDelayBContact />
+            <div style={{ marginTop: 6 }}>
+              한시동작접점
+              <br />
+              <small>(B접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <TimerOffDelayAContact />
+            <div style={{ marginTop: 6 }}>
+              한시복귀접점
+              <br />
+              <small>(A접점)</small>
+            </div>
+          </RibbonMenuElement>
+          <RibbonMenuElement>
+            <TimerOffDelayBContact />
+            <div style={{ marginTop: 6 }}>
+              한시복귀접점
+              <br />
+              <small>(B접점)</small>
+            </div>
           </RibbonMenuElement>
           <RibbonMenuElement>
             <CircularSymbol>
