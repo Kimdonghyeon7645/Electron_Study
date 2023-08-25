@@ -1,3 +1,5 @@
+import { MODE } from "../../constants/enums.js";
+import useStore from "../../store/index.js";
 import EditTab from "./EditTab.js";
 import HomeTab from "./HomeTab.js";
 import InsertTab from "./InsertTab.js";
@@ -20,8 +22,15 @@ const tabInfo = [
 ];
 
 const RibbonMenu = () => {
+  const { setMode } = useStore();
   const [tabIndex, setTabIndex] = useState(0);
+
   const onTabClick = (e, index) => {
+    if (index === 1) setMode(MODE.INSERT);
+    else if (index === 2) setMode(MODE.EDIT);
+    else if (index === 3) setMode(MODE.VIEW);
+    else if (index === 4) setMode(MODE.SIMULATION);
+
     setTabIndex(index);
   };
 

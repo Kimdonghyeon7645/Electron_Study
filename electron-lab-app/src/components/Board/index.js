@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { BoardCanvas, BoardWrapper } from "./styles";
 
 const Board = () => {
-  const [isDragging, setIsDragging] = useState(false);
+  const [isClickDragging, setIsClickDragging] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [prePoints, setPrePoints] = useState({ active: false, x: 0, y: 0 });
@@ -39,11 +39,11 @@ const Board = () => {
     wpr.scrollLeft = scrollLeft;
     wpr.scrollTop = scrollTop;
 
-    if (!isDragging) {
+    if (!isClickDragging) {
       const distanceMoved = Math.sqrt(
         Math.pow(deltaX, 2) + Math.pow(deltaY, 2)
       );
-      setIsDragging(distanceMoved > 8); // 임계값부터 드래그로 인식
+      setIsClickDragging(distanceMoved > 8); // 임계값부터 드래그로 인식
     } else {
       setMousePosition({ x: e.clientX, y: e.clientY });
     }
@@ -51,7 +51,7 @@ const Board = () => {
 
   const handleMouseUp = (e) => {
     if (!isClicking) return;
-    if (!isDragging) {
+    if (!isClickDragging) {
       const wpr = wrapper.current;
       const top = wpr.getBoundingClientRect().top;
       if (points.length === 1) {
@@ -67,7 +67,7 @@ const Board = () => {
       }
     }
     setIsClicking(false);
-    setIsDragging(false);
+    setIsClickDragging(false);
   };
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const Board = () => {
   return (
     <BoardWrapper
       ref={wrapper}
-      isDragging={isDragging}
+      isdragging={isClickDragging}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
