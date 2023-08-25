@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import styled, { css } from "styled-components";
 
 export const SrollBar = css`
@@ -19,6 +19,13 @@ export const SrollBar = css`
     /* 스크롤바 트랙 영역 */
     background: transparent;
   }
+`;
+
+export const DisableDrag = css`
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* 인터넷익스플로러 */
+  user-select: none;
 `;
 
 export const Body = styled.div`

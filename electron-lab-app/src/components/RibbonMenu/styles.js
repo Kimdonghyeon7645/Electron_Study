@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { DisableDrag } from "../../Styles";
 
 export const RibbonMenuWrapper = styled.div`
   width: full;
@@ -48,6 +49,8 @@ export const RibbonTapElement = styled.div`
     font-weight: ${(props) => (props.active ? "700" : "600")};
     cursor: pointer;
   }
+
+  ${DisableDrag}
 `;
 
 export const RibbonMenuSection = styled.div`
@@ -77,4 +80,6 @@ export const RibbonMenuElement = styled.div`
     font-weight: 600;
     cursor: pointer;
   }
+
+  ${DisableDrag}
 `;

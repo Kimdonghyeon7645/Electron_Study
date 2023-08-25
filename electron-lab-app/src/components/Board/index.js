@@ -19,7 +19,6 @@ const Board = () => {
   const handleMouseMove = (e) => {
     if (!isClicking) {
       if (points.length === 1) {
-        console.log("hhh");
         const wpr = wrapper.current;
         const top = wpr.getBoundingClientRect().top;
         setPrePoints({
@@ -103,7 +102,6 @@ const Board = () => {
           }}
         >
           {lines.map((line, index) => {
-            console.log(line);
             return (
               <line
                 key={index}
