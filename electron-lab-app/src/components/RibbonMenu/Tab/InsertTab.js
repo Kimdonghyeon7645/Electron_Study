@@ -16,146 +16,125 @@ import RelayBContact from "assets/symbol/RelayBContact.js";
 import RelayAContact from "assets/symbol/RelayAContact.js";
 import { RibbonMenuElement, RibbonMenuSection } from "../styles";
 
+const MenuElementInfo = [
+  {
+    icon: <Wire />,
+    label: "전선",
+  },
+  {
+    icon: <PushBtnA />,
+    label: "푸쉬버튼",
+    subLabel: "(A접점)",
+  },
+  {
+    icon: <PushBtnB />,
+    label: "푸쉬버튼",
+    subLabel: "(B접점)",
+  },
+  {
+    icon: <KnifeSwitchA />,
+    label: "나이프스위치",
+    subLabel: "(A접점)",
+  },
+  {
+    icon: <KnifeSwitchB />,
+    label: "나이프스위치",
+    subLabel: "(B접점)",
+  },
+  {
+    icon: <LimitSwitchA />,
+    label: "리밋스위치",
+    subLabel: "(A접점)",
+  },
+  {
+    icon: <LimitSwitchB />,
+    label: "리밋스위치",
+    subLabel: "(B접점)",
+  },
+  {
+    icon: (
+      <CircularSymbol>
+        <span>R</span>
+      </CircularSymbol>
+    ),
+    label: "릴레이",
+  },
+  {
+    icon: <RelayAContact />,
+    label: "릴레이접점",
+    subLabel: "(A접점)",
+  },
+  {
+    icon: <RelayBContact />,
+    label: "릴레이접점",
+    subLabel: "(B접점)",
+  },
+  {
+    icon: <RelayManualAContact />,
+    label: "수동복귀접점",
+    subLabel: "(A접점)",
+  },
+  {
+    icon: <RelayManualBContact />,
+    label: "수동복귀접점",
+    subLabel: "(B접점)",
+  },
+  {
+    icon: (
+      <CircularSymbol>
+        <span>T</span>
+      </CircularSymbol>
+    ),
+    label: "타이머",
+  },
+  {
+    icon: <TimerOnDelayAContact />,
+    label: "한시동작접점",
+    subLabel: "(A접점)",
+  },
+  {
+    icon: <TimerOnDelayBContact />,
+    label: "한시동작접점",
+    subLabel: "(B접점)",
+  },
+  {
+    icon: <TimerOffDelayAContact />,
+    label: "한시복귀접점",
+    subLabel: "(A접점)",
+  },
+  {
+    icon: <TimerOffDelayBContact />,
+    label: "한시복귀접점",
+    subLabel: "(B접점)",
+  },
+  {
+    icon: (
+      <CircularSymbol>
+        <span>L</span>
+      </CircularSymbol>
+    ),
+    label: "램프",
+  },
+];
+
 const InsertTab = () => {
   return (
     <RibbonMenuSection>
-      <RibbonMenuElement>
-        <Wire />
-        <div style={{ marginTop: 6 }}>
-          전선
-          <br />
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <PushBtnA />
-        <div style={{ marginTop: 6 }}>
-          푸쉬버튼
-          <br />
-          <small>(A접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <PushBtnB />
-        <div style={{ marginTop: 6 }}>
-          푸쉬버튼
-          <br />
-          <small>(B접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <KnifeSwitchA />
-        <div style={{ marginTop: 6 }}>
-          나이프스위치
-          <br />
-          <small>(A접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <KnifeSwitchB />
-        <div style={{ marginTop: 6 }}>
-          나이프스위치
-          <br />
-          <small>(B접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <LimitSwitchA />
-        <div style={{ marginTop: 6 }}>
-          리밋스위치
-          <br />
-          <small>(A접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <LimitSwitchB />
-        <div style={{ marginTop: 6 }}>
-          리밋스위치
-          <br />
-          <small>(B접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <CircularSymbol>
-          <span>R</span>
-        </CircularSymbol>
-        <div style={{ marginTop: 6 }}>릴레이</div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <RelayAContact />
-        <div style={{ marginTop: 6 }}>
-          릴레이접점
-          <br />
-          <small>(A접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <RelayBContact />
-        <div style={{ marginTop: 6 }}>
-          릴레이접점
-          <br />
-          <small>(B접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <RelayManualAContact />
-        <div style={{ marginTop: 6 }}>
-          수동복귀접점
-          <br />
-          <small>(A접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <RelayManualBContact />
-        <div style={{ marginTop: 6 }}>
-          수동복귀접점
-          <br />
-          <small>(B접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <CircularSymbol>
-          <span>T</span>
-        </CircularSymbol>
-        <div style={{ marginTop: 6 }}>타이머</div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <TimerOnDelayAContact />
-        <div style={{ marginTop: 6 }}>
-          한시동작접점
-          <br />
-          <small>(A접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <TimerOnDelayBContact />
-        <div style={{ marginTop: 6 }}>
-          한시동작접점
-          <br />
-          <small>(B접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <TimerOffDelayAContact />
-        <div style={{ marginTop: 6 }}>
-          한시복귀접점
-          <br />
-          <small>(A접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <TimerOffDelayBContact />
-        <div style={{ marginTop: 6 }}>
-          한시복귀접점
-          <br />
-          <small>(B접점)</small>
-        </div>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <CircularSymbol>
-          <span>L</span>
-        </CircularSymbol>
-        <div style={{ marginTop: 6 }}>램프</div>
-      </RibbonMenuElement>
+      {MenuElementInfo.map((ele, index) => (
+        <RibbonMenuElement>
+          {ele.icon && ele.icon}
+          <div style={{ marginTop: 6 }}>
+            {ele.label && ele.label}
+            {ele.subLabel && (
+              <>
+                <br />
+                <small>{ele.subLabel}</small>
+              </>
+            )}
+            <br />
+          </div>
+        </RibbonMenuElement>
+      ))}
     </RibbonMenuSection>
   );
 };

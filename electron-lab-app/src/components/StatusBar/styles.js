@@ -1,3 +1,4 @@
+import { DisableDrag } from "Styles";
 import { styled } from "styled-components";
 
 export const StatusBarWrapper = styled.div`
@@ -11,6 +12,8 @@ export const StatusBarWrapper = styled.div`
 
   border-top: #cccccc 0.5px solid;
   background-color: #eeeeee;
+  
+  ${DisableDrag}
 `;
 
 export const ModeLabel = styled.div`

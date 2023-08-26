@@ -1,17 +1,5 @@
 import { styled } from "styled-components";
-import { DisableDrag } from "../../Styles";
-
-export const RibbonMenuWrapper = styled.div`
-  width: full;
-  height: 120px;
-  position: sticky;
-
-  display: flex;
-  flex-direction: column;
-
-  background-color: #f5f5f5;
-  border-bottom: #dddddd 0.5px solid;
-`;
+import { DisableDrag, SrollBar } from "../../Styles";
 
 export const RibbonTapSection = styled.div`
   width: full;
@@ -53,31 +41,50 @@ export const RibbonTapElement = styled.div`
   ${DisableDrag}
 `;
 
+export const RibbonMenuWrapper = styled.div`
+  width: full;
+  height: 120px;
+  position: sticky;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #f5f5f5;
+  border-bottom: #dddddd 0.5px solid;
+`;
+
+
 export const RibbonMenuSection = styled.div`
+  overflow-x: auto;
+  ${SrollBar}
   width: full;
 
   flex-grow: 1;
   display: flex;
-  margin: 0 6px;
+  margin: 0 5px;
 `;
 
 export const RibbonMenuElement = styled.div`
   height: full;
+  min-width: 60px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 7px;
-  padding-top: 6px;
+  margin: 4px 0 4px 4px;
 
   font-size: 12px;
   letter-spacing: -0.1px;
   line-height: 12px;
   text-align: center;
+  border-radius: 6px;
+  font-weight: ${(props) => (props.active ? "700" : "normal")};
+  background-color: ${(props) => (props.active ? "#dedede" : "transparent")};
 
   &:hover {
-    font-weight: 600;
+    font-weight: ${(props) => (props.active ? "700" : "600")};
+    background-color: ${(props) => (props.active ? "#dedede" : "#e3e3e3")};
     cursor: pointer;
   }
 

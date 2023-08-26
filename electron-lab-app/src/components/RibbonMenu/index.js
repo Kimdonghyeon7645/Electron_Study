@@ -14,23 +14,19 @@ import {
 import { useState } from "react";
 
 const tabInfo = [
-  { title: "홈", component: <HomeTab /> },
-  { title: "삽입", component: <InsertTab /> },
-  { title: "편집", component: <EditTab /> },
-  { title: "보기", component: <ViewTab /> },
-  { title: "시뮬레이션", component: <SimulationTab /> },
+  { title: "홈", component: <HomeTab />, mode: MODE.EDIT },
+  { title: "삽입", component: <InsertTab />, mode: MODE.INSERT },
+  { title: "편집", component: <EditTab />, mode: MODE.EDIT },
+  { title: "보기", component: <ViewTab />, mode: MODE.VIEW },
+  { title: "시뮬레이션", component: <SimulationTab />, mode: MODE.SIMULATION },
 ];
 
 const RibbonMenu = () => {
   const { setMode } = useStore();
   const [tabIndex, setTabIndex] = useState(0);
 
-  const onTabClick = (e, index) => {
-    if (index === 1) setMode(MODE.INSERT);
-    else if (index === 2) setMode(MODE.EDIT);
-    else if (index === 3) setMode(MODE.VIEW);
-    else if (index === 4) setMode(MODE.SIMULATION);
-
+  const onTabClick = (index) => {
+    setMode(tabInfo[index].mode ?? MODE.EDIT);
     setTabIndex(index);
   };
 
@@ -42,7 +38,7 @@ const RibbonMenu = () => {
             <RibbonTapElement
               key={index}
               active={tabIndex === index}
-              onClick={(e) => onTabClick(e, index)}
+              onClick={() => onTabClick(index)}
             >
               {tab.title}
             </RibbonTapElement>
