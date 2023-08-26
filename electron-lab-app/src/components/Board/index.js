@@ -1,22 +1,41 @@
 import { useEffect, useRef, useState } from "react";
 import { BoardCanvas, BoardWrapper } from "./styles";
+import useStore from "../../store";
+import { INSERTABLE_OBJ, MODE } from "../../constants/enums";
 
 const Board = () => {
-  const [isClickDragging, setIsClickDragging] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [prePoints, setPrePoints] = useState({ active: false, x: 0, y: 0 });
-  const [points, setPoints] = useState([]);
-  const [lines, setLines] = useState([]);
+  /** 1-1 Ref, state 변수 */
+  const { mode, target, wirePoint1 } = useStore();
   const wrapper = useRef(null);
   const board = useRef(null);
 
+  /** 1-2. 이벤트 상태값(클릭 여부, 드래그 여부, 기존 마우스 위치) */
+  const [isClickDragging, setIsClickDragging] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  /** 1-3. 그려질 객체 정보 */
+  const [prePoints, setPrePoints] = useState({ active: false, x: 0, y: 0 });
+  const [points, setPoints] = useState([]);
+  const [lines, setLines] = useState([]);
+
+  /**
+   * 마우스 클릭을 시작했을 때 이벤트 핸들러
+   */
   const handleMouseDown = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
     setIsClicking(true);
   };
 
+  /**
+   * 마우스가 움직였을 때 이벤트 핸들러
+   */
   const handleMouseMove = (e) => {
+    if (mode === MODE.INSERT) {
+      if (target === INSERTABLE_OBJ.WIRE) {
+        
+      }
+    }
     if (!isClicking) {
       if (points.length === 1) {
         const wpr = wrapper.current;
@@ -49,6 +68,9 @@ const Board = () => {
     }
   };
 
+  /**
+   * 마우스 클릭을 끝냈을 때 이벤트 핸들러
+   */
   const handleMouseUp = (e) => {
     if (!isClicking) return;
     if (!isClickDragging) {

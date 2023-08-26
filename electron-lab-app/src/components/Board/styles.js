@@ -6,7 +6,7 @@ const gridLineSize = "0.5px";
 export const BoardWrapper = styled.div`
   /* flex-grow: 1; */
   width: calc(100vw - 2.5px);
-  height: calc(100vh - 143px);
+  height: calc(100vh - 146px);
 
   background-color: #ffffff;
   overflow: auto;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Line = ({ width = "4", height = "40" }) => {
+const Wire = ({ width = "4", height = "40" }) => {
   return (
     <svg
       width={width}
@@ -21,4 +21,4 @@ const Line = ({ width = "4", height = "40" }) => {
   );
 };
 
-export default Line;
+export default Wire;

@@ -1,10 +1,10 @@
-import { MODE } from "../../constants/enums.js";
-import useStore from "../../store/index.js";
-import EditTab from "./EditTab.js";
-import HomeTab from "./HomeTab.js";
-import InsertTab from "./InsertTab.js";
-import SimulationTab from "./SimulationTab.js";
-import ViewTab from "./ViewTab.js";
+import { MODE } from "constants/enums.js";
+import useStore from "store/index.js";
+import EditTab from "./Tab/EditTab.js";
+import HomeTab from "./Tab/HomeTab.js";
+import InsertTab from "./Tab/InsertTab.js";
+import SimulationTab from "./Tab/SimulationTab.js";
+import ViewTab from "./Tab/ViewTab.js";
 import {
   RibbonMenuWrapper,
   RibbonTapElement,

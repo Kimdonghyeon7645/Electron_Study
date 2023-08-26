@@ -14,7 +14,7 @@ export const StatusBarWrapper = styled.div`
 `;
 
 export const ModeLabel = styled.div`
-    font-size: 12px;
+    font-size: 12.5px;
     letter-spacing: 0px;
     color: #999999;
 `;

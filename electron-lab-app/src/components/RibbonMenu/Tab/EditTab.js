@@ -1,4 +1,4 @@
-const { RibbonMenuSection, RibbonMenuElement } = require("./styles");
+const { RibbonMenuSection, RibbonMenuElement } = require("../styles");
 
 const EditTab = () => {
   return <RibbonMenuSection>
