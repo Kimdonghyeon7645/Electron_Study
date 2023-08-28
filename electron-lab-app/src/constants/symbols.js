@@ -19,6 +19,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <Wire fill={fill} />,
     value: INSERTABLE_OBJ.WIRE,
     offset: 0,
+    height: 41.5,
   },
   PB_A: {
     label: "푸쉬버튼",
@@ -27,6 +28,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <PushBtnA fill={fill} />,
     value: INSERTABLE_OBJ.PB_A,
     offset: 5,
+    height: 41.5,
   },
   PB_B: {
     label: "푸쉬버튼",
@@ -35,6 +37,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <PushBtnB fill={fill} />,
     value: INSERTABLE_OBJ.PB_B,
     offset: 8.5,
+    height: 41.5,
   },
   // {
   //   icon: <KnifeSwitchA />,
@@ -53,6 +56,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <LimitSwitchA fill={fill} />,
     value: INSERTABLE_OBJ.LIMIT_A,
     offset: 0,
+    height: 41.5,
   },
   LIMIT_B: {
     label: "리밋스위치",
@@ -61,6 +65,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <LimitSwitchB fill={fill} />,
     value: INSERTABLE_OBJ.LIMIT_B,
     offset: 0,
+    height: 41.5,
   },
   RELAY: {
     label: "릴레이",
@@ -70,7 +75,8 @@ export const SYMBOLS = {
       </CircularSymbol>
     ),
     value: INSERTABLE_OBJ.RELAY,
-    offset: 0,
+    offset: 18,
+    height: 36,
   },
   R_CONTACT_A: {
     label: "릴레이접점",
@@ -78,7 +84,8 @@ export const SYMBOLS = {
     icon: <RelayAContact />,
     iconFill: (fill) => <RelayAContact fill={fill} />,
     value: INSERTABLE_OBJ.R_CONTACT_A,
-    offset: 0,
+    offset: 5,
+    height: 41.5,
   },
   R_CONTACT_B: {
     label: "릴레이접점",
@@ -86,7 +93,8 @@ export const SYMBOLS = {
     icon: <RelayBContact />,
     iconFill: (fill) => <RelayBContact fill={fill} />,
     value: INSERTABLE_OBJ.R_CONTACT_B,
-    offset: 0,
+    offset: 8.5,
+    height: 41.5,
   },
   // {
   //   icon: <RelayManualAContact />,
@@ -106,7 +114,8 @@ export const SYMBOLS = {
       </CircularSymbol>
     ),
     value: INSERTABLE_OBJ.TIMER,
-    offset: 0,
+    offset: 16,
+    height: 36,
   },
   T_CONTACT_ON_DELAY_A: {
     label: "한시동작접점",
@@ -115,6 +124,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <TimerOnDelayAContact fill={fill} />,
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A,
     offset: 0,
+    height: 41.5,
   },
   T_CONTACT_ON_DELAY_B: {
     label: "한시동작접점",
@@ -123,6 +133,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <TimerOnDelayBContact fill={fill} />,
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_B,
     offset: 0,
+    height: 41.5,
   },
   T_CONTACT_OFF_DELAY_A: {
     label: "한시복귀접점",
@@ -131,6 +142,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <TimerOffDelayAContact fill={fill} />,
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_A,
     offset: 0,
+    height: 41.5,
   },
   T_CONTACT_OFF_DELAY_B: {
     label: "한시복귀접점",
@@ -139,6 +151,7 @@ export const SYMBOLS = {
     iconFill: (fill) => <TimerOffDelayBContact fill={fill} />,
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_B,
     offset: 0,
+    height: 41.5,
   },
   LAMP: {
     label: "램프",
@@ -148,6 +161,7 @@ export const SYMBOLS = {
       </CircularSymbol>
     ),
     value: INSERTABLE_OBJ.LAMP,
-    offset: 0,
+    offset: 16,
+    height: 36,
   },
 };

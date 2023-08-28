@@ -2,7 +2,7 @@ import { SYMBOLS } from "constants/symbols";
 import React from "react";
 
 const getSymbolSvg = (type, fill = "#000000") => {
-  if (Object.keys(SYMBOLS).includes(type)) return SYMBOLS[type].iconFill(fill);
+  if (Object.keys(SYMBOLS).includes(type)) return SYMBOLS[type].iconFill ? SYMBOLS[type].iconFill(fill) : SYMBOLS[type].icon;
   else return <div>(?)</div>;
 };
 
@@ -39,7 +39,7 @@ export const SymbolDraw = React.memo(({ symbols }) => {
           }}
         >
           {getSymbolSvg(sym.type)}
-          <span>PB1</span>
+          {/* <span>PB1</span> */}
         </div>
       ))}
     </>

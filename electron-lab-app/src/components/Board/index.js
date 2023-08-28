@@ -100,6 +100,10 @@ const Board = () => {
           /** 푸시버튼 선택(INSERTABLE_OBJ.PB_A, INSERTABLE_OBJ.PB_B) */
           case INSERTABLE_OBJ.PB_A:
           case INSERTABLE_OBJ.PB_B:
+          case INSERTABLE_OBJ.R_CONTACT_A:
+          case INSERTABLE_OBJ.R_CONTACT_B:
+          case INSERTABLE_OBJ.RELAY:
+          case INSERTABLE_OBJ.LAMP:
             for (const line of lines) {
               const isVertical = line.start.x === line.end.x;
               if (
@@ -196,6 +200,10 @@ const Board = () => {
           /** 푸시버튼 선택(INSERTABLE_OBJ.PB_A, INSERTABLE_OBJ.PB_B) */
           case INSERTABLE_OBJ.PB_A:
           case INSERTABLE_OBJ.PB_B:
+          case INSERTABLE_OBJ.R_CONTACT_A:
+          case INSERTABLE_OBJ.R_CONTACT_B:
+            case INSERTABLE_OBJ.RELAY:
+              case INSERTABLE_OBJ.LAMP:
             if (tempSymbol?.isInsertable) {
               addSymbol();
             }

@@ -25,7 +25,9 @@ const LineDraw = React.memo(({ lines }) => {
                     x1={
                       line.symbols[j].x + SYMBOLS[line.symbols[j].type].offset
                     }
-                    y1={line.symbols[j].y + 41.5}
+                    y1={
+                      line.symbols[j].y + SYMBOLS[line.symbols[j].type].height
+                    }
                     x2={sym.x + SYMBOLS[sym.type].offset}
                     y2={sym.y + 0.5}
                     stroke="black"
@@ -39,7 +41,10 @@ const LineDraw = React.memo(({ lines }) => {
                   line.symbols[line.symbols.length - 1].x +
                   SYMBOLS[line.symbols[line.symbols.length - 1].type].offset
                 }
-                y1={line.symbols[line.symbols.length - 1].y + 41.5}
+                y1={
+                  line.symbols[line.symbols.length - 1].y +
+                  SYMBOLS[line.symbols[line.symbols.length - 1].type].height
+                }
                 x2={line.end.x}
                 y2={line.end.y}
                 stroke="black"

@@ -37,8 +37,8 @@ export const Body = styled.div`
 `;
 
 export const CircularSymbol = styled.div`
-  height: 30px;
-  width: 30px;
+  height: 32px;
+  width: 32px;
 
   display: flex;
   justify-content: center;
