@@ -114,7 +114,7 @@ export const SYMBOLS = {
       </CircularSymbol>
     ),
     value: INSERTABLE_OBJ.TIMER,
-    offset: 16,
+    offset: 18,
     height: 36,
   },
   T_CONTACT_ON_DELAY_A: {
@@ -161,7 +161,7 @@ export const SYMBOLS = {
       </CircularSymbol>
     ),
     value: INSERTABLE_OBJ.LAMP,
-    offset: 16,
+    offset: 18,
     height: 36,
   },
 };
