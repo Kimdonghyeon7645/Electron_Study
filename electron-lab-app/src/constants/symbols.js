@@ -16,18 +16,21 @@ export const SYMBOLS = {
   WIRE: {
     label: "전선",
     icon: <Wire />,
+    iconFill: (fill) => <Wire fill={fill}/>,
     value: INSERTABLE_OBJ.WIRE,
   },
   PB_A: {
     label: "푸쉬버튼",
     subLabel: "(A접점)",
     icon: <PushBtnA />,
+    iconFill: (fill) => <PushBtnA fill={fill}/>,
     value: INSERTABLE_OBJ.PB_A,
   },
   PB_B: {
     label: "푸쉬버튼",
     subLabel: "(B접점)",
     icon: <PushBtnB />,
+    iconFill: (fill) => <PushBtnB fill={fill}/>,
     value: INSERTABLE_OBJ.PB_B,
   },
   // {
@@ -44,12 +47,14 @@ export const SYMBOLS = {
     label: "리밋스위치",
     subLabel: "(A접점)",
     icon: <LimitSwitchA />,
+    iconFill: (fill) => <LimitSwitchA fill={fill}/>,
     value: INSERTABLE_OBJ.LIMIT_A,
   },
   LIMIT_B: {
     label: "리밋스위치",
     subLabel: "(B접점)",
     icon: <LimitSwitchB />,
+    iconFill: (fill) => <LimitSwitchB fill={fill}/>,
     value: INSERTABLE_OBJ.LIMIT_B,
   },
   RELAY: {
@@ -65,12 +70,14 @@ export const SYMBOLS = {
     label: "릴레이접점",
     subLabel: "(A접점)",
     icon: <RelayAContact />,
+    iconFill: (fill) => <RelayAContact fill={fill}/>,
     value: INSERTABLE_OBJ.R_CONTACT_A,
   },
   R_CONTACT_B: {
     label: "릴레이접점",
     subLabel: "(B접점)",
     icon: <RelayBContact />,
+    iconFill: (fill) => <RelayBContact fill={fill}/>,
     value: INSERTABLE_OBJ.R_CONTACT_B,
   },
   // {
@@ -96,24 +103,28 @@ export const SYMBOLS = {
     label: "한시동작접점",
     subLabel: "(A접점)",
     icon: <TimerOnDelayAContact />,
+    iconFill: (fill) => <TimerOnDelayAContact fill={fill}/>,
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A,
   },
   T_CONTACT_ON_DELAY_B: {
     label: "한시동작접점",
     subLabel: "(B접점)",
     icon: <TimerOnDelayBContact />,
+    iconFill: (fill) => <TimerOnDelayBContact fill={fill}/>,
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_B,
   },
   T_CONTACT_OFF_DELAY_A: {
     label: "한시복귀접점",
     subLabel: "(A접점)",
     icon: <TimerOffDelayAContact />,
+    iconFill: (fill) => <TimerOffDelayAContact fill={fill}/>,
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_A,
   },
   T_CONTACT_OFF_DELAY_B: {
     label: "한시복귀접점",
     subLabel: "(B접점)",
     icon: <TimerOffDelayBContact />,
+    iconFill: (fill) => <TimerOffDelayBContact fill={fill}/>,
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_B,
   },
   LAMP: {
