@@ -5,6 +5,7 @@ import HomeTab from "./Tab/HomeTab.js";
 import InsertTab from "./Tab/InsertTab.js";
 import SimulationTab from "./Tab/SimulationTab.js";
 import ViewTab from "./Tab/ViewTab.js";
+import DebugTab from "./Tab/DebugTab.js";
 import {
   RibbonMenuWrapper,
   RibbonTapElement,
@@ -19,6 +20,7 @@ const tabInfo = [
   { title: "편집", component: <EditTab />, mode: MODE.EDIT },
   { title: "보기", component: <ViewTab />, mode: MODE.VIEW },
   { title: "시뮬레이션", component: <SimulationTab />, mode: MODE.SIMULATION },
+  { title: "디버그", component: <DebugTab />, mode: MODE.DEBUG },
 ];
 
 const RibbonMenu = () => {

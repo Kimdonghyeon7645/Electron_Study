@@ -79,12 +79,12 @@ export const RibbonMenuElement = styled.div`
   line-height: 12px;
   text-align: center;
   border-radius: 6px;
-  font-weight: ${(props) => (props.active ? "700" : "normal")};
-  background-color: ${(props) => (props.active ? "#dedede" : "transparent")};
+  font-weight: ${(props) => (props.active ? "600" : "normal")};
+  background-color: ${(props) => (props.active ? "#d3d3d3" : "transparent")};
 
   &:hover {
-    font-weight: ${(props) => (props.active ? "700" : "600")};
-    background-color: ${(props) => (props.active ? "#dedede" : "#e3e3e3")};
+    font-weight: ${(props) => (props.active ? "600" : "500")};
+    background-color: ${(props) => (props.active ? "#cfcfcf" : "#e7e7e7")};
     cursor: pointer;
   }
 

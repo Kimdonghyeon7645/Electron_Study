@@ -1,21 +1,30 @@
 import create from "zustand";
-import { CMD, INSERTABLE_OBJ, MODE } from "../constants/enums";
+import { CMD, MODE } from "../constants/enums";
 
 const useBaseStore = create((set) => ({
-  mode: MODE.EDIT,
+  mode: MODE.INSERT,
   command: null,
   insertTarget: null,
   wirePoint1: {},
   wirePoint2: {},
+  isAddWirePoint1: false,
+  wirePoint1Dot: {},
+  tempSymbol: {},
+  symbols: [],
   lines: [],
+  dots: [],
   setMode: (mode) => {
     set({ mode: mode });
     if (mode === MODE.INSERT) set({ insertTarget: null });
   },
   setCommand: (cmd) => set({ command: cmd }),
   setInsertTarget: (obj) => {
-    set({ command: CMD.INSERT, insertTarget: obj });
-    if (obj === INSERTABLE_OBJ.WIRE) set({ wirePoint1: {} });
+    set({
+      command: CMD.INSERT,
+      insertTarget: obj,
+      wirePoint1: {},
+      tempSymbol: {},
+    });
   },
   setWirePoint1: (point) => set({ wirePoint1: point }),
   setWirePoint2: (point) => {
@@ -30,20 +39,52 @@ const useBaseStore = create((set) => ({
       };
     });
   },
-  insertLine: () => {
-    set((state) => ({
-      lines: [
-        ...state.lines,
-        {
-          id: state.lines[state.lines.length - 1]?.id ?? 0,
-          start: { x: state.wirePoint1.x, y: state.wirePoint1.y },
-          end: { x: state.wirePoint2.x, y: state.wirePoint2.y },
-        },
-      ],
-      wirePoint1: {},
-      wirePoint2: {},
-    }));
-  },
+  addWirePoint1: (dot) => set({ isAddWirePoint1: true, wirePoint1Dot: dot }),
+  insertLine: () =>
+    set((state) => {
+      const isReverse =
+        state.wirePoint1.x > state.wirePoint2.x ||
+        state.wirePoint1.y > state.wirePoint2.y;
+      const point1 = isReverse ? state.wirePoint2 : state.wirePoint1;
+      const point2 = isReverse ? state.wirePoint1 : state.wirePoint2;
+      return {
+        lines: [
+          ...state.lines,
+          {
+            id:
+              state.lines.length > 0
+                ? state.lines[state.lines.length - 1].id + 1
+                : 0,
+            start: { x: point1.x, y: point1.y },
+            end: { x: point2.x, y: point2.y },
+            symbols: [],
+          },
+        ],
+        wirePoint1: {},
+        wirePoint2: {},
+        wirePoint1Dot: {},
+        isAddWirePoint1: false,
+      };
+    }),
+  setTempSymbol: (symbol) => set({ tempSymbol: symbol }),
+  addSymbol: () =>
+    set((state) => {
+      const newLines = [...state.lines];
+      const newSymbol = JSON.parse(JSON.stringify(state.tempSymbol));
+      const targetLine = { ...newLines[newSymbol.line] };
+
+      targetLine.symbols = [
+        ...targetLine.symbols,
+        { x: newSymbol.x+5, y: newSymbol.y },
+      ];
+      newLines[newSymbol.line] = targetLine;
+
+      return {
+        lines: newLines,
+        symbols: [...state.symbols, newSymbol],
+        tempSymbol: {},
+      };
+    }),
 }));
 
 export default useBaseStore;
