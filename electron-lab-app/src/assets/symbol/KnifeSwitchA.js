@@ -1,6 +1,6 @@
 import React from "react";
 
-const KnifeSwitchA = ({ width = "18.7", height = "42" }) => {
+const KnifeSwitchA = ({ width = "18.7", height = "42", fill = "#000000" }) => {
   return (
     <svg
       width={width}
@@ -16,7 +16,7 @@ const KnifeSwitchA = ({ width = "18.7", height = "42" }) => {
       <g clipPath="url(#clip13)" transform="translate(-1817 -1314)">
         <path
           d="M1839.5 1438.5C1839.5 1381.06 1886.06 1334.5 1943.5 1334.5 2000.94 1334.5 2047.5 1381.06 2047.5 1438.5 2047.5 1495.94 2000.94 1542.5 1943.5 1542.5 1886.06 1542.5 1839.5 1495.94 1839.5 1438.5Z"
-          stroke="#000000"
+          stroke={fill}
           strokeWidth="41.25"
           strokeMiterlimit="8"
           fill="none"
@@ -24,7 +24,7 @@ const KnifeSwitchA = ({ width = "18.7", height = "42" }) => {
         />
         <path
           d="M1837.5 2198.5C1837.5 2141.06 1884.06 2094.5 1941.5 2094.5 1998.94 2094.5 2045.5 2141.06 2045.5 2198.5 2045.5 2255.94 1998.94 2302.5 1941.5 2302.5 1884.06 2302.5 1837.5 2255.94 1837.5 2198.5Z"
-          stroke="#000000"
+          stroke={fill}
           strokeWidth="41.25"
           strokeMiterlimit="8"
           fill="none"
@@ -32,7 +32,7 @@ const KnifeSwitchA = ({ width = "18.7", height = "42" }) => {
         />
         <path
           d="M0 0 295.889 726.655"
-          stroke="#000000"
+          stroke={fill}
           strokeWidth="55"
           strokeMiterlimit="8"
           fill="none"
