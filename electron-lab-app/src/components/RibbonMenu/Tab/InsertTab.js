@@ -15,11 +15,14 @@ import TimerOnDelayAContact from "assets/symbol/TimerOnDelayAContact.js";
 import RelayBContact from "assets/symbol/RelayBContact.js";
 import RelayAContact from "assets/symbol/RelayAContact.js";
 import { RibbonMenuElement, RibbonMenuSection } from "../styles";
+import { INSERTABLE_OBJ } from "constants/enums";
+import useBaseStore from "store";
 
 const MenuElementInfo = [
   {
     icon: <Wire />,
     label: "전선",
+    value: INSERTABLE_OBJ.WIRE,
   },
   {
     icon: <PushBtnA />,
@@ -118,10 +121,16 @@ const MenuElementInfo = [
 ];
 
 const InsertTab = () => {
+  const { insertTarget, setInsertTarget } = useBaseStore();
   return (
     <RibbonMenuSection>
       {MenuElementInfo.map((ele, index) => (
-        <RibbonMenuElement>
+        <RibbonMenuElement
+          active={ele?.value === insertTarget}
+          onClick={() => {
+            setInsertTarget(ele?.value);
+          }}
+        >
           {ele.icon && ele.icon}
           <div style={{ marginTop: 6 }}>
             {ele.label && ele.label}

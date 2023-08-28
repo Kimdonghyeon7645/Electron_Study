@@ -1,9 +1,9 @@
-import { MODE } from "../../constants/enums";
-import useStore from "../../store";
-import { ModeLabel, StatusBarWrapper } from "./styles";
+import { INSERTABLE_OBJ, MODE } from "constants/enums";
+import useBaseStore from "store";
+import { Delimiter, StatusBarWrapper } from "./styles";
 
 const StatusBar = () => {
-  const { mode } = useStore();
+  const { mode, insertTarget } = useBaseStore();
 
   const getModeLabel = () => {
     if (mode === MODE.INSERT) return "삽입 모드";
@@ -13,9 +13,22 @@ const StatusBar = () => {
     else return "모드 정보를 불러오는 중...";
   };
 
+  const getTarget = () => {
+    if (insertTarget === null) return "선택한 요소 없음";
+    else if (insertTarget === INSERTABLE_OBJ.WIRE) return "전선 선택";
+    else if (insertTarget === INSERTABLE_OBJ.TEXT) return "글자 선택";
+  };
+
   return (
     <StatusBarWrapper>
-      <ModeLabel>{getModeLabel()}</ModeLabel>
+      <div>{getModeLabel()}</div>
+
+      {mode === MODE.INSERT && (
+        <>
+          <Delimiter>|</Delimiter>
+          <div>{getTarget()}</div>
+        </>
+      )}
     </StatusBarWrapper>
   );
 };

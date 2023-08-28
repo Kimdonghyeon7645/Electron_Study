@@ -1,11 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { BoardCanvas, BoardWrapper } from "./styles";
-import useStore from "../../store";
-import { INSERTABLE_OBJ, MODE } from "../../constants/enums";
+import useBaseStore from "store";
+import { INSERTABLE_OBJ, MODE } from "constants/enums";
 
 const Board = () => {
   /** 1-1 Ref, state 변수 */
-  const { mode, target, wirePoint1 } = useStore();
+  const {
+    mode,
+    insertTarget,
+    wirePoint1,
+    setWirePoint1,
+    wirePoint2,
+    setWirePoint2,
+    lines,
+    insertLine,
+  } = useBaseStore();
   const wrapper = useRef(null);
   const board = useRef(null);
 
@@ -13,11 +22,6 @@ const Board = () => {
   const [isClickDragging, setIsClickDragging] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  /** 1-3. 그려질 객체 정보 */
-  const [prePoints, setPrePoints] = useState({ active: false, x: 0, y: 0 });
-  const [points, setPoints] = useState([]);
-  const [lines, setLines] = useState([]);
 
   /**
    * 마우스 클릭을 시작했을 때 이벤트 핸들러
@@ -31,40 +35,50 @@ const Board = () => {
    * 마우스가 움직였을 때 이벤트 핸들러
    */
   const handleMouseMove = (e) => {
-    if (mode === MODE.INSERT) {
-      if (target === INSERTABLE_OBJ.WIRE) {
-        
-      }
-    }
-    if (!isClicking) {
-      if (points.length === 1) {
+    switch (mode) {
+      case MODE.INSERT:
+        switch (insertTarget) {
+          case INSERTABLE_OBJ.WIRE:
+            const wpr = wrapper.current;
+            const top = wpr.getBoundingClientRect().top;
+
+            if (wirePoint1.x !== undefined) {
+              setWirePoint2({
+                x: wpr.scrollLeft + e.clientX,
+                y: wpr.scrollTop + e.clientY - top,
+              });
+            } else {
+              // setWirePoint1({
+              //   x: wpr.scrollLeft + e.clientX,
+              //   y: wpr.scrollTop + e.clientY - top,
+              // });
+            }
+            break;
+          default:
+            break;
+        }
+        break;
+      case MODE.VIEW:
         const wpr = wrapper.current;
-        const top = wpr.getBoundingClientRect().top;
-        setPrePoints({
-          active: true,
-          x: wpr.scrollLeft + e.clientX,
-          y: wpr.scrollTop + e.clientY - top,
-        });
-      }
-      return;
-    }
+        const deltaX = e.clientX - mousePosition.x;
+        const deltaY = e.clientY - mousePosition.y;
+        const scrollLeft = wpr.scrollLeft - deltaX;
+        const scrollTop = wpr.scrollTop - deltaY;
 
-    const wpr = wrapper.current;
-    const deltaX = e.clientX - mousePosition.x;
-    const deltaY = e.clientY - mousePosition.y;
-    const scrollLeft = wpr.scrollLeft - deltaX;
-    const scrollTop = wpr.scrollTop - deltaY;
+        wpr.scrollLeft = scrollLeft;
+        wpr.scrollTop = scrollTop;
 
-    wpr.scrollLeft = scrollLeft;
-    wpr.scrollTop = scrollTop;
-
-    if (!isClickDragging) {
-      const distanceMoved = Math.sqrt(
-        Math.pow(deltaX, 2) + Math.pow(deltaY, 2)
-      );
-      setIsClickDragging(distanceMoved > 8); // 임계값부터 드래그로 인식
-    } else {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+        if (!isClickDragging) {
+          const distanceMoved = Math.sqrt(
+            Math.pow(deltaX, 2) + Math.pow(deltaY, 2)
+          );
+          setIsClickDragging(distanceMoved > 8); // 임계값부터 드래그로 인식
+        } else {
+          setMousePosition({ x: e.clientX, y: e.clientY });
+        }
+        break;
+      default:
+        break;
     }
   };
 
@@ -73,34 +87,36 @@ const Board = () => {
    */
   const handleMouseUp = (e) => {
     if (!isClicking) return;
-    if (!isClickDragging) {
-      const wpr = wrapper.current;
-      const top = wpr.getBoundingClientRect().top;
-      if (points.length === 1) {
-        setPoints((v) => [
-          ...v,
-          { x: wpr.scrollLeft + e.clientX, y: wpr.scrollTop + e.clientY - top },
-        ]);
-        setPrePoints({ active: false, x: 0, y: 0 });
-      } else {
-        setPoints([
-          { x: wpr.scrollLeft + e.clientX, y: wpr.scrollTop + e.clientY - top },
-        ]);
-      }
+    if (isClickDragging) return;
+
+    switch (mode) {
+      case MODE.INSERT:
+        switch (insertTarget) {
+          case INSERTABLE_OBJ.WIRE:
+            const wpr = wrapper.current;
+            const top = wpr.getBoundingClientRect().top;
+
+            if (wirePoint1.x !== undefined) {
+              insertLine();
+            } else {
+              setWirePoint1({
+                x: wpr.scrollLeft + e.clientX,
+                y: wpr.scrollTop + e.clientY - top,
+              });
+            }
+
+            break;
+          default:
+            break;
+        }
+
+        break;
+      default:
+        break;
     }
     setIsClicking(false);
     setIsClickDragging(false);
   };
-
-  useEffect(() => {
-    if (points.length !== 2) return;
-    setLines((v) =>
-      v.concat({
-        start: { x: points[0].x, y: points[0].y },
-        end: { x: points[1].x, y: points[1].y },
-      })
-    );
-  }, [points]);
 
   return (
     <BoardWrapper
@@ -136,12 +152,14 @@ const Board = () => {
               />
             );
           })}
-          {points.length === 1 && prePoints.active && (
+
+          {/* 전선 작도전 미리보기 */}
+          {wirePoint1.x && wirePoint2.x && (
             <line
-              x1={points[0].x}
-              y1={points[0].y}
-              x2={prePoints.x}
-              y2={prePoints.y}
+              x1={wirePoint1.x}
+              y1={wirePoint1.y}
+              x2={wirePoint2.x}
+              y2={wirePoint2.y}
               stroke="#999999"
               strokeWidth="1.5"
             />

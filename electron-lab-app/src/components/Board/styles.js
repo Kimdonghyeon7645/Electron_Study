@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { SrollBar } from "../../Styles";
+import { SrollBar } from "Styles";
 
 const gridLineColor = "#00000010";
 const gridLineSize = "0.5px";
