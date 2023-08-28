@@ -5,7 +5,7 @@ const LineDraw = React.memo(({ lines }) => {
   return (
     <>
       {lines.map((line, index) => {
-        // console.log(line);
+        const isVertical = line.start.x === line.end.x;
         if (line.symbols?.length > 0) {
           return (
             <>
@@ -13,8 +13,8 @@ const LineDraw = React.memo(({ lines }) => {
                 key={`${index}-first`}
                 x1={line.start.x}
                 y1={line.start.y}
-                x2={line.symbols[0].x + SYMBOLS[line.symbols[0].type].offset}
-                y2={line.symbols[0].y + 0.5}
+                x2={isVertical ? line.start.x : line.symbols[0].x + 0.5}
+                y2={isVertical ? line.symbols[0].y + 0.5 : line.start.y}
                 stroke="black"
                 strokeWidth="1.5"
               />
@@ -23,13 +23,19 @@ const LineDraw = React.memo(({ lines }) => {
                   <line
                     key={`${index}-${j}`}
                     x1={
-                      line.symbols[j].x + SYMBOLS[line.symbols[j].type].offset
+                      isVertical
+                        ? line.start.x
+                        : line.symbols[j].x +
+                          SYMBOLS[line.symbols[j].type].height
                     }
                     y1={
-                      line.symbols[j].y + SYMBOLS[line.symbols[j].type].height
+                      isVertical
+                        ? line.symbols[j].y +
+                          SYMBOLS[line.symbols[j].type].height
+                        : line.start.y
                     }
-                    x2={sym.x + SYMBOLS[sym.type].offset}
-                    y2={sym.y + 0.5}
+                    x2={isVertical ? line.start.x : sym.x}
+                    y2={isVertical ? sym.y + 0.5 : line.start.y}
                     stroke="black"
                     strokeWidth="1.5"
                   />
@@ -38,12 +44,16 @@ const LineDraw = React.memo(({ lines }) => {
               <line
                 key={`${index}-last`}
                 x1={
-                  line.symbols[line.symbols.length - 1].x +
-                  SYMBOLS[line.symbols[line.symbols.length - 1].type].offset
+                  isVertical
+                    ? line.start.x
+                    : line.symbols[line.symbols.length - 1].x +
+                      SYMBOLS[line.symbols[line.symbols.length - 1].type].height
                 }
                 y1={
-                  line.symbols[line.symbols.length - 1].y +
-                  SYMBOLS[line.symbols[line.symbols.length - 1].type].height
+                  isVertical
+                    ? line.symbols[line.symbols.length - 1].y +
+                      SYMBOLS[line.symbols[line.symbols.length - 1].type].height
+                    : line.start.y
                 }
                 x2={line.end.x}
                 y2={line.end.y}
