@@ -145,8 +145,8 @@ export const SYMBOLS = {
       <TimerOnDelayAContact fill={fill} isVertical={isVertical} />
     ),
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A,
-    offsetX: 0,
-    offsetY: 25.7,
+    offsetX: 5.5,
+    offsetY: 21.6,
     height: 41.5,
   },
   T_CONTACT_ON_DELAY_B: {
@@ -157,8 +157,8 @@ export const SYMBOLS = {
       <TimerOnDelayBContact fill={fill} isVertical={isVertical} />
     ),
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_B,
-    offsetX: 0,
-    offsetY: 25.7,
+    offsetX: 7.8,
+    offsetY: 10.5,
     height: 41.5,
   },
   T_CONTACT_OFF_DELAY_A: {
@@ -169,8 +169,8 @@ export const SYMBOLS = {
       <TimerOffDelayAContact fill={fill} isVertical={isVertical} />
     ),
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_A,
-    offsetX: 0,
-    offsetY: 25.7,
+    offsetX: 5.5,
+    offsetY: 13.3,
     height: 41.5,
   },
   T_CONTACT_OFF_DELAY_B: {
@@ -181,8 +181,8 @@ export const SYMBOLS = {
       <TimerOffDelayBContact fill={fill} isVertical={isVertical} />
     ),
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_B,
-    offsetX: 0,
-    offsetY: 25.7,
+    offsetX: 17.2,
+    offsetY: 5.1,
     height: 41.5,
   },
   LAMP: {

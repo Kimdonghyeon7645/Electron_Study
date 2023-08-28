@@ -102,9 +102,14 @@ const Board = () => {
           case INSERTABLE_OBJ.PB_B:
           case INSERTABLE_OBJ.LIMIT_A:
           case INSERTABLE_OBJ.LIMIT_B:
+          case INSERTABLE_OBJ.RELAY:
           case INSERTABLE_OBJ.R_CONTACT_A:
           case INSERTABLE_OBJ.R_CONTACT_B:
-          case INSERTABLE_OBJ.RELAY:
+          case INSERTABLE_OBJ.TIMER:
+          case INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_A:
+          case INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_B:
+          case INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A:
+          case INSERTABLE_OBJ.T_CONTACT_ON_DELAY_B:
           case INSERTABLE_OBJ.LAMP:
             for (const line of lines) {
               const isVertical = line.start.x === line.end.x;
@@ -205,9 +210,14 @@ const Board = () => {
           case INSERTABLE_OBJ.PB_B:
           case INSERTABLE_OBJ.LIMIT_A:
           case INSERTABLE_OBJ.LIMIT_B:
+          case INSERTABLE_OBJ.RELAY:
           case INSERTABLE_OBJ.R_CONTACT_A:
           case INSERTABLE_OBJ.R_CONTACT_B:
-          case INSERTABLE_OBJ.RELAY:
+          case INSERTABLE_OBJ.TIMER:
+          case INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_A:
+          case INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_B:
+          case INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A:
+          case INSERTABLE_OBJ.T_CONTACT_ON_DELAY_B:
           case INSERTABLE_OBJ.LAMP:
             if (tempSymbol?.isInsertable) {
               addSymbol();
