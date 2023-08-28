@@ -27,7 +27,7 @@ export const SYMBOLS = {
     icon: <PushBtnA />,
     iconFill: (fill) => <PushBtnA fill={fill} />,
     value: INSERTABLE_OBJ.PB_A,
-    offset: 5,
+    offset: 5.2,
     height: 41.5,
   },
   PB_B: {
@@ -93,7 +93,7 @@ export const SYMBOLS = {
     icon: <RelayBContact />,
     iconFill: (fill) => <RelayBContact fill={fill} />,
     value: INSERTABLE_OBJ.R_CONTACT_B,
-    offset: 8.5,
+    offset: 10.7,
     height: 41.5,
   },
   // {
