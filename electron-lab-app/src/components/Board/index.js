@@ -97,9 +97,11 @@ const Board = () => {
             else setWirePoint1({ x: x, y: y });
 
             break;
-          /** 푸시버튼 선택(INSERTABLE_OBJ.PB_A, INSERTABLE_OBJ.PB_B) */
+          /** 심볼 선택 */
           case INSERTABLE_OBJ.PB_A:
           case INSERTABLE_OBJ.PB_B:
+          case INSERTABLE_OBJ.LIMIT_A:
+          case INSERTABLE_OBJ.LIMIT_B:
           case INSERTABLE_OBJ.R_CONTACT_A:
           case INSERTABLE_OBJ.R_CONTACT_B:
           case INSERTABLE_OBJ.RELAY:
@@ -198,9 +200,11 @@ const Board = () => {
               setTempDot({});
             }
             break;
-          /** 푸시버튼 선택(INSERTABLE_OBJ.PB_A, INSERTABLE_OBJ.PB_B) */
+          /** 심볼 선택 */
           case INSERTABLE_OBJ.PB_A:
           case INSERTABLE_OBJ.PB_B:
+          case INSERTABLE_OBJ.LIMIT_A:
+          case INSERTABLE_OBJ.LIMIT_B:
           case INSERTABLE_OBJ.R_CONTACT_A:
           case INSERTABLE_OBJ.R_CONTACT_B:
           case INSERTABLE_OBJ.RELAY:

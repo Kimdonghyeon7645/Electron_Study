@@ -63,8 +63,8 @@ export const SYMBOLS = {
       <LimitSwitchA fill={fill} isVertical={isVertical} />
     ),
     value: INSERTABLE_OBJ.LIMIT_A,
-    offsetX: 0,
-    offsetY: 25.7,
+    offsetX: 5.2,
+    offsetY: 18,
     height: 41.5,
   },
   LIMIT_B: {
@@ -75,8 +75,8 @@ export const SYMBOLS = {
       <LimitSwitchB fill={fill} isVertical={isVertical} />
     ),
     value: INSERTABLE_OBJ.LIMIT_B,
-    offsetX: 0,
-    offsetY: 25.7,
+    offsetX: 13.5,
+    offsetY: 5.2,
     height: 41.5,
   },
   RELAY: {
