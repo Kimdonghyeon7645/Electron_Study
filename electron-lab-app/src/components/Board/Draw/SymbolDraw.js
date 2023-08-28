@@ -1,8 +1,11 @@
 import { SYMBOLS } from "constants/symbols";
 import React from "react";
 
-const getSymbolSvg = (type, fill = "#000000") => {
-  if (Object.keys(SYMBOLS).includes(type)) return SYMBOLS[type].iconFill ? SYMBOLS[type].iconFill(fill) : SYMBOLS[type].icon;
+const getSymbolSvg = (type, isVertical = true, fill = "#000000") => {
+  if (Object.keys(SYMBOLS).includes(type))
+    return SYMBOLS[type].getIcon
+      ? SYMBOLS[type].getIcon(fill, isVertical)
+      : SYMBOLS[type].icon;
   else return <div>(?)</div>;
 };
 
@@ -18,7 +21,8 @@ export const TempSymbolDraw = React.memo(({ tempSymbol }) => {
         >
           {getSymbolSvg(
             tempSymbol.type,
-            tempSymbol.isInsertable ? "#00000099" : "#00000044"
+            tempSymbol.isVertical,
+            tempSymbol.isInsertable ? "#00000099" : "#00000044",
           )}
           {/* <span>PB1</span> */}
         </div>
@@ -38,7 +42,7 @@ export const SymbolDraw = React.memo(({ symbols }) => {
             margin: `${sym.y}px 0 0 ${sym.x}px`,
           }}
         >
-          {getSymbolSvg(sym.type)}
+          {getSymbolSvg(sym.type, sym.isVertical)}
           {/* <span>PB1</span> */}
         </div>
       ))}

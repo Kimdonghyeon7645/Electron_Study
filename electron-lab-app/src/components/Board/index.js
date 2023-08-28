@@ -131,10 +131,11 @@ const Board = () => {
                 id = line.id;
                 setTempSymbol({
                   type: insertTarget,
-                  x: x - SYMBOLS[insertTarget].offset,
-                  y: y - SYMBOLS[insertTarget].offset,
+                  x: x - (isVertical ? SYMBOLS[insertTarget].offsetX : 0),
+                  y: y - (!isVertical ? SYMBOLS[insertTarget].offsetY : 0),
                   isInsertable: true,
                   line: id,
+                  isVertical: isVertical,
                 });
                 return;
               }
@@ -142,8 +143,8 @@ const Board = () => {
 
             setTempSymbol({
               type: insertTarget,
-              x: x - SYMBOLS[insertTarget].offset,
-              y: y - SYMBOLS[insertTarget].offset,
+              x: x,
+              y: y,
               isInsertable: false,
             });
             break;
@@ -202,8 +203,8 @@ const Board = () => {
           case INSERTABLE_OBJ.PB_B:
           case INSERTABLE_OBJ.R_CONTACT_A:
           case INSERTABLE_OBJ.R_CONTACT_B:
-            case INSERTABLE_OBJ.RELAY:
-              case INSERTABLE_OBJ.LAMP:
+          case INSERTABLE_OBJ.RELAY:
+          case INSERTABLE_OBJ.LAMP:
             if (tempSymbol?.isInsertable) {
               addSymbol();
             }
