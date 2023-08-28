@@ -11,7 +11,7 @@ const InsertTab = () => {
           key={index}
           active={ele?.value === insertTarget}
           onClick={() => {
-            setInsertTarget(ele?.value);
+            setInsertTarget(insertTarget === ele?.value ? null : ele?.value);
           }}
         >
           {ele.icon && ele.icon}

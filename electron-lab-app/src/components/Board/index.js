@@ -132,7 +132,7 @@ const Board = () => {
                 setTempSymbol({
                   type: insertTarget,
                   x: x - SYMBOLS[insertTarget].offset,
-                  y: y,
+                  y: y - SYMBOLS[insertTarget].offset,
                   isInsertable: true,
                   line: id,
                 });
@@ -143,7 +143,7 @@ const Board = () => {
             setTempSymbol({
               type: insertTarget,
               x: x - SYMBOLS[insertTarget].offset,
-              y: y,
+              y: y - SYMBOLS[insertTarget].offset,
               isInsertable: false,
             });
             break;

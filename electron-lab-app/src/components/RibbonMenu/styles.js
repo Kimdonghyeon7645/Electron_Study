@@ -66,7 +66,7 @@ export const RibbonMenuSection = styled.div`
 
 export const RibbonMenuElement = styled.div`
   height: full;
-  min-width: 60px;
+  min-width: 66px;
 
   display: flex;
   flex-direction: column;

@@ -46,6 +46,7 @@ export const CircularSymbol = styled.div`
 
   border-radius: 999px;
   border: 2.4px solid;
+  cursor: default;
 
   & > * {
     padding: 0 0.5px 1.5px 0;
