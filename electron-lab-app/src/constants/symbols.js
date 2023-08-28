@@ -25,7 +25,9 @@ export const SYMBOLS = {
     label: "푸쉬버튼",
     subLabel: "(A접점)",
     icon: <PushBtnA />,
-    getIcon: (fill, isVertical) => <PushBtnA fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <PushBtnA fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.PB_A,
     offsetX: 5.2,
     offsetY: 25.7,
@@ -35,10 +37,12 @@ export const SYMBOLS = {
     label: "푸쉬버튼",
     subLabel: "(B접점)",
     icon: <PushBtnB />,
-    getIcon: (fill, isVertical) => <PushBtnB fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <PushBtnB fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.PB_B,
     offsetX: 8.5,
-    offsetY: 25.7,
+    offsetY: 10,
     height: 41.5,
   },
   // {
@@ -55,7 +59,9 @@ export const SYMBOLS = {
     label: "리밋스위치",
     subLabel: "(A접점)",
     icon: <LimitSwitchA />,
-    getIcon: (fill, isVertical) => <LimitSwitchA fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <LimitSwitchA fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.LIMIT_A,
     offsetX: 0,
     offsetY: 25.7,
@@ -65,7 +71,9 @@ export const SYMBOLS = {
     label: "리밋스위치",
     subLabel: "(B접점)",
     icon: <LimitSwitchB />,
-    getIcon: (fill, isVertical) => <LimitSwitchB fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <LimitSwitchB fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.LIMIT_B,
     offsetX: 0,
     offsetY: 25.7,
@@ -80,27 +88,31 @@ export const SYMBOLS = {
     ),
     value: INSERTABLE_OBJ.RELAY,
     offsetX: 18,
-    offsetY: 25.7,
+    offsetY: 18,
     height: 36,
   },
   R_CONTACT_A: {
     label: "릴레이접점",
     subLabel: "(A접점)",
     icon: <RelayAContact />,
-    getIcon: (fill, isVertical) => <RelayAContact fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <RelayAContact fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.R_CONTACT_A,
     offsetX: 5,
-    offsetY: 25.7,
+    offsetY: 13.5,
     height: 41.5,
   },
   R_CONTACT_B: {
     label: "릴레이접점",
     subLabel: "(B접점)",
     icon: <RelayBContact />,
-    getIcon: (fill, isVertical) => <RelayBContact fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <RelayBContact fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.R_CONTACT_B,
     offsetX: 10.7,
-    offsetY: 25.7,
+    offsetY: 8,
     height: 41.5,
   },
   // {
@@ -122,14 +134,16 @@ export const SYMBOLS = {
     ),
     value: INSERTABLE_OBJ.TIMER,
     offsetX: 18,
-    offsetY: 25.7,
+    offsetY: 18,
     height: 36,
   },
   T_CONTACT_ON_DELAY_A: {
     label: "한시동작접점",
     subLabel: "(A접점)",
     icon: <TimerOnDelayAContact />,
-    getIcon: (fill, isVertical) => <TimerOnDelayAContact fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <TimerOnDelayAContact fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A,
     offsetX: 0,
     offsetY: 25.7,
@@ -139,7 +153,9 @@ export const SYMBOLS = {
     label: "한시동작접점",
     subLabel: "(B접점)",
     icon: <TimerOnDelayBContact />,
-    getIcon: (fill, isVertical) => <TimerOnDelayBContact fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <TimerOnDelayBContact fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_B,
     offsetX: 0,
     offsetY: 25.7,
@@ -149,7 +165,9 @@ export const SYMBOLS = {
     label: "한시복귀접점",
     subLabel: "(A접점)",
     icon: <TimerOffDelayAContact />,
-    getIcon: (fill, isVertical) => <TimerOffDelayAContact fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <TimerOffDelayAContact fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_A,
     offsetX: 0,
     offsetY: 25.7,
@@ -159,7 +177,9 @@ export const SYMBOLS = {
     label: "한시복귀접점",
     subLabel: "(B접점)",
     icon: <TimerOffDelayBContact />,
-    getIcon: (fill, isVertical) => <TimerOffDelayBContact fill={fill} isVertical={isVertical} />,
+    getIcon: (fill, isVertical) => (
+      <TimerOffDelayBContact fill={fill} isVertical={isVertical} />
+    ),
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_B,
     offsetX: 0,
     offsetY: 25.7,
@@ -174,7 +194,7 @@ export const SYMBOLS = {
     ),
     value: INSERTABLE_OBJ.LAMP,
     offsetX: 18,
-    offsetY: 25.7,
+    offsetY: 18,
     height: 36,
   },
 };

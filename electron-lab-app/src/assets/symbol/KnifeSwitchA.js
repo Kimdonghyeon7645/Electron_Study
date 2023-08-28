@@ -1,6 +1,11 @@
 import React from "react";
 
-const KnifeSwitchA = ({ width = "18.7", height = "42", fill = "#000000" }) => {
+const KnifeSwitchA = ({
+  width = "18.7",
+  height = "42",
+  fill = "#000000",
+  isVertical = true,
+}) => {
   return (
     <svg
       width={width}

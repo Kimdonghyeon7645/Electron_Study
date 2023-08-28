@@ -1,6 +1,7 @@
 import React from "react";
 
-const TimerOnDelayBContact = ({ width = "13.5", height = "42", fill = "#000000" }) => {
+const TimerOnDelayBContact = ({ width = "13.5", height = "42", fill = "#000000",
+isVertical = true, }) => {
   return (
     <svg
       width={width}
