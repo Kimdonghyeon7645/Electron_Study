@@ -73,10 +73,12 @@ const useBaseStore = create((set) => ({
       const newSymbol = JSON.parse(JSON.stringify(state.tempSymbol));
       const targetLine = { ...newLines[newSymbol.line] };
 
+      console.log(newSymbol);
       targetLine.symbols = [
         ...targetLine.symbols,
-        { x: newSymbol.x+5, y: newSymbol.y },
+        { x: newSymbol.x, y: newSymbol.y, type: newSymbol.type },
       ];
+      targetLine.symbols.sort((a,b) => (a.x - b.x) + (a.y - b.y));
       newLines[newSymbol.line] = targetLine;
 
       return {

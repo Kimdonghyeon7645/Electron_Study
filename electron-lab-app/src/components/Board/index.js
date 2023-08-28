@@ -2,8 +2,9 @@ import { useRef, useState } from "react";
 import { BoardCanvas, BoardWrapper } from "./styles";
 import useBaseStore from "store";
 import { INSERTABLE_OBJ, MODE } from "constants/enums";
-import LineDraw from "./LineDraw";
-import { SymbolDraw, TempSymbolDraw } from "./SymbolDraw";
+import LineDraw from "./Draw/LineDraw";
+import { SymbolDraw, TempSymbolDraw } from "./Draw/SymbolDraw";
+import { SYMBOLS } from "constants/symbols";
 
 const DRAG_THRESHOLD = 8;
 const DOT_THRESHOLD = 6;
@@ -96,7 +97,7 @@ const Board = () => {
             else setWirePoint1({ x: x, y: y });
 
             break;
-          /** 푸시버튼 선택(INSERTABLE_OBJ.PB_A) */
+          /** 푸시버튼 선택(INSERTABLE_OBJ.PB_A, INSERTABLE_OBJ.PB_B) */
           case INSERTABLE_OBJ.PB_A:
           case INSERTABLE_OBJ.PB_B:
             for (const line of lines) {
@@ -126,7 +127,7 @@ const Board = () => {
                 id = line.id;
                 setTempSymbol({
                   type: insertTarget,
-                  x: x - 5.5,
+                  x: x - SYMBOLS[insertTarget].offset,
                   y: y,
                   isInsertable: true,
                   line: id,
@@ -137,7 +138,7 @@ const Board = () => {
 
             setTempSymbol({
               type: insertTarget,
-              x: x - 5.5,
+              x: x - SYMBOLS[insertTarget].offset,
               y: y,
               isInsertable: false,
             });
@@ -192,8 +193,9 @@ const Board = () => {
               setTempDot({});
             }
             break;
-          /** 푸시버튼 선택(INSERTABLE_OBJ.PB_A) */
+          /** 푸시버튼 선택(INSERTABLE_OBJ.PB_A, INSERTABLE_OBJ.PB_B) */
           case INSERTABLE_OBJ.PB_A:
+          case INSERTABLE_OBJ.PB_B:
             if (tempSymbol?.isInsertable) {
               addSymbol();
             }
