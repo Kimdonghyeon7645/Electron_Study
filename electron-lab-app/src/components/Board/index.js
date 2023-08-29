@@ -6,7 +6,6 @@ import LineDraw from "./Draw/LineDraw";
 import { SymbolDraw, TempSymbolDraw } from "./Draw/SymbolDraw";
 import { SYMBOLS } from "constants/symbols";
 
-const DRAG_THRESHOLD = 8;
 const DOT_THRESHOLD = 6;
 
 const Board = () => {
@@ -32,7 +31,6 @@ const Board = () => {
   const board = useRef(null);
 
   /** 1-2. 이벤트 상태값(클릭 여부, 드래그 여부, 기존 마우스 위치) */
-  const [isClickDragging, setIsClickDragging] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -44,7 +42,7 @@ const Board = () => {
    */
   const handleMouseDown = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
-    setIsClicking(true);
+setIsClicking(true);
   };
 
   /**
@@ -125,16 +123,8 @@ const Board = () => {
                   line.start.y <= y + DOT_THRESHOLD &&
                   y <= line.end.y + DOT_THRESHOLD)
               ) {
-                x = isVertical
-                  ? line.start.x
-                  : isAddWirePoint1
-                  ? wirePoint1.x
-                  : x;
-                y = !isVertical
-                  ? line.start.y
-                  : isAddWirePoint1
-                  ? wirePoint1.y
-                  : y;
+                x = isVertical ? line.start.x : x;
+                y = !isVertical ? line.start.y : y;
                 id = line.id;
                 setTempSymbol({
                   type: insertTarget,
@@ -162,23 +152,8 @@ const Board = () => {
         break;
       /** 보기 모드(MODE.VIEW) */
       case MODE.VIEW:
-        const wpr = wrapper.current;
-        const deltaX = e.clientX - mousePosition.x;
-        const deltaY = e.clientY - mousePosition.y;
-        const scrollLeft = wpr.scrollLeft - deltaX;
-        const scrollTop = wpr.scrollTop - deltaY;
-
-        wpr.scrollLeft = scrollLeft;
-        wpr.scrollTop = scrollTop;
-
-        if (!isClickDragging) {
-          const distanceMoved = Math.sqrt(
-            Math.pow(deltaX, 2) + Math.pow(deltaY, 2)
-          );
-          setIsClickDragging(distanceMoved > DRAG_THRESHOLD);
-        } else {
-          setMousePosition({ x: e.clientX, y: e.clientY });
-        }
+        console.log(x, y);
+        console.log(mousePosition);
         break;
       default:
         break;
@@ -189,8 +164,7 @@ const Board = () => {
    * 마우스 클릭을 끝냈을 때 이벤트 핸들러
    */
   const handleMouseUp = (e) => {
-    if (!isClicking) return;
-    if (isClickDragging) return;
+if (!isClicking) return;
 
     switch (mode) {
       /** 삽입 모드(MODE.INSERT) */
@@ -231,14 +205,13 @@ const Board = () => {
       default:
         break;
     }
-    setIsClicking(false);
-    setIsClickDragging(false);
+setIsClicking(false);
   };
 
   return (
     <BoardWrapper
       ref={wrapper}
-      isdragging={isClickDragging}
+      isdragging={false}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

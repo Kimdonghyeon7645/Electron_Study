@@ -12,7 +12,7 @@ const getSymbolSvg = (type, isVertical = true, fill = "#000000") => {
 export const TempSymbolDraw = React.memo(({ tempSymbol }) => {
   return (
     <>
-      {tempSymbol?.x && (
+      {(tempSymbol?.x && tempSymbol?.x > 0 && tempSymbol?.y > 1) ? (
         <div
           style={{
             position: "absolute",
@@ -26,7 +26,7 @@ export const TempSymbolDraw = React.memo(({ tempSymbol }) => {
           )}
           {/* <span>PB1</span> */}
         </div>
-      )}
+      ) : <></>}
     </>
   );
 });
