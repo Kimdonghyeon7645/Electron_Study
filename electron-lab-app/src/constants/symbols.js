@@ -14,7 +14,8 @@ import { CircularSymbol } from "Styles";
 
 export const SYMBOLS = {
   WIRE: {
-    label: "전선",
+    name: "전선",
+    label: "WIRE",
     icon: <Wire />,
     value: INSERTABLE_OBJ.WIRE,
     offsetX: 0,
@@ -22,7 +23,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   PB_A: {
-    label: "푸쉬버튼",
+    name: "푸쉬버튼",
+    label: "PB-A",
     subLabel: "(A접점)",
     icon: <PushBtnA />,
     getIcon: (fill, isVertical) => (
@@ -34,7 +36,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   PB_B: {
-    label: "푸쉬버튼",
+    name: "푸쉬버튼",
+    label: "PB-B",
     subLabel: "(B접점)",
     icon: <PushBtnB />,
     getIcon: (fill, isVertical) => (
@@ -47,16 +50,17 @@ export const SYMBOLS = {
   },
   // {
   //   icon: <KnifeSwitchA />,
-  //   label: "나이프스위치",
+  //   name: "나이프스위치",
   //   subLabel: "(A접점)",
   // },
   // {
   //   icon: <KnifeSwitchB />,
-  //   label: "나이프스위치",
+  //   name: "나이프스위치",
   //   subLabel: "(B접점)",
   // },
   LIMIT_A: {
-    label: "리밋스위치",
+    name: "리밋스위치",
+    label: "LS-A",
     subLabel: "(A접점)",
     icon: <LimitSwitchA />,
     getIcon: (fill, isVertical) => (
@@ -68,7 +72,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   LIMIT_B: {
-    label: "리밋스위치",
+    name: "리밋스위치",
+    label: "LS-B",
     subLabel: "(B접점)",
     icon: <LimitSwitchB />,
     getIcon: (fill, isVertical) => (
@@ -80,7 +85,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   RELAY: {
-    label: "릴레이",
+    name: "릴레이",
+    label: "R",
     icon: (
       <CircularSymbol>
         <span>R</span>
@@ -97,7 +103,8 @@ export const SYMBOLS = {
     height: 36,
   },
   R_CONTACT_A: {
-    label: "릴레이접점",
+    name: "릴레이접점",
+    label: "RX-A",
     subLabel: "(A접점)",
     icon: <RelayAContact />,
     getIcon: (fill, isVertical) => (
@@ -109,7 +116,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   R_CONTACT_B: {
-    label: "릴레이접점",
+    name: "릴레이접점",
+    label: "RX-B",
     subLabel: "(B접점)",
     icon: <RelayBContact />,
     getIcon: (fill, isVertical) => (
@@ -122,16 +130,17 @@ export const SYMBOLS = {
   },
   // {
   //   icon: <RelayManualAContact />,
-  //   label: "수동복귀접점",
+  //   name: "수동복귀접점",
   //   subLabel: "(A접점)",
   // },
   // {
   //   icon: <RelayManualBContact />,
-  //   label: "수동복귀접점",
+  //   name: "수동복귀접점",
   //   subLabel: "(B접점)",
   // },
   TIMER: {
-    label: "타이머",
+    name: "타이머",
+    label: "T",
     icon: (
       <CircularSymbol>
         <span>T</span>
@@ -148,7 +157,8 @@ export const SYMBOLS = {
     height: 36,
   },
   T_CONTACT_ON_DELAY_A: {
-    label: "한시동작접점",
+    name: "한시동작접점",
+    label: "TX-A",
     subLabel: "(A접점)",
     icon: <TimerOnDelayAContact />,
     getIcon: (fill, isVertical) => (
@@ -160,7 +170,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   T_CONTACT_ON_DELAY_B: {
-    label: "한시동작접점",
+    name: "한시동작접점",
+    label: "TX-B",
     subLabel: "(B접점)",
     icon: <TimerOnDelayBContact />,
     getIcon: (fill, isVertical) => (
@@ -172,7 +183,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   T_CONTACT_OFF_DELAY_A: {
-    label: "한시복귀접점",
+    name: "한시복귀접점",
+    label: "TX-A",
     subLabel: "(A접점)",
     icon: <TimerOffDelayAContact />,
     getIcon: (fill, isVertical) => (
@@ -184,7 +196,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   T_CONTACT_OFF_DELAY_B: {
-    label: "한시복귀접점",
+    name: "한시복귀접점",
+    label: "TX-B",
     subLabel: "(B접점)",
     icon: <TimerOffDelayBContact />,
     getIcon: (fill, isVertical) => (
@@ -196,7 +209,8 @@ export const SYMBOLS = {
     height: 41.5,
   },
   LAMP: {
-    label: "램프",
+    name: "램프",
+    label: "L",
     icon: (
       <CircularSymbol>
         <span>L</span>
@@ -213,7 +227,8 @@ export const SYMBOLS = {
     height: 36,
   },
   TEXT: {
-    label: "텍스트",
+    name: "텍스트",
+    label: "",
     icon: (
       <div
         style={{

@@ -16,7 +16,7 @@ const StatusBar = () => {
 
   const getTarget = () => {
     if (insertTarget === null) return "선택한 요소 없음";
-    else if (Object.keys(SYMBOLS).includes(insertTarget)) return `${SYMBOLS[insertTarget].label}${SYMBOLS[insertTarget].subLabel || ""} 선택`
+    else if (Object.keys(SYMBOLS).includes(insertTarget)) return `${SYMBOLS[insertTarget].name}${SYMBOLS[insertTarget].subLabel || ""} 선택`
     else if (insertTarget === INSERTABLE_OBJ.TEXT) return "글자 선택";
   };
 

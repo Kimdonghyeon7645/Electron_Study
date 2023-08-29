@@ -1,5 +1,6 @@
 import create from "zustand";
 import { CMD, MODE } from "../constants/enums";
+import { SYMBOLS } from "constants/symbols";
 
 const useBaseStore = create((set) => ({
   mode: MODE.INSERT,
@@ -82,6 +83,9 @@ const useBaseStore = create((set) => ({
       ];
       targetLine.symbols.sort((a, b) => a.x - b.x + (a.y - b.y));
       newLines[newSymbol.line] = targetLine;
+      newSymbol.label =
+        SYMBOLS[newSymbol.type].label +
+        (state.symbols.filter((e) => e.type === newSymbol.type).length + 1);
 
       return {
         lines: newLines,

@@ -16,7 +16,7 @@ const InsertTab = () => {
         >
           {ele.icon && ele.icon}
           <div style={{ marginTop: 6 }}>
-            {ele.label && ele.label}
+            {ele.name && ele.name}
             {ele.subLabel && (
               <>
                 <br />
