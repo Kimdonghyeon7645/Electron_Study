@@ -9,7 +9,7 @@ export const BoardWrapper = styled.div`
   height: calc(100vh - 146px);
 
   overflow: auto;
-  cursor: ${(props) => (props.isdragging ? "grabbing" : "")};
+  cursor: ${(props) => (props.isdragging === "true" ? "grabbing" : "")};
 
   ${SrollBar}
 `;

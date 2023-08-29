@@ -9,7 +9,7 @@ const InsertTab = () => {
       {Object.values(SYMBOLS).map((ele, index) => (
         <RibbonMenuElement
           key={index}
-          active={ele?.value === insertTarget}
+          active={(ele?.value === insertTarget).toString()}
           onClick={() => {
             setInsertTarget(insertTarget === ele?.value ? null : ele?.value);
           }}

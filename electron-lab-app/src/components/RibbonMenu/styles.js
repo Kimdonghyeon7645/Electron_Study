@@ -27,11 +27,11 @@ export const RibbonTapElement = styled.div`
 
   font-size: 14px;
   letter-spacing: 0px;
-  color: ${(props) => (props.active ? "#333333" : "#333333")};
-  font-weight: ${(props) => (props.active ? "600" : "400")};
+  color: ${(props) => (props.active === "true" ? "#333333" : "#333333")};
+  font-weight: ${(props) => (props.active === "true" ? "600" : "400")};
 
-  /* border-bottom: ${(props) => (props.active ? "3px solid" : "")}; */
-  background-color: ${(props) => (props.active ? "#d9d9d9" : "")};
+  /* border-bottom: ${(props) => (props.active === "true" ? "3px solid" : "")}; */
+  background-color: ${(props) => (props.active === "true" ? "#d9d9d9" : "")};
   border-radius: 6px;
 
   &:hover {
@@ -80,12 +80,12 @@ export const RibbonMenuElement = styled.div`
   line-height: 12px;
   text-align: center;
   border-radius: 6px;
-  font-weight: ${(props) => (props.active ? "600" : "normal")};
-  background-color: ${(props) => (props.active ? "#d3d3d3" : "transparent")};
+  font-weight: ${(props) => (props.active === "true" ? "600" : "normal")};
+  background-color: ${(props) => (props.active === "true" ? "#d3d3d3" : "transparent")};
 
   &:hover {
-    font-weight: ${(props) => (props.active ? "600" : "500")};
-    background-color: ${(props) => (props.active ? "#cfcfcf" : "#e7e7e7")};
+    font-weight: ${(props) => (props.active === "true" ? "600" : "500")};
+    background-color: ${(props) => (props.active === "true" ? "#cfcfcf" : "#e7e7e7")};
     cursor: pointer;
   }
 

@@ -11,6 +11,7 @@ const DebugModal = styled.div`
   margin: 2vh 2vw;
   padding: 1.5vh 2vw;
   background-color: #333333;
+  overflow: auto;
 
   letter-spacing: 0px;
   color: white;
@@ -20,11 +21,11 @@ const DebugModal = styled.div`
 `;
 
 const DebugTab = () => {
-  const { lines, symbols, tempSymbol } = useBaseStore();
+  const { lines, symbols, dots } = useBaseStore();
 
   console.log(lines);
   console.log(symbols);
-  console.log(tempSymbol);
+  console.log(dots);
 
   return (
     <RibbonMenuSection>
@@ -37,7 +38,13 @@ const DebugTab = () => {
             <div>
               [{index}] id: {line.id}, start: (x:{line.start.x}, y:
               {line.start.y}), end: (x:{line.end.x}, y:
-              {line.end.y}), symbols: [ {line.symbols?.map((e,i) => <span>[{i}]: ({e && Object.keys(e).map(el => <span>{el}={e[el]}, </span>)})</span>)}, ]
+              {line.end.y}),
+              <br/>
+              symbols: [ {line.symbols?.map((e,i) => <span>[{i}]: ({e && Object.keys(e).map(el => <span>{el}={e[el]}, </span>)})</span>)}, ],
+              <br/>
+              dots: [ {line.dots?.map((e,i) => <span>[{i}]: ({e && Object.keys(e).map(el => <span>{el}={e[el].toString()}, </span>)})</span>)}, ]
+              <br/>
+              <br/>
             </div>
           ))}
         </div>
@@ -51,6 +58,15 @@ const DebugTab = () => {
             </div>
           ))}
         </div>
+        <br/>
+        <br/>
+        dots :{" "} (keys: {dots[0] && Object.keys(dots[0]).map((e) => <span>{e}, </span>)})
+          {dots.map((dot, index) => (
+            <div>
+              [{index}] id: {dot.id}, isCommon: {dot.isCommon.toString()}, 
+              x: {dot.x}, y: {dot.y}, lines: {dot.lines.toString()}
+            </div>
+          ))}
         <br/>
         {/* <div>tempSymbol : {tempSymbol}</div> */}
       </DebugModal>

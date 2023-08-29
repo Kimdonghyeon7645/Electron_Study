@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from 'zustand';
 import { CMD, MODE } from "../constants/enums";
 
 const useBaseStore = create((set) => ({

@@ -217,11 +217,11 @@ export const SYMBOLS = {
     icon: (
       <div
         style={{
-          height: "25px",
-          padding: "10px 0 0 0",
+          height: "21px",
+          padding: "13px 0 0 0",
           fontSize: "28px",
           fontWeight: "400",
-          border: "1px solid #000000",
+          // border: "1px solid #000000",
         }}
       >
         글자

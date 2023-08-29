@@ -39,7 +39,7 @@ const RibbonMenu = () => {
           {tabInfo.map((tab, index) => (
             <RibbonTapElement
               key={index}
-              active={tabIndex === index}
+              active={(tabIndex === index).toString()}
               onClick={() => onTabClick(index)}
             >
               {tab.title}

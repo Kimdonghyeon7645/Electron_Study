@@ -22,7 +22,7 @@ export const LineDraw = React.memo(({ lines }) => {
         const isVertical = line.start.x === line.end.x;
         if (line.symbols?.length > 0) {
           return (
-            <>
+            <React.Fragment key={index}>
               <line
                 key={`${index}-first`}
                 x1={line.start.x}
@@ -74,7 +74,7 @@ export const LineDraw = React.memo(({ lines }) => {
                 stroke="black"
                 strokeWidth="1.5"
               />
-            </>
+            </React.Fragment>
           );
         } else
           return (

@@ -228,7 +228,7 @@ const Board = () => {
   return (
     <BoardWrapper
       ref={wrapper}
-      isdragging={false}
+      isdragging={false.toString()}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
