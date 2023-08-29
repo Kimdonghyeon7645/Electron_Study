@@ -1,7 +1,21 @@
 import { SYMBOLS } from "constants/symbols";
 import React from "react";
 
-const LineDraw = React.memo(({ lines }) => {
+export const TempLineDraw = React.memo(({ point1, point2 }) => {
+  if (point1.x && point2.x)
+    return (
+      <line
+        x1={point1.x}
+        y1={point1.y}
+        x2={point2.x}
+        y2={point2.y}
+        stroke="#00000055"
+        strokeWidth="1.5"
+      />
+    );
+});
+
+export const LineDraw = React.memo(({ lines }) => {
   return (
     <>
       {lines.map((line, index) => {
@@ -78,5 +92,3 @@ const LineDraw = React.memo(({ lines }) => {
     </>
   );
 });
-
-export default LineDraw;

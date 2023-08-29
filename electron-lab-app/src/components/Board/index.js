@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { BoardCanvas, BoardWrapper } from "./styles";
 import useBaseStore from "store";
 import { INSERTABLE_OBJ, MODE } from "constants/enums";
-import LineDraw from "./Draw/LineDraw";
+import { LineDraw, TempLineDraw } from "./Draw/LineDraw";
 import { SymbolDraw, TempSymbolDraw } from "./Draw/SymbolDraw";
 import { SYMBOLS } from "constants/symbols";
 
@@ -238,18 +238,8 @@ const Board = () => {
             position: "absolute",
           }}
         >
+          <TempLineDraw point1={wirePoint1} point2={wirePoint2} />
           <LineDraw lines={lines} />
-          {/* 전선 작도전 미리보기 */}
-          {wirePoint1.x && wirePoint2.x && (
-            <line
-              x1={wirePoint1.x}
-              y1={wirePoint1.y}
-              x2={wirePoint2.x}
-              y2={wirePoint2.y}
-              stroke="#00000055"
-              strokeWidth="1.5"
-            />
-          )}
           {(tempDot?.x || wirePoint1Dot?.x) &&
             [tempDot, wirePoint1Dot].map(
               (dot, index) =>
