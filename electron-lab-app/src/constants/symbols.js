@@ -42,7 +42,7 @@ export const SYMBOLS = {
     ),
     value: INSERTABLE_OBJ.PB_B,
     offsetX: 8.5,
-    offsetY: 10,
+    offsetY: 8.2,
     height: 41.5,
   },
   // {
@@ -105,7 +105,7 @@ export const SYMBOLS = {
     ),
     value: INSERTABLE_OBJ.R_CONTACT_A,
     offsetX: 5,
-    offsetY: 13.5,
+    offsetY: 12.5,
     height: 41.5,
   },
   R_CONTACT_B: {
@@ -117,7 +117,7 @@ export const SYMBOLS = {
     ),
     value: INSERTABLE_OBJ.R_CONTACT_B,
     offsetX: 10.7,
-    offsetY: 8,
+    offsetY: 8.5,
     height: 41.5,
   },
   // {
@@ -156,7 +156,7 @@ export const SYMBOLS = {
     ),
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A,
     offsetX: 5.5,
-    offsetY: 21.6,
+    offsetY: 21.8,
     height: 41.5,
   },
   T_CONTACT_ON_DELAY_B: {
@@ -167,8 +167,8 @@ export const SYMBOLS = {
       <TimerOnDelayBContact fill={fill} isVertical={isVertical} />
     ),
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_B,
-    offsetX: 7.8,
-    offsetY: 10.5,
+    offsetX: 8,
+    offsetY: 5.8,
     height: 41.5,
   },
   T_CONTACT_OFF_DELAY_A: {
@@ -180,7 +180,7 @@ export const SYMBOLS = {
     ),
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_A,
     offsetX: 5.5,
-    offsetY: 13.3,
+    offsetY: 12.6,
     height: 41.5,
   },
   T_CONTACT_OFF_DELAY_B: {
@@ -211,5 +211,25 @@ export const SYMBOLS = {
     offsetX: 18,
     offsetY: 18,
     height: 36,
+  },
+  TEXT: {
+    label: "텍스트",
+    icon: (
+      <div
+        style={{
+          height: "25px",
+          padding: "10px 0 0 0",
+          fontSize: "28px",
+          fontWeight: "500",
+          border: "1px solid #000000",
+        }}
+      >
+        글자
+      </div>
+    ),
+    value: INSERTABLE_OBJ.TEXT,
+    offsetX: 0,
+    offsetY: 0,
+    height: 41.5,
   },
 };

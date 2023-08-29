@@ -1,3 +1,4 @@
+import { INSERTABLE_OBJ } from "constants/enums";
 import { SYMBOLS } from "constants/symbols";
 import React from "react";
 
@@ -9,24 +10,48 @@ const getSymbolSvg = (type, isVertical = true, fill = "#000000") => {
   else return <div>(?)</div>;
 };
 
+const getSymbolLabel = (text, type, isVertical = true) => {
+  return (
+    <div
+      style={{
+        fontSize: "14.5px",
+        margin: 
+        isVertical ? 
+        [
+          INSERTABLE_OBJ.PB_A,
+          INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A,
+        ].includes(type)
+          ? "21px 0 0 0"
+          : "21px 0 0 5px" :
+          "-10px 0 0 3px",
+      }}
+    >
+      {text}
+    </div>
+  );
+};
+
 export const TempSymbolDraw = React.memo(({ tempSymbol }) => {
   return (
     <>
-      {(tempSymbol?.x && tempSymbol?.x > 0 && tempSymbol?.y > 1) ? (
+      {tempSymbol?.x && tempSymbol?.x > 0 && tempSymbol?.y > 1 ? (
         <div
           style={{
             position: "absolute",
             margin: `${tempSymbol.y}px 0 0 ${tempSymbol.x}px`,
+            display: "flex",
           }}
         >
           {getSymbolSvg(
             tempSymbol.type,
             tempSymbol.isVertical,
-            tempSymbol.isInsertable ? "#00000099" : "#00000044",
+            tempSymbol.isInsertable ? "#00000099" : "#00000044"
           )}
-          {/* <span>PB1</span> */}
+          {/* {getSymbolLabel("PB1", tempSymbol.type)} */}
         </div>
-      ) : <></>}
+      ) : (
+        <></>
+      )}
     </>
   );
 });
@@ -40,10 +65,11 @@ export const SymbolDraw = React.memo(({ symbols }) => {
           style={{
             position: "absolute",
             margin: `${sym.y}px 0 0 ${sym.x}px`,
+            display: "flex",
           }}
         >
           {getSymbolSvg(sym.type, sym.isVertical)}
-          {/* <span>PB1</span> */}
+          {getSymbolLabel(sym.label, sym.type, sym.isVertical)}
         </div>
       ))}
     </>
