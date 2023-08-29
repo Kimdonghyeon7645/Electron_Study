@@ -40,27 +40,73 @@ const useBaseStore = create((set) => ({
       };
     });
   },
-  fixWirePoint1: (dot) => set({ isFixWirePoint1: true }),
-  insertLine: () =>
+  fixWirePoint1: () => set({ isFixWirePoint1: true }),
+  insertLine: (dots) =>
     set((state) => {
       const isReverse =
         state.wirePoint1.x > state.wirePoint2.x ||
         state.wirePoint1.y > state.wirePoint2.y;
       const point1 = isReverse ? state.wirePoint2 : state.wirePoint1;
       const point2 = isReverse ? state.wirePoint1 : state.wirePoint2;
+      const newLines = [...state.lines];
+      const newDots = [...state.dots];
+      const lineId =
+        state.lines.length > 0 ? state.lines[state.lines.length - 1].id + 1 : 0;
+
+      /** 전선에 포함된 접점(dot) 등록 로직 START */
+      const currentLineDots = [];
+      const insertDots = [];
+      let dotIdOffset = 0;
+      for (const dotDat of dots) {
+        if (!dotDat?.x) continue;
+
+        const targetLine = { ...newLines[dotDat.line] };
+        const anotherDots = targetLine.dots.filter(
+          (e) =>
+            e.x < dotDat.x + 2 &&
+            dotDat.x - 2 < e.x &&
+            e.y < dotDat.y + 2 &&
+            dotDat.y - 2 < e.y
+        );
+        if (anotherDots.length > 0) {
+          const targetDot = { ...anotherDots[0] };
+          targetDot.isCommon = true;
+          targetDot.lines.push(lineId);
+          currentLineDots.push(targetDot);
+          newDots[targetDot.id] = targetDot;
+        } else {
+          const dot = {
+            id: (state.dots.length > 0 ? state.dots[state.dots.length - 1].id + 1 : 0) + dotIdOffset,
+            x: dotDat.x,
+            y: dotDat.y,
+            lines: [dotDat.line],
+            isCommon:
+              (targetLine.start.x + 4 < dotDat.x &&
+                dotDat.x < targetLine.end.x - 4) ||
+              (targetLine.start.y + 4 < dotDat.x &&
+                dotDat.y < targetLine.end.y - 4),
+          };
+          insertDots.push(dot);
+          currentLineDots.push(dot);
+          targetLine.dots.push(dot);
+          newLines[dotDat.line] = targetLine;
+          dotIdOffset += 1;
+        }
+      }
+      /** 전선에 포함된 접점(dot) 등록 로직 END */
+
       return {
         lines: [
-          ...state.lines,
+          ...newLines,
           {
-            id:
-              state.lines.length > 0
-                ? state.lines[state.lines.length - 1].id + 1
-                : 0,
+            id: lineId,
             start: { x: point1.x, y: point1.y },
             end: { x: point2.x, y: point2.y },
             symbols: [],
+            dots: currentLineDots,
           },
         ],
+        dots: [...newDots, ...insertDots],
         wirePoint1: {},
         wirePoint2: {},
         isFixWirePoint1: false,
@@ -69,8 +115,8 @@ const useBaseStore = create((set) => ({
   setTempSymbol: (symbol) => set({ tempSymbol: symbol }),
   addSymbol: () =>
     set((state) => {
-      const newLines = [...state.lines];
       const newSymbol = JSON.parse(JSON.stringify(state.tempSymbol));
+      const newLines = [...state.lines];
       const targetLine = { ...newLines[newSymbol.line] };
 
       newSymbol.id =
@@ -95,9 +141,6 @@ const useBaseStore = create((set) => ({
         tempSymbol: {},
       };
     }),
-  addDots: (dots) => {
-    console.log(dots)
-  },
 }));
 
 export default useBaseStore;

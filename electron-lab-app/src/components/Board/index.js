@@ -27,7 +27,6 @@ const Board = () => {
     setTempSymbol,
     addSymbol,
     symbols,
-    addDots,
     dots,
   } = useBaseStore();
   const wrapper = useRef(null);
@@ -104,10 +103,10 @@ const Board = () => {
 
             if (isFixWirePoint1) {
               setWirePoint2({ x: x, y: y });
-              setTempDot2(id !== -1 ? { x: x, y: y } : {});
+              setTempDot2(id !== -1 ? { x: x, y: y, line: id } : {});
             } else {
               setWirePoint1({ x: x, y: y });
-              setTempDot1(id !== -1 ? { x: x, y: y } : {});
+              setTempDot1(id !== -1 ? { x: x, y: y, line: id } : {});
             }
 
             break;
@@ -190,8 +189,7 @@ const Board = () => {
           /** 전선 선택(INSERTABLE_OBJ.WIRE) */
           case INSERTABLE_OBJ.WIRE:
             if (isFixWirePoint1) {
-              insertLine();
-              addDots([tempDot1, tempDot2]);
+              insertLine([tempDot1, tempDot2]);
               setTempDot1({});
               setTempDot2({});
             } else {
