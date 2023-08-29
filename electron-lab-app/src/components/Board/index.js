@@ -5,6 +5,7 @@ import { INSERTABLE_OBJ, MODE } from "constants/enums";
 import { LineDraw, TempLineDraw } from "./Draw/LineDraw";
 import { SymbolDraw, TempSymbolDraw } from "./Draw/SymbolDraw";
 import { SYMBOLS } from "constants/symbols";
+import { DotDraw, TempDotDraw } from "./Draw/DotDraw";
 
 const INSERT_THRESHOLD = 6; // 전선,심볼 삽입시 전선과 인접하는 경우의 보정값
 const LINE_DOT_THRESHOLD = 5; // 전선 삽입시 전선의 끝과 인접하는 경우의 보정값
@@ -18,15 +19,16 @@ const Board = () => {
     setWirePoint1,
     wirePoint2,
     setWirePoint2,
-    isAddWirePoint1,
-    addWirePoint1,
-    wirePoint1Dot,
+    isFixWirePoint1,
+    fixWirePoint1,
     lines,
     insertLine,
     tempSymbol,
     setTempSymbol,
     addSymbol,
     symbols,
+    addDots,
+    dots,
   } = useBaseStore();
   const wrapper = useRef(null);
   const board = useRef(null);
@@ -36,7 +38,8 @@ const Board = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   /** 1-3. 임시 삽입가능한 객체 정보 데이터 */
-  const [tempDot, setTempDot] = useState({});
+  const [tempDot1, setTempDot1] = useState({});
+  const [tempDot2, setTempDot2] = useState({});
 
   /**
    * 마우스 클릭을 시작했을 때 이벤트 핸들러
@@ -78,7 +81,7 @@ const Board = () => {
               ) {
                 x = isVertical
                   ? line.start.x
-                  : isAddWirePoint1
+                  : isFixWirePoint1
                   ? wirePoint1.x
                   : x - LINE_DOT_THRESHOLD < line.start.x
                   ? line.start.x + 0.5
@@ -87,7 +90,7 @@ const Board = () => {
                   : x;
                 y = !isVertical
                   ? line.start.y
-                  : isAddWirePoint1
+                  : isFixWirePoint1
                   ? wirePoint1.y
                   : y - LINE_DOT_THRESHOLD < line.start.y
                   ? line.start.y + 0.5
@@ -99,9 +102,13 @@ const Board = () => {
               }
             }
 
-            setTempDot(id !== -1 ? { x: x, y: y } : {});
-            if (isAddWirePoint1) setWirePoint2({ x: x, y: y });
-            else setWirePoint1({ x: x, y: y });
+            if (isFixWirePoint1) {
+              setWirePoint2({ x: x, y: y });
+              setTempDot2(id !== -1 ? { x: x, y: y } : {});
+            } else {
+              setWirePoint1({ x: x, y: y });
+              setTempDot1(id !== -1 ? { x: x, y: y } : {});
+            }
 
             break;
           /** 심볼 선택 */
@@ -146,7 +153,6 @@ const Board = () => {
                 return;
               }
             }
-
             setTempSymbol({
               type: insertTarget,
               x: x - SYMBOLS[insertTarget].offsetX,
@@ -154,7 +160,9 @@ const Board = () => {
               isInsertable: false,
             });
             break;
-
+          /** 텍스트 선택 */
+          case INSERTABLE_OBJ.TEXT:
+            break;
           default:
             break;
         }
@@ -181,11 +189,13 @@ const Board = () => {
         switch (insertTarget) {
           /** 전선 선택(INSERTABLE_OBJ.WIRE) */
           case INSERTABLE_OBJ.WIRE:
-            if (isAddWirePoint1) {
+            if (isFixWirePoint1) {
               insertLine();
+              addDots([tempDot1, tempDot2]);
+              setTempDot1({});
+              setTempDot2({});
             } else {
-              addWirePoint1(tempDot);
-              setTempDot({});
+              fixWirePoint1();
             }
             break;
           /** 심볼 선택 */
@@ -240,19 +250,8 @@ const Board = () => {
         >
           <TempLineDraw point1={wirePoint1} point2={wirePoint2} />
           <LineDraw lines={lines} />
-          {(tempDot?.x || wirePoint1Dot?.x) &&
-            [tempDot, wirePoint1Dot].map(
-              (dot, index) =>
-                dot.x && (
-                  <circle
-                    key={index}
-                    cx={dot.x}
-                    cy={dot.y}
-                    r="5"
-                    fill="#00000055"
-                  />
-                )
-            )}
+          <TempDotDraw dots={[tempDot1, tempDot2]} />
+          <DotDraw dots={dots} />
         </svg>
         <TempSymbolDraw tempSymbol={tempSymbol} />
         <SymbolDraw symbols={symbols} />

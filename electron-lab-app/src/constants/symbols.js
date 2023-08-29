@@ -220,7 +220,7 @@ export const SYMBOLS = {
           height: "25px",
           padding: "10px 0 0 0",
           fontSize: "28px",
-          fontWeight: "500",
+          fontWeight: "400",
           border: "1px solid #000000",
         }}
       >

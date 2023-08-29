@@ -7,8 +7,7 @@ const useBaseStore = create((set) => ({
   insertTarget: null,
   wirePoint1: {},
   wirePoint2: {},
-  isAddWirePoint1: false,
-  wirePoint1Dot: {},
+  isFixWirePoint1: false,
   tempSymbol: {},
   symbols: [],
   lines: [],
@@ -25,8 +24,7 @@ const useBaseStore = create((set) => ({
       tempSymbol: {},
       wirePoint1: {},
       wirePoint2: {},
-      wirePoint1Dot: {},
-      isAddWirePoint1: false,
+      isFixWirePoint1: false,
     });
   },
   setWirePoint1: (point) => set({ wirePoint1: point }),
@@ -42,7 +40,7 @@ const useBaseStore = create((set) => ({
       };
     });
   },
-  addWirePoint1: (dot) => set({ isAddWirePoint1: true, wirePoint1Dot: dot }),
+  fixWirePoint1: (dot) => set({ isFixWirePoint1: true }),
   insertLine: () =>
     set((state) => {
       const isReverse =
@@ -65,8 +63,7 @@ const useBaseStore = create((set) => ({
         ],
         wirePoint1: {},
         wirePoint2: {},
-        wirePoint1Dot: {},
-        isAddWirePoint1: false,
+        isFixWirePoint1: false,
       };
     }),
   setTempSymbol: (symbol) => set({ tempSymbol: symbol }),
@@ -76,9 +73,18 @@ const useBaseStore = create((set) => ({
       const newSymbol = JSON.parse(JSON.stringify(state.tempSymbol));
       const targetLine = { ...newLines[newSymbol.line] };
 
+      newSymbol.id =
+        state.symbols.length > 0
+          ? state.symbols[state.symbols.length - 1].id + 1
+          : 0;
       targetLine.symbols = [
         ...targetLine.symbols,
-        { x: newSymbol.x, y: newSymbol.y, type: newSymbol.type },
+        {
+          id: newSymbol.id,
+          x: newSymbol.x,
+          y: newSymbol.y,
+          type: newSymbol.type,
+        },
       ];
       targetLine.symbols.sort((a, b) => a.x - b.x + (a.y - b.y));
       newLines[newSymbol.line] = targetLine;
@@ -89,6 +95,9 @@ const useBaseStore = create((set) => ({
         tempSymbol: {},
       };
     }),
+  addDots: (dots) => {
+    console.log(dots)
+  },
 }));
 
 export default useBaseStore;
