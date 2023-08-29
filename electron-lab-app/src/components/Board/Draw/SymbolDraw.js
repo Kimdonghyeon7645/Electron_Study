@@ -21,8 +21,8 @@ const getSymbolLabel = (text, type, isVertical = true) => {
           INSERTABLE_OBJ.PB_A,
           INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A,
         ].includes(type)
-          ? "23px 0 0 0"
-          : "23px 0 0 5px" :
+          ? "22px 0 0 0"
+          : "22px 0 0 5px" :
           [
             INSERTABLE_OBJ.PB_B,
             INSERTABLE_OBJ.LIMIT_B,

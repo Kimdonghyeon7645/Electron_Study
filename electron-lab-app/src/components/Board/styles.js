@@ -8,7 +8,6 @@ export const BoardWrapper = styled.div`
   width: calc(100vw - 2.5px);
   height: calc(100vh - 146px);
 
-  background-color: #ffffff;
   overflow: auto;
   cursor: ${(props) => (props.isdragging ? "grabbing" : "")};
 

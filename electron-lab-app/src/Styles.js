@@ -34,6 +34,7 @@ export const Body = styled.div`
 
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
 `;
 
 export const CircularSymbol = styled.div`

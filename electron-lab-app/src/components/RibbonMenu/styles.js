@@ -22,19 +22,20 @@ export const RibbonTapElement = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2px;
-  margin: ${(props) =>
-    props.active ? "5px 11px 0 11px" : "2.5px 11px 0 11px"};
+  padding: 0 9px;
+  margin: 3px 5px 0 5px;
 
   font-size: 14px;
   letter-spacing: 0px;
   color: ${(props) => (props.active ? "#333333" : "#333333")};
-  font-weight: ${(props) => (props.active ? "700" : "400")};
+  font-weight: ${(props) => (props.active ? "600" : "400")};
 
-  border-bottom: ${(props) => (props.active ? "3px solid" : "")};
+  /* border-bottom: ${(props) => (props.active ? "3px solid" : "")}; */
+  background-color: ${(props) => (props.active ? "#d9d9d9" : "")};
+  border-radius: 6px;
 
   &:hover {
-    font-weight: ${(props) => (props.active ? "700" : "600")};
+    font-weight: 600;
     cursor: pointer;
   }
 

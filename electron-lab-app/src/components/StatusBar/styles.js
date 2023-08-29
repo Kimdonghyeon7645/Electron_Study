@@ -5,10 +5,11 @@ export const StatusBarWrapper = styled.div`
   width: full;
   /* height: 17px; */
 
-  margin-top: 3px;
+  margin-top: 4px;
   padding: 0 12px;
   flex-grow: 1;
   display: flex;
+  justify-content: space-between;
 
   border-top: #cccccc 0.5px solid;
   background-color: #eeeeee;
@@ -19,8 +20,14 @@ export const StatusBarWrapper = styled.div`
   ${DisableDrag}
 `;
 
+export const StatusBarGroup = styled.div`
+  display: flex;
+  justify-content: start;
+`;
+
 
 export const Delimiter = styled.div`
-  padding: 1px 7px;
+  padding: 2px 7px;
   font-size: 11px;
+  color: #bbbbbb;
 `
