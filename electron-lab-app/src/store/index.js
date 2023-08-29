@@ -12,6 +12,9 @@ const useBaseStore = create((set) => ({
   symbols: [],
   lines: [],
   dots: [],
+  texts: [],
+  inputBox: {},
+
   setMode: (mode) => {
     set({ mode: mode });
     if (mode === MODE.INSERT) set({ insertTarget: null });
@@ -75,6 +78,8 @@ const useBaseStore = create((set) => ({
           currentLineDots.push(targetDot);
           newDots[targetDot.id] = targetDot;
         } else {
+          console.log(targetLine)
+          console.log(dotDat)
           const dot = {
             id: (state.dots.length > 0 ? state.dots[state.dots.length - 1].id + 1 : 0) + dotIdOffset,
             x: dotDat.x,
@@ -83,7 +88,7 @@ const useBaseStore = create((set) => ({
             isCommon:
               (targetLine.start.x + 4 < dotDat.x &&
                 dotDat.x < targetLine.end.x - 4) ||
-              (targetLine.start.y + 4 < dotDat.x &&
+              (targetLine.start.y + 4 < dotDat.y &&
                 dotDat.y < targetLine.end.y - 4),
           };
           insertDots.push(dot);
@@ -141,6 +146,7 @@ const useBaseStore = create((set) => ({
         tempSymbol: {},
       };
     }),
+    setInputBox: (data) => set({ inputBox: data }),
 }));
 
 export default useBaseStore;
