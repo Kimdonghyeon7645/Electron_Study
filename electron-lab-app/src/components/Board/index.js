@@ -6,12 +6,13 @@ import { LineDraw, TempLineDraw } from "./Draw/LineDraw";
 import { SymbolDraw, TempSymbolDraw } from "./Draw/SymbolDraw";
 import { SYMBOLS } from "constants/symbols";
 import { DotDraw, TempDotDraw } from "./Draw/DotDraw";
+import { TextDraw, TextInputBoxDraw } from "./Draw/TextDraw";
 
 const INSERT_THRESHOLD = 6; // 전선,심볼 삽입시 전선과 인접하는 경우의 보정값
 const LINE_DOT_THRESHOLD = 5; // 전선 삽입시 전선의 끝과 인접하는 경우의 보정값
+const LINE_MINIMUM_SIZE = 10; // 전선 최소 사이즈 (이보다 작게 작도할 수 없음)
 
 const Board = () => {
-  /** 1-1 Ref, state 변수 */
   const {
     mode,
     insertTarget,
@@ -28,15 +29,16 @@ const Board = () => {
     addSymbol,
     symbols,
     dots,
+    inputBox,
+    inputBoxWidth,
+    setInputBox,
+    saveInputBox,
+    texts,
   } = useBaseStore();
   const wrapper = useRef(null);
   const board = useRef(null);
-
-  /** 1-2. 이벤트 상태값(클릭 여부, 드래그 여부, 기존 마우스 위치) */
   const [isClicking, setIsClicking] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  /** 1-3. 임시 삽입가능한 객체 정보 데이터 */
   const [tempDot1, setTempDot1] = useState({});
   const [tempDot2, setTempDot2] = useState({});
 
@@ -102,8 +104,13 @@ const Board = () => {
             }
 
             if (isFixWirePoint1) {
-              setWirePoint2({ x: x, y: y });
-              setTempDot2(id !== -1 ? { x: x, y: y, line: id } : {});
+              if (
+                Math.abs(x - wirePoint1.x) > LINE_MINIMUM_SIZE ||
+                Math.abs(y - wirePoint1.y) > LINE_MINIMUM_SIZE
+              ) {
+                setWirePoint2({ x: x, y: y });
+                setTempDot2(id !== -1 ? { x: x, y: y, line: id } : {});
+              }
             } else {
               setWirePoint1({ x: x, y: y });
               setTempDot1(id !== -1 ? { x: x, y: y, line: id } : {});
@@ -189,9 +196,11 @@ const Board = () => {
           /** 전선 선택(INSERTABLE_OBJ.WIRE) */
           case INSERTABLE_OBJ.WIRE:
             if (isFixWirePoint1) {
-              insertLine([tempDot1, tempDot2]);
-              setTempDot1({});
-              setTempDot2({});
+              if (wirePoint2?.x) {
+                insertLine([tempDot1, tempDot2]);
+                setTempDot1({});
+                setTempDot2({});
+              }
             } else {
               fixWirePoint1();
             }
@@ -212,6 +221,25 @@ const Board = () => {
           case INSERTABLE_OBJ.LAMP:
             if (tempSymbol?.isInsertable) {
               addSymbol();
+            }
+            break;
+          case INSERTABLE_OBJ.TEXT:
+            const wpr = wrapper.current;
+            const top = wpr.getBoundingClientRect().top;
+            let x = wpr.scrollLeft + e.clientX;
+            let y = wpr.scrollTop + e.clientY - top;
+
+            if (!inputBox?.x) {
+              setInputBox({ x: x, y: y, value: "" });
+            } else {
+              const isInputBoxClick =
+                inputBox.x - 2 < x &&
+                x < inputBox.x + inputBoxWidth + 5 &&
+                inputBox.y - 2 < y &&
+                y < inputBox.y + 25;
+              if (!isInputBoxClick) {
+                saveInputBox();
+              }
             }
             break;
           default:
@@ -253,6 +281,8 @@ const Board = () => {
         </svg>
         <TempSymbolDraw tempSymbol={tempSymbol} />
         <SymbolDraw symbols={symbols} />
+        <TextInputBoxDraw />
+        <TextDraw texts={texts} />
       </BoardCanvas>
     </BoardWrapper>
   );

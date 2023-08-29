@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 import { CMD, MODE } from "../constants/enums";
 
 const useBaseStore = create((set) => ({
@@ -14,6 +14,7 @@ const useBaseStore = create((set) => ({
   dots: [],
   texts: [],
   inputBox: {},
+  inputBoxWidth: 10,
 
   setMode: (mode) => {
     set({ mode: mode });
@@ -27,6 +28,7 @@ const useBaseStore = create((set) => ({
       tempSymbol: {},
       wirePoint1: {},
       wirePoint2: {},
+      inputBox: {},
       isFixWirePoint1: false,
     });
   },
@@ -78,10 +80,13 @@ const useBaseStore = create((set) => ({
           currentLineDots.push(targetDot);
           newDots[targetDot.id] = targetDot;
         } else {
-          console.log(targetLine)
-          console.log(dotDat)
+          console.log(targetLine);
+          console.log(dotDat);
           const dot = {
-            id: (state.dots.length > 0 ? state.dots[state.dots.length - 1].id + 1 : 0) + dotIdOffset,
+            id:
+              (state.dots.length > 0
+                ? state.dots[state.dots.length - 1].id + 1
+                : 0) + dotIdOffset,
             x: dotDat.x,
             y: dotDat.y,
             lines: [dotDat.line],
@@ -146,7 +151,24 @@ const useBaseStore = create((set) => ({
         tempSymbol: {},
       };
     }),
-    setInputBox: (data) => set({ inputBox: data }),
+  setInputBox: (data) => set({ inputBox: data }),
+  setInputBoxWidth: (width) => set({ inputBoxWidth: width }),
+  saveInputBox: () =>
+    set((state) => {
+      if (state.inputBox?.value?.length > 0)
+        return {
+          texts: [
+            ...state.texts,
+            {
+              x: state.inputBox.x,
+              y: state.inputBox.y,
+              text: state.inputBox.value,
+            },
+          ],
+          inputBox: {},
+        };
+      else return { inputBox: {} };
+    }),
 }));
 
 export default useBaseStore;
