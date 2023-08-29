@@ -22,8 +22,11 @@ const useBaseStore = create((set) => ({
     set({
       command: CMD.INSERT,
       insertTarget: obj,
-      wirePoint1: {},
       tempSymbol: {},
+      wirePoint1: {},
+      wirePoint2: {},
+      wirePoint1Dot: {},
+      isAddWirePoint1: false,
     });
   },
   setWirePoint1: (point) => set({ wirePoint1: point }),
@@ -77,7 +80,7 @@ const useBaseStore = create((set) => ({
         ...targetLine.symbols,
         { x: newSymbol.x, y: newSymbol.y, type: newSymbol.type },
       ];
-      targetLine.symbols.sort((a,b) => (a.x - b.x) + (a.y - b.y));
+      targetLine.symbols.sort((a, b) => a.x - b.x + (a.y - b.y));
       newLines[newSymbol.line] = targetLine;
 
       return {

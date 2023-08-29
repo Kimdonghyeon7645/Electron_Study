@@ -6,7 +6,8 @@ import LineDraw from "./Draw/LineDraw";
 import { SymbolDraw, TempSymbolDraw } from "./Draw/SymbolDraw";
 import { SYMBOLS } from "constants/symbols";
 
-const DOT_THRESHOLD = 6;
+const INSERT_THRESHOLD = 6; // 전선,심볼 삽입시 전선과 인접하는 경우의 보정값
+const LINE_DOT_THRESHOLD = 5; // 전선 삽입시 전선의 끝과 인접하는 경우의 보정값
 
 const Board = () => {
   /** 1-1 Ref, state 변수 */
@@ -65,25 +66,33 @@ const Board = () => {
               const isVertical = line.start.x === line.end.x;
               if (
                 (isVertical &&
-                  line.start.x <= x + DOT_THRESHOLD &&
-                  x <= line.end.x + DOT_THRESHOLD &&
+                  line.start.x <= x + INSERT_THRESHOLD &&
+                  x <= line.end.x + INSERT_THRESHOLD &&
                   line.start.y <= y &&
                   y <= line.end.y) ||
                 (!isVertical &&
                   line.start.x <= x &&
                   x <= line.end.x &&
-                  line.start.y <= y + DOT_THRESHOLD &&
-                  y <= line.end.y + DOT_THRESHOLD)
+                  line.start.y <= y + INSERT_THRESHOLD &&
+                  y <= line.end.y + INSERT_THRESHOLD)
               ) {
                 x = isVertical
                   ? line.start.x
                   : isAddWirePoint1
                   ? wirePoint1.x
+                  : x - LINE_DOT_THRESHOLD < line.start.x
+                  ? line.start.x + 0.5
+                  : x + LINE_DOT_THRESHOLD > line.end.x
+                  ? line.end.x - 0.5
                   : x;
                 y = !isVertical
                   ? line.start.y
                   : isAddWirePoint1
                   ? wirePoint1.y
+                  : y - LINE_DOT_THRESHOLD < line.start.y
+                  ? line.start.y + 0.5
+                  : y + LINE_DOT_THRESHOLD > line.end.y
+                  ? line.end.y - 0.5
                   : y;
                 id = line.id;
                 break;
@@ -113,15 +122,15 @@ const Board = () => {
               const isVertical = line.start.x === line.end.x;
               if (
                 (isVertical &&
-                  line.start.x <= x + DOT_THRESHOLD &&
-                  x <= line.end.x + DOT_THRESHOLD &&
+                  line.start.x <= x + INSERT_THRESHOLD &&
+                  x <= line.end.x + INSERT_THRESHOLD &&
                   line.start.y <= y &&
                   y <= line.end.y) ||
                 (!isVertical &&
                   line.start.x <= x &&
                   x <= line.end.x &&
-                  line.start.y <= y + DOT_THRESHOLD &&
-                  y <= line.end.y + DOT_THRESHOLD)
+                  line.start.y <= y + INSERT_THRESHOLD &&
+                  y <= line.end.y + INSERT_THRESHOLD)
               ) {
                 x = isVertical ? line.start.x : x;
                 y = !isVertical ? line.start.y : y;
