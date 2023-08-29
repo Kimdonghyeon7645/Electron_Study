@@ -81,7 +81,7 @@ const PushBtnB = ({
             <rect x="1483" y="964" width="1015" height="375" />
           </clipPath>
         </defs>
-        <g clip-path="url(#clip103)" transform="translate(-1483 -964)">
+        <g clipPath="url(#clip103)" transform="translate(-1483 -964)">
           <path
             d="M1607.5 1250.5C1550.06 1250.5 1503.5 1204.16 1503.5 1147 1503.5 1089.84 1550.06 1043.5 1607.5 1043.5 1664.94 1043.5 1711.5 1089.84 1711.5 1147 1711.5 1204.16 1664.94 1250.5 1607.5 1250.5Z"
             stroke="#000000"

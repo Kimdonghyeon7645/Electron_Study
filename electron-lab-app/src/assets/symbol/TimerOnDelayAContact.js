@@ -81,38 +81,38 @@ const TimerOnDelayAContact = ({
             <rect x="2827" y="73" width="1014" height="646" />
           </clipPath>
         </defs>
-        <g clip-path="url(#clip105)" transform="translate(-2827 -73)">
+        <g clipPath="url(#clip105)" transform="translate(-2827 -73)">
           <path
             d="M2951 697.5C2893.84 697.5 2847.5 650.937 2847.5 593.5 2847.5 536.062 2893.84 489.5 2951 489.5 3008.16 489.5 3054.5 536.062 3054.5 593.5 3054.5 650.937 3008.16 697.5 2951 697.5Z"
             stroke="#000000"
-            stroke-width="41.25"
-            stroke-miterlimit="8"
+            strokeWidth="41.25"
+            strokeMiterlimit="8"
             fill="none"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             d="M3710.5 698.5C3653.06 698.5 3606.5 651.938 3606.5 594.5 3606.5 537.062 3653.06 490.5 3710.5 490.5 3767.94 490.5 3814.5 537.062 3814.5 594.5 3814.5 651.938 3767.94 698.5 3710.5 698.5Z"
             stroke="#000000"
-            stroke-width="41.25"
-            stroke-miterlimit="8"
+            strokeWidth="41.25"
+            strokeMiterlimit="8"
             fill="none"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             d="M2863.5 323.5 3812.54 323.5"
             stroke="#000000"
-            stroke-width="55"
-            stroke-miterlimit="8"
+            strokeWidth="55"
+            strokeMiterlimit="8"
             fill="none"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             d="M3205.5 322.5 3342.73 123.5 3470.5 322.5Z"
             stroke="#000000"
-            stroke-width="55"
-            stroke-miterlimit="8"
+            strokeWidth="55"
+            strokeMiterlimit="8"
             fill="none"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
         </g>
       </svg>

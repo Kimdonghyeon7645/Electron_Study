@@ -63,7 +63,7 @@ const LimitSwitchA = ({
             <rect x="143" y="1575" width="1011" height="559" />
           </clipPath>
         </defs>
-        <g clip-path="url(#clip110)" transform="translate(-143 -1575)">
+        <g clipPath="url(#clip110)" transform="translate(-143 -1575)">
           <path
             d="M267.5 2112.5C210.063 2112.5 163.5 2065.94 163.5 2008.5 163.5 1951.06 210.063 1904.5 267.5 1904.5 324.938 1904.5 371.5 1951.06 371.5 2008.5 371.5 2065.94 324.938 2112.5 267.5 2112.5Z"
             stroke="#000000"

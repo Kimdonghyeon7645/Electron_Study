@@ -70,7 +70,7 @@ const RelayAContact = ({
             <rect x="160" y="440" width="1015" height="424" />
           </clipPath>
         </defs>
-        <g clip-path="url(#clip102)" transform="translate(-160 -440)">
+        <g clipPath="url(#clip102)" transform="translate(-160 -440)">
           <path
             d="M284.5 841.5C227.062 841.5 180.5 794.938 180.5 737.5 180.5 680.062 227.062 633.5 284.5 633.5 341.938 633.5 388.5 680.062 388.5 737.5 388.5 794.938 341.938 841.5 284.5 841.5Z"
             stroke="#000000"
