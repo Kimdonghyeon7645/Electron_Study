@@ -42,7 +42,7 @@ const Board = () => {
    */
   const handleMouseDown = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
-setIsClicking(true);
+    setIsClicking(true);
   };
 
   /**
@@ -140,7 +140,7 @@ setIsClicking(true);
 
             setTempSymbol({
               type: insertTarget,
-              x: x,
+              x: x - SYMBOLS[insertTarget].offsetX,
               y: y,
               isInsertable: false,
             });
@@ -164,7 +164,7 @@ setIsClicking(true);
    * 마우스 클릭을 끝냈을 때 이벤트 핸들러
    */
   const handleMouseUp = (e) => {
-if (!isClicking) return;
+    if (!isClicking) return;
 
     switch (mode) {
       /** 삽입 모드(MODE.INSERT) */
@@ -205,7 +205,7 @@ if (!isClicking) return;
       default:
         break;
     }
-setIsClicking(false);
+    setIsClicking(false);
   };
 
   return (

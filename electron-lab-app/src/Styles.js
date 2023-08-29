@@ -45,12 +45,13 @@ export const CircularSymbol = styled.div`
   align-items: center;
 
   border-radius: 999px;
-  border: 2.4px solid;
+  border: 2.4px solid ${(props) => (props.fill && props.fill)};
   cursor: default;
 
   & > * {
     padding: 0 0.5px 1.5px 0;
     font-size: 16px;
     font-weight: 600;
+    color: ${(props) => (props.fill ? props.fill : "#000000")};
   }
 `;

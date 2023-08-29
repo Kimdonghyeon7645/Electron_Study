@@ -86,6 +86,11 @@ export const SYMBOLS = {
         <span>R</span>
       </CircularSymbol>
     ),
+    getIcon: (fill, isVertical) => (
+      <CircularSymbol fill={fill}>
+        <span>R</span>
+      </CircularSymbol>
+    ),
     value: INSERTABLE_OBJ.RELAY,
     offsetX: 18,
     offsetY: 18,
@@ -129,6 +134,11 @@ export const SYMBOLS = {
     label: "타이머",
     icon: (
       <CircularSymbol>
+        <span>T</span>
+      </CircularSymbol>
+    ),
+    getIcon: (fill, isVertical) => (
+      <CircularSymbol fill={fill}>
         <span>T</span>
       </CircularSymbol>
     ),
@@ -189,6 +199,11 @@ export const SYMBOLS = {
     label: "램프",
     icon: (
       <CircularSymbol>
+        <span>L</span>
+      </CircularSymbol>
+    ),
+    getIcon: (fill, isVertical) => (
+      <CircularSymbol fill={fill}>
         <span>L</span>
       </CircularSymbol>
     ),
