@@ -24,9 +24,7 @@ const EditTab = () => {
         <RibbonMenuGroupItem>
           <RibbonMenuItem>
             <Move />
-            <RibbonMenuItemLabel marginTop="4px">
-              위치이동
-            </RibbonMenuItemLabel>
+            <RibbonMenuItemLabel marginTop="4px">위치이동</RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem>
             <ShapeSquare />
@@ -35,33 +33,30 @@ const EditTab = () => {
             </RibbonMenuItemLabel>
           </RibbonMenuItem>
         </RibbonMenuGroupItem>
-        <RibbonMenuGroupLabel>안녕</RibbonMenuGroupLabel>
+        <RibbonMenuGroupLabel>변환</RibbonMenuGroupLabel>
+      </RibbonMenuGroup>
+      <RibbonMenuHr />
+      <RibbonMenuGroup>
+        <RibbonMenuGroupItem>
+          <RibbonMenuItem>
+            <Cut />
+            <RibbonMenuItemLabel marginTop="4px">부분삭제</RibbonMenuItemLabel>
+          </RibbonMenuItem>
+          <RibbonMenuItem>
+            <Eraser />
+            <RibbonMenuItemLabel marginTop="4px">객체삭제</RibbonMenuItemLabel>
+          </RibbonMenuItem>
+          <RibbonMenuItem onClick={() => clearCanvas()}>
+            <Trash />
+            <RibbonMenuItemLabel marginTop="4px">전체삭제</RibbonMenuItemLabel>
+          </RibbonMenuItem>
+        </RibbonMenuGroupItem>
+        <RibbonMenuGroupLabel>삭제</RibbonMenuGroupLabel>
       </RibbonMenuGroup>
       <RibbonMenuHr />
       <RibbonMenuItem>
-        <Cut />
-        <RibbonMenuItemLabel marginTop="4px">
-          부분 삭제
-        </RibbonMenuItemLabel>
-      </RibbonMenuItem>
-      <RibbonMenuItem>
-        <Eraser />
-        <RibbonMenuItemLabel marginTop="4px">
-          객체 삭제
-        </RibbonMenuItemLabel>
-      </RibbonMenuItem>
-      <RibbonMenuItem onClick={() => clearCanvas()}>
         <Trash />
-        <RibbonMenuItemLabel marginTop="4px">
-          전체 삭제
-        </RibbonMenuItemLabel>
-      </RibbonMenuItem>
-      <RibbonMenuHr />
-      <RibbonMenuItem>
-        <Trash />
-        <RibbonMenuItemLabel marginTop="4px">
-          전체 삭제
-        </RibbonMenuItemLabel>
+        <RibbonMenuItemLabel marginTop="4px">전체삭제</RibbonMenuItemLabel>
       </RibbonMenuItem>
     </RibbonMenuSection>
   );

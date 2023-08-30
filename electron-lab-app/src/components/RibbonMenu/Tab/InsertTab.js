@@ -17,6 +17,7 @@ const InsertTab = () => {
           onClick={() => {
             setInsertTarget(insertTarget === ele?.value ? null : ele?.value);
           }}
+          minWidth="63px"
         >
           {ele.icon && ele.icon}
           <RibbonMenuItemLabel>

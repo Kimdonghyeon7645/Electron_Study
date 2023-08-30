@@ -57,6 +57,7 @@ export const RibbonMenuWrapper = styled.div`
 
 export const RibbonMenuSection = styled.div`
   width: full;
+  height: full;
   overflow-x: auto;
   ${SrollBarMini}
 
@@ -73,18 +74,21 @@ export const RibbonMenuGroup = styled.div`
 `;
 
 export const RibbonMenuGroupItem = styled.div`
+  flex-grow: 1;
+  padding-top: 3px;
   display: flex;
 `;
 
 export const RibbonMenuGroupLabel = styled.div`
-margin: 3px 0 2px 0;
-  font-size: 11.5px;
-  color: #777777;
+  font-size: 11px;
+  letter-spacing: -0.1px;
+  color: #666666;
+  ${DisableDrag}
 `;
 
 export const RibbonMenuItem = styled.div`
   height: full;
-  min-width: 63px;
+  min-width: ${(props) => (props.minWidth ? props.minWidth : "56px")};
 
   display: flex;
   flex-direction: column;
@@ -119,6 +123,6 @@ export const RibbonMenuHr = styled.hr`
   width: 0;
 
   border: 0;
-  border-right: 1.5px solid #dadada;
-  margin: 16px 5px 16px 10px;
+  border-right: 1.4px solid #dadada;
+  margin: 8px 5px 8px 10px;
 `;

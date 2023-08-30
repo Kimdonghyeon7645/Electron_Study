@@ -20,7 +20,7 @@ export const DotDraw = React.memo(({ dots }) => {
         (dot, index) =>
           dot.x &&
           dot.isCommon && (
-            <circle key={index} cx={dot.x} cy={dot.y} r="4" fill="#000000" />
+            <circle key={index} cx={dot.x} cy={dot.y} r="3.5" fill="#000000" />
           )
       )}
     </>
