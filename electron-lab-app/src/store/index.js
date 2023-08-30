@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { CMD, MODE } from "../constants/enums";
 import { toggleFullScreen } from "helpers/toggleFullScreen";
+import { updateZoom } from "helpers/zoomScreen";
 
 const useBaseStore = create((set) => ({
   mode: MODE.INSERT,
@@ -18,6 +19,7 @@ const useBaseStore = create((set) => ({
   inputBox: {},
   inputBoxWidth: 10,
   isFullScreen: false,
+  zoomScreen: 100,
 
   setMode: (mode) => {
     set({ mode: mode, tempSymbol: {} });
@@ -178,6 +180,12 @@ const useBaseStore = create((set) => ({
     toggleFullScreen();
     set(state => ({ isFullScreen: !state.isFullScreen }));
   },
+  setZoom: (zoom) => {
+    if (70 < zoom && zoom < 200) {
+      set({ zoomScreen: zoom });
+      updateZoom(zoom);
+    }
+  }
 }));
 
 export default useBaseStore;

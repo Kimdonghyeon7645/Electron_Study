@@ -1,3 +1,4 @@
+import './App.css';
 import { Body } from "components/common/styles";
 import Board from "./components/Board";
 import RibbonMenu from "./components/RibbonMenu";

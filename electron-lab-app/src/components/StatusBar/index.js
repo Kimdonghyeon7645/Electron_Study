@@ -12,7 +12,14 @@ import Plus from "assets/Plus";
 import Minus from "assets/Minus";
 
 const StatusBar = () => {
-  const { mode, insertTarget, isFullScreen, toggleFullScreen } = useBaseStore();
+  const {
+    mode,
+    insertTarget,
+    isFullScreen,
+    toggleFullScreen,
+    zoomScreen,
+    setZoom,
+  } = useBaseStore();
 
   const getModeLabel = () => {
     if (mode === MODE.INSERT) return "삽입 모드";
@@ -34,20 +41,20 @@ const StatusBar = () => {
   return (
     <StatusBarWrapper>
       <StatusBarGroup>
-        <div style={{ paddingBottom: "2px" }}>{getModeLabel()}</div>
+        <div>{getModeLabel()}</div>
         {mode === MODE.INSERT && (
           <>
-            <Delimiter style={{ paddingBottom: "4px" }}>|</Delimiter>
-            <div style={{ paddingBottom: "2px" }}>{getTarget()}</div>
+            <Delimiter>|</Delimiter>
+            <div>{getTarget()}</div>
           </>
         )}
       </StatusBarGroup>
       <StatusBarGroup>
-        <StatusBarBtnWrapper>
-          <Minus fill={"#a8a8a8"} />{" "}
+        <StatusBarBtnWrapper onClick={() => setZoom(zoomScreen - 10)}>
+          <Minus fill={"#a8a8a8"} />
         </StatusBarBtnWrapper>
-        <div style={{ padding: "0 0 2px 8px" }}>100%</div>
-        <StatusBarBtnWrapper>
+        <div style={{ padding: "2px 0 0 6px" }}>{zoomScreen}%</div>
+        <StatusBarBtnWrapper onClick={() => setZoom(zoomScreen + 10)}>
           <Plus fill={"#a8a8a8"} />
         </StatusBarBtnWrapper>
         <StatusBarBtnWrapper onClick={toggleFullScreen}>
