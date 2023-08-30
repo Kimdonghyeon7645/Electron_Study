@@ -1,4 +1,4 @@
-import { DisableDrag } from "Styles";
+import { DisableDrag } from "components/common/styles";
 import { styled } from "styled-components";
 
 export const StatusBarWrapper = styled.div`

@@ -7,16 +7,19 @@ import {
 import useBaseStore from "store";
 
 const InsertTab = () => {
-  const { insertTarget, setInsertTarget } = useBaseStore();
+  const { insertTarget, setInsertTarget, setInsertTargetOption } = useBaseStore();
+
+  const handleItemClick = (target) => {
+    setInsertTarget(insertTarget === target?.value ? null : target?.value);
+  };
+
   return (
     <RibbonMenuSection>
       {Object.values(SYMBOLS).map((ele, index) => (
         <RibbonMenuItem
           key={index}
           active={(ele?.value === insertTarget).toString()}
-          onClick={() => {
-            setInsertTarget(insertTarget === ele?.value ? null : ele?.value);
-          }}
+          onClick={() => handleItemClick(ele)}
           minWidth="63px"
         >
           {ele.icon && ele.icon}

@@ -1,4 +1,3 @@
-import "./App.css";
 import styled, { css } from "styled-components";
 
 export const SrollBar = css`
@@ -41,7 +40,6 @@ export const SrollBarMini = css`
   }
 `;
 
-
 export const DisableDrag = css`
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -58,7 +56,7 @@ export const Body = styled.div`
   background-color: #ffffff;
 `;
 
-export const CircularSymbol = styled.div`
+export const CircularWrapper = styled.div`
   height: 32px;
   width: 32px;
 
@@ -67,14 +65,16 @@ export const CircularSymbol = styled.div`
   align-items: center;
 
   border-radius: 999px;
-  border: 2.4px solid ${(props) => (props.fill && props.fill)};
+  border: 2.4px solid ${(props) => props.fill && props.fill};
   letter-spacing: -0.5px;
   cursor: default;
 
+  font-size: 17px;
+  font-weight: 600;
+  color: ${(props) => (props.fill ? props.fill : "#000000")};
+
   & > * {
-    padding: 0 0.5px 1.5px 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: ${(props) => (props.fill ? props.fill : "#000000")};
+    padding: 3px 0.5px 0 0;
+    text-align: center;
   }
 `;

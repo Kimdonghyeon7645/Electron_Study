@@ -10,7 +10,7 @@ import TimerOnDelayAContact from "assets/symbol/TimerOnDelayAContact";
 import TimerOnDelayBContact from "assets/symbol/TimerOnDelayBContact";
 import Wire from "assets/symbol/Wire";
 import { INSERTABLE_OBJ } from "./enums";
-import { CircularSymbol } from "Styles";
+import CircularSymbol from "components/common/CircularSymbol";
 
 export const SYMBOLS = {
   WIRE: {
@@ -81,15 +81,9 @@ export const SYMBOLS = {
   },
   RELAY: {
     name: "릴레이",
-    icon: (
-      <CircularSymbol>
-        <span>R</span>
-      </CircularSymbol>
-    ),
-    getIcon: (fill, isVertical) => (
-      <CircularSymbol fill={fill}>
-        <span>R</span>
-      </CircularSymbol>
+    icon: <CircularSymbol label="R" />,
+    getIcon: (fill, isVertical, label = "R") => (
+      <CircularSymbol label={label} fill={fill} />
     ),
     value: INSERTABLE_OBJ.RELAY,
     offsetX: 18,
@@ -132,15 +126,9 @@ export const SYMBOLS = {
   // },
   MC: {
     name: "마그네틱",
-    icon: (
-      <CircularSymbol>
-        <span>MC</span>
-      </CircularSymbol>
-    ),
-    getIcon: (fill, isVertical) => (
-      <CircularSymbol fill={fill}>
-        <span>MC</span>
-      </CircularSymbol>
+    icon: <CircularSymbol label="MC" />,
+    getIcon: (fill, isVertical, label = "MC") => (
+      <CircularSymbol label={label} fill={fill} />
     ),
     value: INSERTABLE_OBJ.MC,
     offsetX: 18,
@@ -149,15 +137,9 @@ export const SYMBOLS = {
   },
   TIMER: {
     name: "타이머",
-    icon: (
-      <CircularSymbol>
-        <span>T</span>
-      </CircularSymbol>
-    ),
-    getIcon: (fill, isVertical) => (
-      <CircularSymbol fill={fill}>
-        <span>T</span>
-      </CircularSymbol>
+    icon: <CircularSymbol label="T" />,
+    getIcon: (fill, isVertical, label = "T") => (
+      <CircularSymbol label={label} fill={fill} />
     ),
     value: INSERTABLE_OBJ.TIMER,
     offsetX: 18,
@@ -214,32 +196,21 @@ export const SYMBOLS = {
   },
   LAMP: {
     name: "램프",
-    icon: (
-      <CircularSymbol>
-        <span>L</span>
-      </CircularSymbol>
-    ),
-    getIcon: (fill, isVertical) => (
-      <CircularSymbol fill={fill}>
-        <span>L</span>
-      </CircularSymbol>
+    icon: <CircularSymbol label="L" />,
+    getIcon: (fill, isVertical, label = "L") => (
+      <CircularSymbol label={label} fill={fill} />
     ),
     value: INSERTABLE_OBJ.LAMP,
     offsetX: 18,
     offsetY: 18,
     height: 36,
+    options: {},
   },
   MOTOR: {
     name: "모터",
-    icon: (
-      <CircularSymbol>
-        <span>M</span>
-      </CircularSymbol>
-    ),
-    getIcon: (fill, isVertical) => (
-      <CircularSymbol fill={fill}>
-        <span>M</span>
-      </CircularSymbol>
+    icon: <CircularSymbol label="M" />,
+    getIcon: (fill, isVertical, label = "M") => (
+      <CircularSymbol label={label} fill={fill} />
     ),
     value: INSERTABLE_OBJ.MOTOR,
     offsetX: 18,

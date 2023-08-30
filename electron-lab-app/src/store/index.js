@@ -6,6 +6,7 @@ const useBaseStore = create((set) => ({
   mode: MODE.INSERT,
   command: null,
   insertTarget: null,
+  insertTargetOption: {},
   wirePoint1: {},
   wirePoint2: {},
   isFixWirePoint1: false,
@@ -27,6 +28,7 @@ const useBaseStore = create((set) => ({
     set({
       command: CMD.INSERT,
       insertTarget: obj,
+      insertTargetOption: {},
       tempSymbol: {},
       wirePoint1: {},
       wirePoint2: {},
@@ -34,6 +36,7 @@ const useBaseStore = create((set) => ({
       isFixWirePoint1: false,
     });
   },
+  setInsertTargetOption: (option) => set({ insertTargetOption: option }),
   setWirePoint1: (point) => set({ wirePoint1: point }),
   setWirePoint2: (point) => {
     set((state) => {

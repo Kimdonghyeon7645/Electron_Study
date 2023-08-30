@@ -1,4 +1,4 @@
-import { Body } from "./Styles";
+import { Body } from "components/common/styles";
 import Board from "./components/Board";
 import RibbonMenu from "./components/RibbonMenu";
 import StatusBar from "./components/StatusBar";

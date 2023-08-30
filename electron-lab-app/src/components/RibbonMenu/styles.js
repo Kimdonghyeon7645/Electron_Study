@@ -1,5 +1,5 @@
+import { DisableDrag, SrollBarMini } from "components/common/styles";
 import { styled } from "styled-components";
-import { DisableDrag, SrollBarMini } from "Styles";
 
 export const RibbonTapSection = styled.div`
   width: full;
