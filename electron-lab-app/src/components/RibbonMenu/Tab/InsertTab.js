@@ -1,7 +1,7 @@
 import { SYMBOLS } from "constants/symbols";
 import {
-  RibbonMenuElement,
-  RibbonMenuElementLabel,
+  RibbonMenuItem,
+  RibbonMenuItemLabel,
   RibbonMenuSection,
 } from "../styles";
 import useBaseStore from "store";
@@ -11,7 +11,7 @@ const InsertTab = () => {
   return (
     <RibbonMenuSection>
       {Object.values(SYMBOLS).map((ele, index) => (
-        <RibbonMenuElement
+        <RibbonMenuItem
           key={index}
           active={(ele?.value === insertTarget).toString()}
           onClick={() => {
@@ -19,7 +19,7 @@ const InsertTab = () => {
           }}
         >
           {ele.icon && ele.icon}
-          <RibbonMenuElementLabel>
+          <RibbonMenuItemLabel>
             {ele.name && ele.name}
             {ele.subLabel && (
               <>
@@ -28,8 +28,8 @@ const InsertTab = () => {
               </>
             )}
             <br />
-          </RibbonMenuElementLabel>
-        </RibbonMenuElement>
+          </RibbonMenuItemLabel>
+        </RibbonMenuItem>
       ))}
     </RibbonMenuSection>
   );

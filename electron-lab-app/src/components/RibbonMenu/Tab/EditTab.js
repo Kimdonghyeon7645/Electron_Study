@@ -3,43 +3,66 @@ import Eraser from "assets/Eraser";
 import Move from "assets/Move";
 import ShapeSquare from "assets/ShapeSquare";
 import Trash from "assets/Trash";
+import useBaseStore from "store";
 
 const {
   RibbonMenuSection,
-  RibbonMenuElement,
-  RibbonMenuElementLabel,
+  RibbonMenuItem,
+  RibbonMenuItemLabel,
   RibbonMenuHr,
+  RibbonMenuGroup,
+  RibbonMenuGroupLabel,
+  RibbonMenuGroupItem,
 } = require("../styles");
 
 const EditTab = () => {
+  const { clearCanvas } = useBaseStore();
+
   return (
     <RibbonMenuSection>
-      <RibbonMenuElement>
-        <Move />
-        <RibbonMenuElementLabel marginTop="4px">위치이동</RibbonMenuElementLabel>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
-        <ShapeSquare />
-        <RibbonMenuElementLabel marginTop="4px">크기/길이조절</RibbonMenuElementLabel>
-      </RibbonMenuElement>
-      <RibbonMenuHr/>
-      <RibbonMenuElement>
+      <RibbonMenuGroup>
+        <RibbonMenuGroupItem>
+          <RibbonMenuItem>
+            <Move />
+            <RibbonMenuItemLabel marginTop="4px">
+              위치이동
+            </RibbonMenuItemLabel>
+          </RibbonMenuItem>
+          <RibbonMenuItem>
+            <ShapeSquare />
+            <RibbonMenuItemLabel marginTop="4px">
+              크기/길이조절
+            </RibbonMenuItemLabel>
+          </RibbonMenuItem>
+        </RibbonMenuGroupItem>
+        <RibbonMenuGroupLabel>안녕</RibbonMenuGroupLabel>
+      </RibbonMenuGroup>
+      <RibbonMenuHr />
+      <RibbonMenuItem>
         <Cut />
-        <RibbonMenuElementLabel marginTop="4px">부분 삭제</RibbonMenuElementLabel>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
+        <RibbonMenuItemLabel marginTop="4px">
+          부분 삭제
+        </RibbonMenuItemLabel>
+      </RibbonMenuItem>
+      <RibbonMenuItem>
         <Eraser />
-        <RibbonMenuElementLabel marginTop="4px">객체 삭제</RibbonMenuElementLabel>
-      </RibbonMenuElement>
-      <RibbonMenuElement>
+        <RibbonMenuItemLabel marginTop="4px">
+          객체 삭제
+        </RibbonMenuItemLabel>
+      </RibbonMenuItem>
+      <RibbonMenuItem onClick={() => clearCanvas()}>
         <Trash />
-        <RibbonMenuElementLabel marginTop="4px">전체 삭제</RibbonMenuElementLabel>
-      </RibbonMenuElement>
-      <RibbonMenuHr/>
-      <RibbonMenuElement>
+        <RibbonMenuItemLabel marginTop="4px">
+          전체 삭제
+        </RibbonMenuItemLabel>
+      </RibbonMenuItem>
+      <RibbonMenuHr />
+      <RibbonMenuItem>
         <Trash />
-        <RibbonMenuElementLabel marginTop="4px">전체 삭제</RibbonMenuElementLabel>
-      </RibbonMenuElement>
+        <RibbonMenuItemLabel marginTop="4px">
+          전체 삭제
+        </RibbonMenuItemLabel>
+      </RibbonMenuItem>
     </RibbonMenuSection>
   );
 };

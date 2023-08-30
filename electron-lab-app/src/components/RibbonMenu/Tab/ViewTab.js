@@ -1,8 +1,8 @@
-const { RibbonMenuSection, RibbonMenuElement } = require("../styles");
+const { RibbonMenuSection, RibbonMenuItem } = require("../styles");
 
 const ViewTab = () => {
   return <RibbonMenuSection>
-    <RibbonMenuElement>보기</RibbonMenuElement>
+    <RibbonMenuItem>보기</RibbonMenuItem>
   </RibbonMenuSection>;
 };
 

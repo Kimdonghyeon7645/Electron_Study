@@ -30,7 +30,8 @@ export const RibbonTapElement = styled.div`
   color: ${(props) => (props.active === "true" ? "#333333" : "#333333")};
   font-weight: ${(props) => (props.active === "true" ? "600" : "400")};
 
-  /* border-bottom: ${(props) => (props.active === "true" ? "3px solid" : "")}; */
+  /* border-bottom: ${(props) =>
+    props.active === "true" ? "3px solid" : ""}; */
   background-color: ${(props) => (props.active === "true" ? "#d9d9d9" : "")};
   border-radius: 6px;
 
@@ -54,7 +55,6 @@ export const RibbonMenuWrapper = styled.div`
   border-bottom: #dddddd 0.5px solid;
 `;
 
-
 export const RibbonMenuSection = styled.div`
   width: full;
   overflow-x: auto;
@@ -65,7 +65,24 @@ export const RibbonMenuSection = styled.div`
   margin: 0 5px;
 `;
 
-export const RibbonMenuElement = styled.div`
+export const RibbonMenuGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const RibbonMenuGroupItem = styled.div`
+  display: flex;
+`;
+
+export const RibbonMenuGroupLabel = styled.div`
+margin: 3px 0 2px 0;
+  font-size: 11.5px;
+  color: #777777;
+`;
+
+export const RibbonMenuItem = styled.div`
   height: full;
   min-width: 63px;
 
@@ -81,25 +98,27 @@ export const RibbonMenuElement = styled.div`
   text-align: center;
   border-radius: 6px;
   font-weight: ${(props) => (props.active === "true" ? "600" : "normal")};
-  background-color: ${(props) => (props.active === "true" ? "#d3d3d3" : "transparent")};
+  background-color: ${(props) =>
+    props.active === "true" ? "#d3d3d3" : "transparent"};
 
   &:hover {
     font-weight: ${(props) => (props.active === "true" ? "600" : "500")};
-    background-color: ${(props) => (props.active === "true" ? "#cfcfcf" : "#e7e7e7")};
+    background-color: ${(props) =>
+      props.active === "true" ? "#cfcfcf" : "#e7e7e7"};
     cursor: pointer;
   }
 
   ${DisableDrag}
 `;
 
-export const RibbonMenuElementLabel = styled.div`
+export const RibbonMenuItemLabel = styled.div`
   margin-top: ${(props) => (props.marginTop ? props.marginTop : "6px")};
 `;
 
 export const RibbonMenuHr = styled.hr`
   width: 0;
-  
+
   border: 0;
   border-right: 1.5px solid #dadada;
-  margin: 18px 5px 18px 10px;
+  margin: 16px 5px 16px 10px;
 `;

@@ -1,8 +1,8 @@
-const { RibbonMenuSection, RibbonMenuElement } = require("../styles");
+const { RibbonMenuSection, RibbonMenuItem } = require("../styles");
 
 const SimulationTab = () => {
   return <RibbonMenuSection>
-    <RibbonMenuElement>시뮬레이션</RibbonMenuElement>
+    <RibbonMenuItem>시뮬레이션</RibbonMenuItem>
   </RibbonMenuSection>;
 };
 

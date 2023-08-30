@@ -27,7 +27,7 @@ export const TextInputBoxDraw = React.memo(() => {
       <div
         style={{
           position: "absolute",
-          margin: `${inputBox.y - 3}px 0 0 ${inputBox.x - 4}px`,
+          margin: `${inputBox.y - 2}px 0 0 ${inputBox.x - 4}px`,
           display: "flex",
         }}
       >
