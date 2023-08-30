@@ -130,6 +130,23 @@ export const SYMBOLS = {
   //   name: "수동복귀접점",
   //   subLabel: "(B접점)",
   // },
+  MC: {
+    name: "마그네틱",
+    icon: (
+      <CircularSymbol>
+        <span>MC</span>
+      </CircularSymbol>
+    ),
+    getIcon: (fill, isVertical) => (
+      <CircularSymbol fill={fill}>
+        <span>MC</span>
+      </CircularSymbol>
+    ),
+    value: INSERTABLE_OBJ.MC,
+    offsetX: 18,
+    offsetY: 18,
+    height: 36,
+  },
   TIMER: {
     name: "타이머",
     icon: (
@@ -208,6 +225,23 @@ export const SYMBOLS = {
       </CircularSymbol>
     ),
     value: INSERTABLE_OBJ.LAMP,
+    offsetX: 18,
+    offsetY: 18,
+    height: 36,
+  },
+  MOTOR: {
+    name: "모터",
+    icon: (
+      <CircularSymbol>
+        <span>M</span>
+      </CircularSymbol>
+    ),
+    getIcon: (fill, isVertical) => (
+      <CircularSymbol fill={fill}>
+        <span>M</span>
+      </CircularSymbol>
+    ),
+    value: INSERTABLE_OBJ.MOTOR,
     offsetX: 18,
     offsetY: 18,
     height: 36,

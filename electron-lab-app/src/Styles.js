@@ -47,6 +47,7 @@ export const CircularSymbol = styled.div`
 
   border-radius: 999px;
   border: 2.4px solid ${(props) => (props.fill && props.fill)};
+  letter-spacing: -0.5px;
   cursor: default;
 
   & > * {
