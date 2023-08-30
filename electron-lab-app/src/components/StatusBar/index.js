@@ -1,12 +1,18 @@
 import { INSERTABLE_OBJ, MODE } from "constants/enums";
 import useBaseStore from "store";
-import { Delimiter, StatusBarGroup, StatusBarWrapper } from "./styles";
+import {
+  Delimiter,
+  StatusBarBtnWrapper,
+  StatusBarGroup,
+  StatusBarWrapper,
+} from "./styles";
 import { SYMBOLS } from "constants/symbols";
 import FullScreen from "assets/FullScreen";
-import { toggleFullScreen } from "helpers/toggleFullScreen";
+import Plus from "assets/Plus";
+import Minus from "assets/Minus";
 
 const StatusBar = () => {
-  const { mode, insertTarget } = useBaseStore();
+  const { mode, insertTarget, isFullScreen, toggleFullScreen } = useBaseStore();
 
   const getModeLabel = () => {
     if (mode === MODE.INSERT) return "삽입 모드";
@@ -28,21 +34,25 @@ const StatusBar = () => {
   return (
     <StatusBarWrapper>
       <StatusBarGroup>
-        <div>{getModeLabel()}</div>
+        <div style={{ paddingBottom: "2px" }}>{getModeLabel()}</div>
         {mode === MODE.INSERT && (
           <>
-            <Delimiter>|</Delimiter>
-            <div>{getTarget()}</div>
+            <Delimiter style={{ paddingBottom: "4px" }}>|</Delimiter>
+            <div style={{ paddingBottom: "2px" }}>{getTarget()}</div>
           </>
         )}
       </StatusBarGroup>
       <StatusBarGroup>
-        <div
-          style={{ marginTop: "4px", cursor: "pointer" }}
-          onClick={toggleFullScreen}
-        >
-          <FullScreen fill={"#999999"} />
-        </div>
+        <StatusBarBtnWrapper>
+          <Minus fill={"#a8a8a8"} />{" "}
+        </StatusBarBtnWrapper>
+        <div style={{ padding: "0 0 2px 8px" }}>100%</div>
+        <StatusBarBtnWrapper>
+          <Plus fill={"#a8a8a8"} />
+        </StatusBarBtnWrapper>
+        <StatusBarBtnWrapper onClick={toggleFullScreen}>
+          <FullScreen fill={"#a8a8a8"} isFullScreen={isFullScreen} />
+        </StatusBarBtnWrapper>
       </StatusBarGroup>
     </StatusBarWrapper>
   );

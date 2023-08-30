@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { DisableDrag, SrollBar } from "Styles";
+import { DisableDrag, SrollBarMini } from "Styles";
 
 export const RibbonTapSection = styled.div`
   width: full;
@@ -56,9 +56,9 @@ export const RibbonMenuWrapper = styled.div`
 
 
 export const RibbonMenuSection = styled.div`
-  overflow-x: auto;
-  ${SrollBar}
   width: full;
+  overflow-x: auto;
+  ${SrollBarMini}
 
   flex-grow: 1;
   display: flex;
@@ -67,7 +67,7 @@ export const RibbonMenuSection = styled.div`
 
 export const RibbonMenuElement = styled.div`
   height: full;
-  min-width: 66px;
+  min-width: 63px;
 
   display: flex;
   flex-direction: column;
@@ -75,7 +75,7 @@ export const RibbonMenuElement = styled.div`
   align-items: center;
   margin: 4px 0 4px 4px;
 
-  font-size: 12px;
+  font-size: 11.5px;
   letter-spacing: -0.1px;
   line-height: 12px;
   text-align: center;
@@ -90,4 +90,16 @@ export const RibbonMenuElement = styled.div`
   }
 
   ${DisableDrag}
+`;
+
+export const RibbonMenuElementLabel = styled.div`
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "6px")};
+`;
+
+export const RibbonMenuHr = styled.hr`
+  width: 0;
+  
+  border: 0;
+  border-right: 1.5px solid #dadada;
+  margin: 18px 5px 18px 10px;
 `;

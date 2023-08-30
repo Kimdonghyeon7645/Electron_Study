@@ -21,6 +21,27 @@ export const SrollBar = css`
   }
 `;
 
+export const SrollBarMini = css`
+  &::-webkit-scrollbar {
+    /* 스크롤바 전체 영역 */
+    width: 5px;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    /* 스크롤바 막대 */
+    background: ${(props) => (props.isDragging ? "#00080052" : "#00080025")};
+    border-radius: 10px;
+    &:hover {
+      background: #00080052;
+    }
+  }
+  &::-webkit-scrollbar-track {
+    /* 스크롤바 트랙 영역 */
+    background: transparent;
+  }
+`;
+
+
 export const DisableDrag = css`
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

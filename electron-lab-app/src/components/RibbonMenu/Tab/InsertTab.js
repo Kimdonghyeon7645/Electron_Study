@@ -1,5 +1,9 @@
 import { SYMBOLS } from "constants/symbols";
-import { RibbonMenuElement, RibbonMenuSection } from "../styles";
+import {
+  RibbonMenuElement,
+  RibbonMenuElementLabel,
+  RibbonMenuSection,
+} from "../styles";
 import useBaseStore from "store";
 
 const InsertTab = () => {
@@ -15,7 +19,7 @@ const InsertTab = () => {
           }}
         >
           {ele.icon && ele.icon}
-          <div style={{ marginTop: 6 }}>
+          <RibbonMenuElementLabel>
             {ele.name && ele.name}
             {ele.subLabel && (
               <>
@@ -24,7 +28,7 @@ const InsertTab = () => {
               </>
             )}
             <br />
-          </div>
+          </RibbonMenuElementLabel>
         </RibbonMenuElement>
       ))}
     </RibbonMenuSection>

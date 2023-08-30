@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { CMD, MODE } from "../constants/enums";
+import { toggleFullScreen } from "helpers/toggleFullScreen";
 
 const useBaseStore = create((set) => ({
   mode: MODE.INSERT,
@@ -15,6 +16,7 @@ const useBaseStore = create((set) => ({
   texts: [],
   inputBox: {},
   inputBoxWidth: 10,
+  isFullScreen: false,
 
   setMode: (mode) => {
     set({ mode: mode });
@@ -57,7 +59,6 @@ const useBaseStore = create((set) => ({
       const newDots = [...state.dots];
       const lineId =
         state.lines.length > 0 ? state.lines[state.lines.length - 1].id + 1 : 0;
-
       /** 전선에 포함된 접점(dot) 등록 로직 START */
       const currentLineDots = [];
       const insertDots = [];
@@ -104,7 +105,6 @@ const useBaseStore = create((set) => ({
         }
       }
       /** 전선에 포함된 접점(dot) 등록 로직 END */
-
       return {
         lines: [
           ...newLines,
@@ -169,6 +169,12 @@ const useBaseStore = create((set) => ({
         };
       else return { inputBox: {} };
     }),
+
+  clearCanvas: () => set({ symbols: [], lines: [], dots: [], texts: [] }),
+  toggleFullScreen: () => {
+    toggleFullScreen();
+    set(state => ({ isFullScreen: !state.isFullScreen }));
+  },
 }));
 
 export default useBaseStore;
