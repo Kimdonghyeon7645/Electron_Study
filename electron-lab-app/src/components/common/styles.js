@@ -48,9 +48,9 @@ export const DisableDrag = css`
 `;
 
 export const Body = styled.div`
-  height: 100vh;
-  width: 100vw;
-
+  /* height: 100vh;
+  width: 100vw; */
+  
   display: flex;
   flex-direction: column;
   background-color: #ffffff;

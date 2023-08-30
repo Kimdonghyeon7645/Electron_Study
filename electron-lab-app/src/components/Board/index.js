@@ -9,7 +9,7 @@ import { DotDraw, TempDotDraw } from "./Draw/DotDraw";
 import { TextDraw, TextInputBoxDraw } from "./Draw/TextDraw";
 
 const INSERT_THRESHOLD = 6; // 전선,심볼 삽입시 전선과 인접하는 경우의 보정값
-const LINE_DOT_THRESHOLD = 5; // 전선 삽입시 전선의 끝과 인접하는 경우의 보정값
+const LINE_DOT_THRESHOLD = 6; // 전선 삽입시 전선의 끝과 인접하는 경우의 보정값
 const LINE_MINIMUM_SIZE = 10; // 전선 최소 사이즈 (이보다 작게 작도할 수 없음)
 
 const Board = () => {
@@ -34,6 +34,7 @@ const Board = () => {
     setInputBox,
     saveInputBox,
     texts,
+    zoomScreen,
   } = useBaseStore();
   const wrapper = useRef(null);
   const board = useRef(null);
@@ -56,8 +57,8 @@ const Board = () => {
   const handleMouseMove = (e) => {
     const wpr = wrapper.current;
     const top = wpr.getBoundingClientRect().top;
-    let x = wpr.scrollLeft + e.clientX;
-    let y = wpr.scrollTop + e.clientY - top;
+    let x = wpr.scrollLeft + e.clientX  * 100 / zoomScreen;
+    let y = wpr.scrollTop + e.clientY * 100 / zoomScreen - top;
     let id = -1;
 
     switch (mode) {
@@ -70,14 +71,14 @@ const Board = () => {
               const isVertical = line.start.x === line.end.x;
               if (
                 (isVertical &&
-                  line.start.x <= x + INSERT_THRESHOLD &&
+                  line.start.x - INSERT_THRESHOLD <= x &&
                   x <= line.end.x + INSERT_THRESHOLD &&
-                  line.start.y <= y &&
-                  y <= line.end.y) ||
+                  line.start.y - INSERT_THRESHOLD <= y &&
+                  y <= line.end.y + INSERT_THRESHOLD) ||
                 (!isVertical &&
-                  line.start.x <= x &&
-                  x <= line.end.x &&
-                  line.start.y <= y + INSERT_THRESHOLD &&
+                  line.start.x - INSERT_THRESHOLD <= x &&
+                  x <= line.end.x + INSERT_THRESHOLD &&
+                  line.start.y - INSERT_THRESHOLD <= y &&
                   y <= line.end.y + INSERT_THRESHOLD)
               ) {
                 x = isVertical
@@ -230,8 +231,8 @@ const Board = () => {
           case INSERTABLE_OBJ.TEXT:
             const wpr = wrapper.current;
             const top = wpr.getBoundingClientRect().top;
-            let x = wpr.scrollLeft + e.clientX;
-            let y = wpr.scrollTop + e.clientY - top;
+            let x = wpr.scrollLeft + e.clientX  * 100 / zoomScreen;
+            let y = wpr.scrollTop + e.clientY * 100 / zoomScreen - top;
 
             if (!inputBox?.x) {
               setInputBox({ x: x, y: y, value: "" });
@@ -265,6 +266,10 @@ const Board = () => {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
+      style={{
+        height: `calc(100vh * 100 / ${zoomScreen} - 146px)`,
+        width: `calc(100vw * 100 / ${zoomScreen} - 2.5px)`,
+      }}
     >
       <BoardCanvas
         ref={board}

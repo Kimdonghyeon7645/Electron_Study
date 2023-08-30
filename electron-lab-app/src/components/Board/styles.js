@@ -5,8 +5,8 @@ const gridLineColor = "#00000010";
 const gridLineSize = "0.5px";
 export const BoardWrapper = styled.div`
   /* flex-grow: 1; */
-  width: calc(100vw - 2.5px);
-  height: calc(100vh - 146px);
+  /* width: calc((100vw - 2.5px));
+  height: calc((100vh - 146px)); */
 
   overflow: auto;
   cursor: ${(props) => (props.isdragging === "true" ? "grabbing" : "")};

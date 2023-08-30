@@ -86,8 +86,6 @@ const useBaseStore = create((set) => ({
           currentLineDots.push(targetDot);
           newDots[targetDot.id] = targetDot;
         } else {
-          console.log(targetLine);
-          console.log(dotDat);
           const dot = {
             id:
               (state.dots.length > 0
@@ -181,7 +179,7 @@ const useBaseStore = create((set) => ({
     set(state => ({ isFullScreen: !state.isFullScreen }));
   },
   setZoom: (zoom) => {
-    if (70 < zoom && zoom < 200) {
+    if (70 <= zoom && zoom <= 300) {
       set({ zoomScreen: zoom });
       updateZoom(zoom);
     }
