@@ -41,11 +41,11 @@ const StatusBar = () => {
   return (
     <StatusBarWrapper>
       <StatusBarGroup>
-        <div>{getModeLabel()}</div>
+        <div style={{paddingBottom: "2px"}}>{getModeLabel()}</div>
         {mode === MODE.INSERT && (
           <>
-            <Delimiter>|</Delimiter>
-            <div>{getTarget()}</div>
+            <Delimiter style={{paddingBottom: "4px"}}>|</Delimiter>
+            <div style={{paddingBottom: "2px"}}>{getTarget()}</div>
           </>
         )}
       </StatusBarGroup>
@@ -53,7 +53,7 @@ const StatusBar = () => {
         <StatusBarBtnWrapper onClick={() => setZoom(zoomScreen - 10)}>
           <Minus fill={"#a8a8a8"} />
         </StatusBarBtnWrapper>
-        <div style={{ padding: "2px 0 0 6px" }}>{zoomScreen}%</div>
+        <div style={{ padding: "0 0 1px 6px" }}>{zoomScreen}%</div>
         <StatusBarBtnWrapper onClick={() => setZoom(zoomScreen + 10)}>
           <Plus fill={"#a8a8a8"} />
         </StatusBarBtnWrapper>

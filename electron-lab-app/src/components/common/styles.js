@@ -74,7 +74,7 @@ export const CircularWrapper = styled.div`
   color: ${(props) => (props.fill ? props.fill : "#000000")};
 
   & > * {
-    padding: 3px 0.5px 0 0;
+    padding: 0 0.5px 1.5px 0;
     text-align: center;
   }
 `;
