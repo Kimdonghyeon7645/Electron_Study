@@ -56,7 +56,7 @@ const EditTab = () => {
       <RibbonMenuHr />
       <RibbonMenuItem>
         <Trash />
-        <RibbonMenuItemLabel marginTop="4px">전체삭제</RibbonMenuItemLabel>
+        <RibbonMenuItemLabel marginTop="4px">ETC</RibbonMenuItemLabel>
       </RibbonMenuItem>
     </RibbonMenuSection>
   );

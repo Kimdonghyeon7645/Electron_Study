@@ -19,7 +19,7 @@ const useBaseStore = create((set) => ({
   isFullScreen: false,
 
   setMode: (mode) => {
-    set({ mode: mode });
+    set({ mode: mode, tempSymbol: {} });
     if (mode === MODE.INSERT) set({ insertTarget: null });
   },
   setCommand: (cmd) => set({ command: cmd }),
