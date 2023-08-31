@@ -4,11 +4,13 @@ import useBaseStore from "store";
 import DownArrow from "assets/DownArrow";
 
 const InsertTab = () => {
-  const { insertTarget, setInsertTarget } = useBaseStore();
+  const { insertTarget, setInsertTarget, setIsOptionModalOpen,setInsertTargetOptions, } = useBaseStore();
 
   const handleItemClick = (target) => {
     setInsertTarget(insertTarget === target?.value ? null : target?.value);
-    if (target?.options) {
+    if (target?.options && insertTarget !== target?.value) {
+      setIsOptionModalOpen(true);
+      setInsertTargetOptions(target.options);
       console.log(
         document.getElementsByClassName(`menu-item-${target.value}`)[0].getBoundingClientRect()
       );

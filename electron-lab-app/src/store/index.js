@@ -7,7 +7,9 @@ const useBaseStore = create((set) => ({
   mode: MODE.INSERT,
   command: null,
   insertTarget: null,
-  insertTargetOption: {},
+  selectOption: {},
+  insertTargetOptions: [],
+  isOptionModalOpen: false,
   wirePoint1: {},
   wirePoint2: {},
   isFixWirePoint1: false,
@@ -23,22 +25,23 @@ const useBaseStore = create((set) => ({
 
   setMode: (mode) => {
     set({ mode: mode, tempSymbol: {} });
-    if (mode === MODE.INSERT) set({ insertTarget: null });
+    if (mode === MODE.INSERT) set({ insertTarget: null, isOptionModalOpen: false });
   },
   setCommand: (cmd) => set({ command: cmd }),
   setInsertTarget: (obj) => {
     set({
       command: CMD.INSERT,
       insertTarget: obj,
-      insertTargetOption: {},
       tempSymbol: {},
       wirePoint1: {},
       wirePoint2: {},
       inputBox: {},
       isFixWirePoint1: false,
+      isOptionModalOpen: false,
     });
   },
-  setInsertTargetOption: (option) => set({ insertTargetOption: option }),
+  setSelectOption: (option) => set({ selectOption: option }),
+  setInsertTargetOptions: (options) => set({ insertTargetOptions: options }),
   setWirePoint1: (point) => set({ wirePoint1: point }),
   setWirePoint2: (point) => {
     set((state) => {
@@ -46,9 +49,7 @@ const useBaseStore = create((set) => ({
       const dy = Math.abs(point.y - state.wirePoint1.y);
       return {
         wirePoint2:
-          dy > dx
-            ? { x: state.wirePoint1.x, y: point.y }
-            : { x: point.x, y: state.wirePoint1.y },
+          dy > dx ? { x: state.wirePoint1.x, y: point.y } : { x: point.x, y: state.wirePoint1.y },
       };
     });
   },
@@ -56,14 +57,12 @@ const useBaseStore = create((set) => ({
   insertLine: (dots) =>
     set((state) => {
       const isReverse =
-        state.wirePoint1.x > state.wirePoint2.x ||
-        state.wirePoint1.y > state.wirePoint2.y;
+        state.wirePoint1.x > state.wirePoint2.x || state.wirePoint1.y > state.wirePoint2.y;
       const point1 = isReverse ? state.wirePoint2 : state.wirePoint1;
       const point2 = isReverse ? state.wirePoint1 : state.wirePoint2;
       const newLines = [...state.lines];
       const newDots = [...state.dots];
-      const lineId =
-        state.lines.length > 0 ? state.lines[state.lines.length - 1].id + 1 : 0;
+      const lineId = state.lines.length > 0 ? state.lines[state.lines.length - 1].id + 1 : 0;
       /** 전선에 포함된 접점(dot) 등록 로직 START */
       const currentLineDots = [];
       const insertDots = [];
@@ -74,10 +73,7 @@ const useBaseStore = create((set) => ({
         const targetLine = { ...newLines[dotDat.line] };
         const anotherDots = targetLine.dots.filter(
           (e) =>
-            e.x < dotDat.x + 2 &&
-            dotDat.x - 2 < e.x &&
-            e.y < dotDat.y + 2 &&
-            dotDat.y - 2 < e.y
+            e.x < dotDat.x + 2 && dotDat.x - 2 < e.x && e.y < dotDat.y + 2 && dotDat.y - 2 < e.y
         );
         if (anotherDots.length > 0) {
           const targetDot = { ...anotherDots[0] };
@@ -88,17 +84,13 @@ const useBaseStore = create((set) => ({
         } else {
           const dot = {
             id:
-              (state.dots.length > 0
-                ? state.dots[state.dots.length - 1].id + 1
-                : 0) + dotIdOffset,
+              (state.dots.length > 0 ? state.dots[state.dots.length - 1].id + 1 : 0) + dotIdOffset,
             x: dotDat.x,
             y: dotDat.y,
             lines: [dotDat.line],
             isCommon:
-              (targetLine.start.x + 4 < dotDat.x &&
-                dotDat.x < targetLine.end.x - 4) ||
-              (targetLine.start.y + 4 < dotDat.y &&
-                dotDat.y < targetLine.end.y - 4),
+              (targetLine.start.x + 4 < dotDat.x && dotDat.x < targetLine.end.x - 4) ||
+              (targetLine.start.y + 4 < dotDat.y && dotDat.y < targetLine.end.y - 4),
           };
           insertDots.push(dot);
           currentLineDots.push(dot);
@@ -132,10 +124,7 @@ const useBaseStore = create((set) => ({
       const newLines = [...state.lines];
       const targetLine = { ...newLines[newSymbol.line] };
 
-      newSymbol.id =
-        state.symbols.length > 0
-          ? state.symbols[state.symbols.length - 1].id + 1
-          : 0;
+      newSymbol.id = state.symbols.length > 0 ? state.symbols[state.symbols.length - 1].id + 1 : 0;
       targetLine.symbols = [
         ...targetLine.symbols,
         {
@@ -176,14 +165,16 @@ const useBaseStore = create((set) => ({
   clearCanvas: () => set({ symbols: [], lines: [], dots: [], texts: [] }),
   toggleFullScreen: () => {
     toggleFullScreen();
-    set(state => ({ isFullScreen: !state.isFullScreen }));
+    set((state) => ({ isFullScreen: !state.isFullScreen }));
   },
   setZoom: (zoom) => {
     if (70 <= zoom && zoom <= 300) {
       set({ zoomScreen: zoom });
       updateZoom(zoom);
     }
-  }
+  },
+  setIsOptionModalOpen: (value) =>
+    set({ isOptionModalOpen: value, selectOption: {}, insertTargetOptions: {} }),
 }));
 
 export default useBaseStore;

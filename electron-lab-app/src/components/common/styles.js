@@ -78,16 +78,3 @@ export const CircularWrapper = styled.div`
     text-align: center;
   }
 `;
-
-export const RibbonMenuModal = styled.div`
-  position: absolute;
-  margin: 120px 0 0 0;
-
-  height: 300px;
-  width: 400px;
-  
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  border: #dddddd 1px solid;
-  box-shadow: 1px 2px 9px -2px #00000033;
-`;
