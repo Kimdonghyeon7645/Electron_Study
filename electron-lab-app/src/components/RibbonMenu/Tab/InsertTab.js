@@ -11,12 +11,13 @@ const InsertTab = () => {
     setIsOptionModalOpen,
     setInsertTargetOptions,
     setOptionModalInfo,
+    selectOption,
   } = useBaseStore();
   const menuRef = useRef();
 
   const handleItemClick = (target) => {
-    setInsertTarget(insertTarget === target?.value ? null : target?.value);
-    if (target?.options && insertTarget !== target?.value) {
+    setInsertTarget(insertTarget === target?.value && !selectOption ? null : target?.value);
+    if ((target?.options && insertTarget !== target?.value) || (target?.options && insertTarget === target?.value && selectOption)) {
       setIsOptionModalOpen(true);
       setInsertTargetOptions(target.options);
 

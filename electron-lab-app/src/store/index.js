@@ -39,6 +39,7 @@ const useBaseStore = create((set) => ({
       inputBox: {},
       isFixWirePoint1: false,
       isOptionModalOpen: false,
+      selectOption: {},
     });
   },
   setSelectOption: (option) => set({ selectOption: option }),
