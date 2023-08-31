@@ -1,6 +1,14 @@
 import { DisableDrag, SrollBarMini } from "components/common/styles";
 import { styled } from "styled-components";
 
+export const RibbonMenuModalWrapper = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  overflow: hidden;
+`;
+
 export const RibbonMenuModal = styled.div`
   width: 210px;
 

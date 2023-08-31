@@ -1,30 +1,53 @@
 import useBaseStore from "store";
-import { RibbonMenuModal, RibbonMenuModalItem } from "./styles";
-import { useEffect, useState } from "react";
+import { RibbonMenuModal, RibbonMenuModalItem, RibbonMenuModalWrapper } from "./styles";
+import { useEffect } from "react";
 
 const RibbonModal = () => {
-  const { isOptionModalOpen, insertTargetOptions, optionModalInfo } = useBaseStore();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const {
+    isOptionModalOpen,
+    setIsOptionModalOpen,
+    insertTargetOptions,
+    optionModalInfo,
+    setInsertTarget,
+    zoomScreen,
+  } = useBaseStore();
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-      console.log(window.innerWidth)
+      if (isOptionModalOpen) {
+        setInsertTarget(null);
+        setIsOptionModalOpen(false);
+      }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isOptionModalOpen, setInsertTarget, setIsOptionModalOpen]);
 
   if (isOptionModalOpen && optionModalInfo?.x)
     return (
-      <RibbonMenuModal style={{ margin: `${optionModalInfo.y}px 0 0 ${(windowWidth > optionModalInfo.x + 240) ? optionModalInfo.x : optionModalInfo.x - 165}px` }}>
-        {Object.keys(insertTargetOptions).map((option, index) => (
-          <RibbonMenuModalItem>
-            {insertTargetOptions[option].icon && insertTargetOptions[option].icon}
-            <div style={{ paddingTop: "2px" }}>{insertTargetOptions[option].name}</div>
-          </RibbonMenuModalItem>
-        ))}
-      </RibbonMenuModal>
+      <RibbonMenuModalWrapper
+        onClick={() => {
+          setIsOptionModalOpen(false);
+          setInsertTarget(null);
+        }}
+      >
+        <RibbonMenuModal
+          style={{
+            margin: `${optionModalInfo.y}px 0 0 ${
+              window.innerWidth > ((optionModalInfo.x + 240) * zoomScreen) / 100
+                ? optionModalInfo.x
+                : optionModalInfo.x - 165
+            }px`,
+          }}
+        >
+          {Object.keys(insertTargetOptions).map((option, index) => (
+            <RibbonMenuModalItem>
+              {insertTargetOptions[option].icon && insertTargetOptions[option].icon}
+              <div style={{ paddingTop: "2px" }}>{insertTargetOptions[option].name}</div>
+            </RibbonMenuModalItem>
+          ))}
+        </RibbonMenuModal>
+      </RibbonMenuModalWrapper>
     );
 };
 
