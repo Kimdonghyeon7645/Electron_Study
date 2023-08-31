@@ -1,7 +1,7 @@
 const Trash = ({ fill = "#000000" }) => (
   <svg
-    height="31"
-    width="31"
+    height="32"
+    width="32"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >

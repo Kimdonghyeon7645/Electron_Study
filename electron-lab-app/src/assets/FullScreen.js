@@ -1,9 +1,9 @@
-const FullScreen = ({ fill = "#000000", isFullScreen = false }) => {
+const FullScreen = ({ fill = "#000000", isFullScreen = false, size = "18" }) => {
   if (!isFullScreen)
     return (
       <svg
-        height="18"
-        width="18"
+        height={size}
+        width={size}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -16,8 +16,8 @@ const FullScreen = ({ fill = "#000000", isFullScreen = false }) => {
   else
     return (
       <svg
-        height="18"
-        width="18"
+        height={size}
+        width={size}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >

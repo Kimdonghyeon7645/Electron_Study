@@ -1,7 +1,7 @@
 const ShapeSquare = ({ fill = "#000000" }) => (
   <svg
-  height="32"
-  width="32"
+  height="33"
+  width="33"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
