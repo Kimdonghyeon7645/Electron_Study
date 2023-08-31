@@ -10,27 +10,32 @@ const RibbonModal = () => {
     optionModalInfo,
     setInsertTarget,
     zoomScreen,
+    setSelectOption,
   } = useBaseStore();
+
+  const closeModal = () => {
+    setIsOptionModalOpen(false);
+    setInsertTarget(null);
+  };
 
   useEffect(() => {
     const handleResize = () => {
-      if (isOptionModalOpen) {
-        setInsertTarget(null);
-        setIsOptionModalOpen(false);
-      }
+      if (isOptionModalOpen) closeModal();
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOptionModalOpen, setInsertTarget, setIsOptionModalOpen]);
+
+  const handleItemClick = (e, option) => {
+    e.stopPropagation();
+    setSelectOption(insertTargetOptions[option].value);
+    setIsOptionModalOpen(false);
+  };
 
   if (isOptionModalOpen && optionModalInfo?.x)
     return (
-      <RibbonMenuModalWrapper
-        onClick={() => {
-          setIsOptionModalOpen(false);
-          setInsertTarget(null);
-        }}
-      >
+      <RibbonMenuModalWrapper onClick={closeModal}>
         <RibbonMenuModal
           style={{
             margin: `${optionModalInfo.y}px 0 0 ${
@@ -41,7 +46,7 @@ const RibbonModal = () => {
           }}
         >
           {Object.keys(insertTargetOptions).map((option, index) => (
-            <RibbonMenuModalItem>
+            <RibbonMenuModalItem onClick={(e) => handleItemClick(e, option)}>
               {insertTargetOptions[option].icon && insertTargetOptions[option].icon}
               <div style={{ paddingTop: "2px" }}>{insertTargetOptions[option].name}</div>
             </RibbonMenuModalItem>

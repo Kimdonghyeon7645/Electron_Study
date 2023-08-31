@@ -35,6 +35,7 @@ const Board = () => {
     saveInputBox,
     texts,
     zoomScreen,
+    selectOption,
   } = useBaseStore();
   const wrapper = useRef(null);
   const board = useRef(null);
@@ -158,6 +159,7 @@ const Board = () => {
                   isInsertable: true,
                   line: id,
                   isVertical: isVertical,
+                  ...selectOption,
                 });
                 return;
               }
@@ -167,6 +169,7 @@ const Board = () => {
               x: x - SYMBOLS[insertTarget].offsetX,
               y: y,
               isInsertable: false,
+              ...selectOption,
             });
             break;
           /** 텍스트 선택 */

@@ -1,10 +1,10 @@
 import { SYMBOLS } from "constants/symbols";
 import React from "react";
 
-const getSymbolSvg = (type, isVertical = true, fill = "#000000") => {
+const getSymbolSvg = (type, isVertical = true, fill = "#000000", label) => {
   if (Object.keys(SYMBOLS).includes(type))
     return SYMBOLS[type].getIcon
-      ? SYMBOLS[type].getIcon(fill, isVertical)
+      ? SYMBOLS[type].getIcon(fill, isVertical, label)
       : SYMBOLS[type].icon;
   else return <div>(?)</div>;
 };
@@ -23,7 +23,8 @@ export const TempSymbolDraw = React.memo(({ tempSymbol }) => {
           {getSymbolSvg(
             tempSymbol.type,
             tempSymbol.isVertical,
-            tempSymbol.isInsertable ? "#00000099" : "#00000044"
+            tempSymbol.isInsertable ? "#00000099" : "#00000044",
+            tempSymbol.label,
           )}
           {/* {getSymbolLabel("PB1", tempSymbol.type)} */}
         </div>
@@ -35,6 +36,7 @@ export const TempSymbolDraw = React.memo(({ tempSymbol }) => {
 });
 
 export const SymbolDraw = React.memo(({ symbols }) => {
+  console.log(symbols)
   return (
     <>
       {symbols.map((sym, index) => (
@@ -46,7 +48,7 @@ export const SymbolDraw = React.memo(({ symbols }) => {
             display: "flex",
           }}
         >
-          {getSymbolSvg(sym.type, sym.isVertical)}
+          {getSymbolSvg(sym.type, sym.isVertical, "#000000", sym.label)}
         </div>
       ))}
     </>

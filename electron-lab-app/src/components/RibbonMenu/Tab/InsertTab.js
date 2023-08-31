@@ -23,7 +23,6 @@ const InsertTab = () => {
       const position = document
         .getElementsByClassName(`menu-item-${target.value}`)[0]
         .getBoundingClientRect();
-      console.log(position)
       setOptionModalInfo({ x: position.x, y: position.y + position.height });
     }
   };

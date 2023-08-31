@@ -35,13 +35,15 @@ export const RibbonMenuModalItem = styled.div`
 
   padding: 4px 0;
   font-size: 12px;
+  background-color: ${(props) => (props.active === "true" ? "#cfcfcf" : "")};
+  font-weight: ${(props) => (props.active === "true" ? "600" : "")};
 
   ${DisableDrag}
   border-radius: 6px;
   &:hover {
     font-weight: ${(props) => (props.active === "true" ? "600" : "500")};
-    background-color: ${(props) =>
-      props.active === "true" ? "#cfcfcf" : "#e7e7e7"};
+    /* background-color: ${(props) => (props.active === "true" ? "#cfcfcf" : "#e7e7e7")}; */
+    background-color: ${(props) => (props.active === "true" ? "#cfcfcf" : "#cfcfcf")};
     cursor: pointer;
   }
 `;

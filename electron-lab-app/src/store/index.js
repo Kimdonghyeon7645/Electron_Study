@@ -175,7 +175,7 @@ const useBaseStore = create((set) => ({
     }
   },
   setIsOptionModalOpen: (value) =>
-    set({ isOptionModalOpen: value, optionModalInfo: {}, selectOption: {}, insertTargetOptions: {} }),
+    set({ isOptionModalOpen: value, optionModalInfo: {}, insertTargetOptions: {} }),
   setOptionModalInfo: (info) => set({ optionModalInfo: info }),
 }));
 
