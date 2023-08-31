@@ -4,6 +4,7 @@ import Board from "./components/Board";
 import RibbonMenu from "./components/RibbonMenu";
 import StatusBar from "./components/StatusBar";
 import useBaseStore from "store";
+import RibbonModal from "components/RibbonMenu/RibboModal";
 
 function App() {
   const { zoomScreen } = useBaseStore();
@@ -18,6 +19,7 @@ function App() {
       <RibbonMenu />
       <Board />
       <StatusBar />
+      <RibbonModal />
     </Body>
   );
 }

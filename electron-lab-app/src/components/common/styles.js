@@ -50,7 +50,7 @@ export const DisableDrag = css`
 export const Body = styled.div`
   /* height: 100vh;
   width: 100vw; */
-  
+
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
@@ -77,4 +77,17 @@ export const CircularWrapper = styled.div`
     padding: 0 0.5px 1.5px 0;
     text-align: center;
   }
+`;
+
+export const RibbonMenuModal = styled.div`
+  position: absolute;
+  margin: 120px 0 0 0;
+
+  height: 300px;
+  width: 400px;
+  
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  border: #dddddd 1px solid;
+  box-shadow: 1px 2px 9px -2px #00000033;
 `;

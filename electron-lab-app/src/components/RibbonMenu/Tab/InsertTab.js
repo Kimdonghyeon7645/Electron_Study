@@ -1,16 +1,18 @@
 import { SYMBOLS } from "constants/symbols";
-import {
-  RibbonMenuItem,
-  RibbonMenuItemLabel,
-  RibbonMenuSection,
-} from "../styles";
+import { RibbonMenuItem, RibbonMenuItemLabel, RibbonMenuSection } from "../styles";
 import useBaseStore from "store";
+import DownArrow from "assets/DownArrow";
 
 const InsertTab = () => {
-  const { insertTarget, setInsertTarget, setInsertTargetOption } = useBaseStore();
+  const { insertTarget, setInsertTarget } = useBaseStore();
 
   const handleItemClick = (target) => {
     setInsertTarget(insertTarget === target?.value ? null : target?.value);
+    if (target?.options) {
+      console.log(
+        document.getElementsByClassName(`menu-item-${target.value}`)[0].getBoundingClientRect()
+      );
+    }
   };
 
   return (
@@ -18,11 +20,19 @@ const InsertTab = () => {
       {Object.values(SYMBOLS).map((ele, index) => (
         <RibbonMenuItem
           key={index}
+          className={`menu-item-${ele.value}`}
           active={(ele?.value === insertTarget).toString()}
           onClick={() => handleItemClick(ele)}
           minWidth="63px"
         >
-          {ele.icon && ele.icon}
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {ele.icon && ele.icon}
+            {ele.options && (
+              <div style={{ position: "relative", margin: "3px -5px 0 5px" }}>
+                <DownArrow />
+              </div>
+            )}
+          </div>
           <RibbonMenuItemLabel>
             {ele.name && ele.name}
             {ele.subLabel && (
@@ -31,7 +41,6 @@ const InsertTab = () => {
                 <small>{ele.subLabel}</small>
               </>
             )}
-            <br />
           </RibbonMenuItemLabel>
         </RibbonMenuItem>
       ))}

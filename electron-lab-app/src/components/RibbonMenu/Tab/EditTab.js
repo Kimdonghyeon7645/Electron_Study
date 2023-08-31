@@ -40,11 +40,11 @@ const EditTab = () => {
         <RibbonMenuGroupItem>
           <RibbonMenuItem>
             <Cut />
-            <RibbonMenuItemLabel marginTop="4px">부분삭제</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel marginTop="6px">부분삭제</RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem>
             <Eraser />
-            <RibbonMenuItemLabel marginTop="4px">객체삭제</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel marginTop="6px">객체삭제</RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem onClick={() => clearCanvas()}>
             <Trash />

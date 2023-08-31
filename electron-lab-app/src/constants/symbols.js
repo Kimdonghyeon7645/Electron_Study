@@ -25,9 +25,7 @@ export const SYMBOLS = {
     name: "푸쉬버튼",
     subLabel: "(A접점)",
     icon: <PushBtnA />,
-    getIcon: (fill, isVertical) => (
-      <PushBtnA fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <PushBtnA fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.PB_A,
     offsetX: 5.2,
     offsetY: 25.7,
@@ -37,9 +35,7 @@ export const SYMBOLS = {
     name: "푸쉬버튼",
     subLabel: "(B접점)",
     icon: <PushBtnB />,
-    getIcon: (fill, isVertical) => (
-      <PushBtnB fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <PushBtnB fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.PB_B,
     offsetX: 8.5,
     offsetY: 8.2,
@@ -59,9 +55,7 @@ export const SYMBOLS = {
     name: "리밋스위치",
     subLabel: "(A접점)",
     icon: <LimitSwitchA />,
-    getIcon: (fill, isVertical) => (
-      <LimitSwitchA fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <LimitSwitchA fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.LIMIT_A,
     offsetX: 5.2,
     offsetY: 18,
@@ -71,32 +65,17 @@ export const SYMBOLS = {
     name: "리밋스위치",
     subLabel: "(B접점)",
     icon: <LimitSwitchB />,
-    getIcon: (fill, isVertical) => (
-      <LimitSwitchB fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <LimitSwitchB fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.LIMIT_B,
     offsetX: 13.5,
     offsetY: 5.2,
     height: 41.5,
   },
-  RELAY: {
-    name: "릴레이",
-    icon: <CircularSymbol label="R" />,
-    getIcon: (fill, isVertical, label = "R") => (
-      <CircularSymbol label={label} fill={fill} />
-    ),
-    value: INSERTABLE_OBJ.RELAY,
-    offsetX: 18,
-    offsetY: 18,
-    height: 36,
-  },
   R_CONTACT_A: {
     name: "릴레이접점",
     subLabel: "(A접점)",
     icon: <RelayAContact />,
-    getIcon: (fill, isVertical) => (
-      <RelayAContact fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <RelayAContact fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.R_CONTACT_A,
     offsetX: 5,
     offsetY: 12.5,
@@ -106,9 +85,7 @@ export const SYMBOLS = {
     name: "릴레이접점",
     subLabel: "(B접점)",
     icon: <RelayBContact />,
-    getIcon: (fill, isVertical) => (
-      <RelayBContact fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <RelayBContact fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.R_CONTACT_B,
     offsetX: 10.7,
     offsetY: 8.5,
@@ -124,35 +101,11 @@ export const SYMBOLS = {
   //   name: "수동복귀접점",
   //   subLabel: "(B접점)",
   // },
-  MC: {
-    name: "마그네틱",
-    icon: <CircularSymbol label="MC" />,
-    getIcon: (fill, isVertical, label = "MC") => (
-      <CircularSymbol label={label} fill={fill} />
-    ),
-    value: INSERTABLE_OBJ.MC,
-    offsetX: 18,
-    offsetY: 18,
-    height: 36,
-  },
-  TIMER: {
-    name: "타이머",
-    icon: <CircularSymbol label="T" />,
-    getIcon: (fill, isVertical, label = "T") => (
-      <CircularSymbol label={label} fill={fill} />
-    ),
-    value: INSERTABLE_OBJ.TIMER,
-    offsetX: 18,
-    offsetY: 18,
-    height: 36,
-  },
   T_CONTACT_ON_DELAY_A: {
     name: "한시동작접점",
     subLabel: "(A접점)",
     icon: <TimerOnDelayAContact />,
-    getIcon: (fill, isVertical) => (
-      <TimerOnDelayAContact fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <TimerOnDelayAContact fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_A,
     offsetX: 5.5,
     offsetY: 21.8,
@@ -162,9 +115,7 @@ export const SYMBOLS = {
     name: "한시동작접점",
     subLabel: "(B접점)",
     icon: <TimerOnDelayBContact />,
-    getIcon: (fill, isVertical) => (
-      <TimerOnDelayBContact fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <TimerOnDelayBContact fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.T_CONTACT_ON_DELAY_B,
     offsetX: 8,
     offsetY: 5.8,
@@ -174,9 +125,7 @@ export const SYMBOLS = {
     name: "한시복귀접점",
     subLabel: "(A접점)",
     icon: <TimerOffDelayAContact />,
-    getIcon: (fill, isVertical) => (
-      <TimerOffDelayAContact fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <TimerOffDelayAContact fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_A,
     offsetX: 5.5,
     offsetY: 12.6,
@@ -186,36 +135,65 @@ export const SYMBOLS = {
     name: "한시복귀접점",
     subLabel: "(B접점)",
     icon: <TimerOffDelayBContact />,
-    getIcon: (fill, isVertical) => (
-      <TimerOffDelayBContact fill={fill} isVertical={isVertical} />
-    ),
+    getIcon: (fill, isVertical) => <TimerOffDelayBContact fill={fill} isVertical={isVertical} />,
     value: INSERTABLE_OBJ.T_CONTACT_OFF_DELAY_B,
     offsetX: 17.2,
     offsetY: 5.1,
     height: 41.5,
   },
-  LAMP: {
-    name: "램프",
-    icon: <CircularSymbol label="L" />,
-    getIcon: (fill, isVertical, label = "L") => (
-      <CircularSymbol label={label} fill={fill} />
-    ),
-    value: INSERTABLE_OBJ.LAMP,
+  RELAY: {
+    name: "릴레이",
+    icon: <CircularSymbol label="R" />,
+    getIcon: (fill, isVertical, label = "R") => <CircularSymbol label={label} fill={fill} />,
+    value: INSERTABLE_OBJ.RELAY,
     offsetX: 18,
     offsetY: 18,
     height: 36,
-    options: {},
+  },
+  MC: {
+    name: "마그네틱",
+    icon: <CircularSymbol label="MC" />,
+    getIcon: (fill, isVertical, label = "MC") => <CircularSymbol label={label} fill={fill} />,
+    value: INSERTABLE_OBJ.MC,
+    offsetX: 18,
+    offsetY: 18,
+    height: 36,
+  },
+  TIMER: {
+    name: "타이머",
+    icon: <CircularSymbol label="T" />,
+    getIcon: (fill, isVertical, label = "T") => <CircularSymbol label={label} fill={fill} />,
+    value: INSERTABLE_OBJ.TIMER,
+    offsetX: 18,
+    offsetY: 18,
+    height: 36,
   },
   MOTOR: {
     name: "모터",
     icon: <CircularSymbol label="M" />,
-    getIcon: (fill, isVertical, label = "M") => (
-      <CircularSymbol label={label} fill={fill} />
-    ),
+    getIcon: (fill, isVertical, label = "M") => <CircularSymbol label={label} fill={fill} />,
     value: INSERTABLE_OBJ.MOTOR,
     offsetX: 18,
     offsetY: 18,
     height: 36,
+  },
+  LAMP: {
+    name: "램프",
+    icon: <CircularSymbol label="L" />,
+    getIcon: (fill, isVertical, label = "L") => <CircularSymbol label={label} fill={fill} />,
+    value: INSERTABLE_OBJ.LAMP,
+    offsetX: 18,
+    offsetY: 18,
+    height: 36,
+    options: {
+      RL: { name: "빨강", icon: <CircularSymbol label="RL" />, value: { label: "RL" } },
+      GL: { name: "초록", icon: <CircularSymbol label="GL" />, value: { label: "GL" } },
+      YL: { name: "노랑", icon: <CircularSymbol label="YL" />, value: { label: "YL" } },
+      OL: { name: "주황", icon: <CircularSymbol label="OL" />, value: { label: "OL" } },
+      BL: { name: "파랑", icon: <CircularSymbol label="BL" />, value: { label: "BL" } },
+      WL: { name: "하얀", icon: <CircularSymbol label="WL" />, value: { label: "WL" } },
+      L: { name: "기본", icon: <CircularSymbol label="L" />, value: { label: "L" } },
+    },
   },
   TEXT: {
     name: "텍스트",
