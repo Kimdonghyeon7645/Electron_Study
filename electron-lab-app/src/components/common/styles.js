@@ -72,6 +72,7 @@ export const CircularWrapper = styled.div`
   font-size: 17px;
   font-weight: 600;
   color: ${(props) => (props.fill ? props.fill : "#000000")};
+  overflow: hidden;
 
   & > * {
     padding: 0 0.5px 1.5px 0;

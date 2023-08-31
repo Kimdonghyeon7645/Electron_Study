@@ -2,20 +2,45 @@ import { SYMBOLS } from "constants/symbols";
 import { RibbonMenuItem, RibbonMenuItemLabel, RibbonMenuSection } from "../styles";
 import useBaseStore from "store";
 import DownArrow from "assets/DownArrow";
+import { useEffect } from "react";
 
 const InsertTab = () => {
-  const { insertTarget, setInsertTarget, setIsOptionModalOpen,setInsertTargetOptions, } = useBaseStore();
+  const {
+    insertTarget,
+    setInsertTarget,
+    isOptionModalOpen,
+    setIsOptionModalOpen,
+    setInsertTargetOptions,
+    setOptionModalInfo,
+  } = useBaseStore();
 
   const handleItemClick = (target) => {
     setInsertTarget(insertTarget === target?.value ? null : target?.value);
     if (target?.options && insertTarget !== target?.value) {
       setIsOptionModalOpen(true);
       setInsertTargetOptions(target.options);
-      console.log(
-        document.getElementsByClassName(`menu-item-${target.value}`)[0].getBoundingClientRect()
-      );
+
+      const position = document
+        .getElementsByClassName(`menu-item-${target.value}`)[0]
+        .getBoundingClientRect();
+      console.log(position)
+      setOptionModalInfo({x: position.x, y: position.y + position.height});
     }
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (isOptionModalOpen) {
+        const position = document
+          .getElementsByClassName(`menu-item-${insertTarget.value}`)[0]
+          .getBoundingClientRect();
+        console.log(position)
+        setOptionModalInfo({x: position.x, y: position.y + position.height});
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <RibbonMenuSection>

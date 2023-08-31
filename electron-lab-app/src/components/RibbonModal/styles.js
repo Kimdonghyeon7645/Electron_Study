@@ -2,11 +2,9 @@ import { DisableDrag, SrollBarMini } from "components/common/styles";
 import { styled } from "styled-components";
 
 export const RibbonMenuModal = styled.div`
-  /* height: 62px; */
   width: 210px;
 
   position: absolute;
-  margin: 120px 0 0 0;
   padding: 8px 8px;
 
   display: flex;
@@ -14,8 +12,8 @@ export const RibbonMenuModal = styled.div`
 
   background-color: #f5f5f5;
   border-radius: 8px;
-  border: #dddddd 1px solid;
-  box-shadow: 1px 2px 9px -2px #00000033;
+  /* border: #dddddd 1px solid; */
+  box-shadow: 1px 1px 8px -1px #00000044;
 
   /* overflow-y: scroll; */
   ${SrollBarMini}

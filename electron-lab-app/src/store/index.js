@@ -10,6 +10,7 @@ const useBaseStore = create((set) => ({
   selectOption: {},
   insertTargetOptions: [],
   isOptionModalOpen: false,
+  optionModalInfo: {},
   wirePoint1: {},
   wirePoint2: {},
   isFixWirePoint1: false,
@@ -174,7 +175,8 @@ const useBaseStore = create((set) => ({
     }
   },
   setIsOptionModalOpen: (value) =>
-    set({ isOptionModalOpen: value, selectOption: {}, insertTargetOptions: {} }),
+    set({ isOptionModalOpen: value, optionModalInfo: {}, selectOption: {}, insertTargetOptions: {} }),
+  setOptionModalInfo: (info) => set({ optionModalInfo: info }),
 }));
 
 export default useBaseStore;
