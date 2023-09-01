@@ -26,7 +26,7 @@ const useBaseStore = create((set) => ({
   printInfo: {},
 
   setMode: (mode) => {
-    set({ mode: mode, tempSymbol: {} });
+    set({ mode: mode, wirePoint1: {}, wirePoint2: {}, tempSymbol: {} });
     if (mode === MODE.INSERT) set({ insertTarget: null, isOptionModalOpen: false });
   },
   setCommand: (cmd) => set({ command: cmd }),

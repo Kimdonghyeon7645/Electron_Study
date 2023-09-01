@@ -47,9 +47,14 @@ const Board = () => {
 
   useEffect(() => {
     if (!board.current) return;
-
-    setPrintInfo({content: board});
-  }, [board, setPrintInfo]);
+    let maxX = 0;
+    let maxY = 0;
+    for (const line of lines) {
+      maxX = line.end.x > maxX ? line.end.x : maxX;
+      maxY = line.end.y > maxY ? line.end.y : maxY;
+    }
+    setPrintInfo({content: board, height: maxY, width: maxX,});
+  }, [board, setPrintInfo, lines]);
 
   /**
    * 마우스 클릭을 시작했을 때 이벤트 핸들러

@@ -11,12 +11,12 @@ const HomeTab = () => {
   const handlePrint = useReactToPrint({
     pageStyle: `@media print {
       @page {
-        size: ${printInfo.width + 100}px ${printInfo.height + 100}px;
-        margin: 0 50px 50px 0;
+        size: ${(printInfo.width ?? 0) + 50}px ${(printInfo.height ?? 0) + 50}px;
+        margin: 0 20px 20px 0;
       }
       .canvas {
-        max-height: ${printInfo.height}px;
-        max-width: ${printInfo.width}px;
+        max-height: ${printInfo.height ?? 0}px;
+        max-width: ${printInfo.width ?? 0}px;
         overflow: hidden;
       }
     }`,
