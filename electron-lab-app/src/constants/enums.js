@@ -12,6 +12,7 @@ export const CMD = {
     CLEAR: "CLEAR",
     MOVE: "MOVE",
     SCALE: "SCALE",
+    REMOVE_OBJ: "REMOVE_OBJ",
 };
 
 export const INSERTABLE_OBJ = {
