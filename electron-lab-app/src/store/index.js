@@ -180,6 +180,13 @@ const useBaseStore = create((set) => ({
     set({ isOptionModalOpen: value, optionModalInfo: {}, insertTargetOptions: {} }),
   setOptionModalInfo: (info) => set({ optionModalInfo: info }),
   setPrintInfo: (info) => set({ printInfo: info }),
+  loadDataFile: (data) =>
+    set({
+      symbols: [...data.symbols],
+      lines: [...data.lines],
+      dots: [...data.dots],
+      texts: [...data.texts],
+    }),
 }));
 
 export default useBaseStore;

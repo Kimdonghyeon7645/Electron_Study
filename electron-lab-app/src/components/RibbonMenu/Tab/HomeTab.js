@@ -3,11 +3,15 @@ import Save from "assets/Save";
 import Printer from "assets/Printer";
 import { useReactToPrint } from "react-to-print";
 import useBaseStore from "store";
+import { saveFile } from "helpers/saveFile";
+import { useRef } from "react";
+import { META_DATA_CHECKSUM } from "constants/metaData";
 
 const { RibbonMenuSection, RibbonMenuItem, RibbonMenuItemLabel } = require("../styles");
 
 const HomeTab = () => {
-  const { printInfo } = useBaseStore();
+  const { printInfo, symbols, lines, dots, texts, loadDataFile } = useBaseStore();
+  const fileInputRef = useRef(null);
   const handlePrint = useReactToPrint({
     pageStyle: `@media print {
       @page {
@@ -23,15 +27,40 @@ const HomeTab = () => {
     content: () => printInfo.content?.current,
   });
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    console.log("[선택한 파일] :", file);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const resData = JSON.parse(e.target.result);
+      console.log(resData)
+      if (resData?.metaData && resData?.metaData?.checksum === META_DATA_CHECKSUM) {
+        console.log(resData);
+        loadDataFile(resData);
+      }
+      fileInputRef.current.value = null;
+    };
+    reader.readAsText(file);
+  };
+
   return (
     <RibbonMenuSection>
-      <RibbonMenuItem>
+      <RibbonMenuItem
+        onClick={() => saveFile({ symbols: symbols, lines: lines, dots: dots, texts: texts })}
+      >
         <Save />
         <RibbonMenuItemLabel marginTop="3px">프로젝트 저장</RibbonMenuItemLabel>
       </RibbonMenuItem>
-      <RibbonMenuItem>
+      <RibbonMenuItem onClick={() => fileInputRef.current.click()}>
         <Folder />
         <RibbonMenuItemLabel marginTop="3px">불러오기</RibbonMenuItemLabel>
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          style={{ display: "none" }}
+        />
       </RibbonMenuItem>
       {/* <RibbonMenuItem>
         <ImageAdd />
