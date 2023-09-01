@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BoardCanvas, BoardWrapper } from "./styles";
 import useBaseStore from "store";
 import { INSERTABLE_OBJ, MODE } from "constants/enums";
@@ -36,6 +36,7 @@ const Board = () => {
     texts,
     zoomScreen,
     selectOption,
+    setPrintInfo,
   } = useBaseStore();
   const wrapper = useRef(null);
   const board = useRef(null);
@@ -43,6 +44,12 @@ const Board = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [tempDot1, setTempDot1] = useState({});
   const [tempDot2, setTempDot2] = useState({});
+
+  useEffect(() => {
+    if (!board.current) return;
+
+    setPrintInfo({content: board});
+  }, [board, setPrintInfo]);
 
   /**
    * 마우스 클릭을 시작했을 때 이벤트 핸들러
@@ -276,6 +283,7 @@ const Board = () => {
     >
       <BoardCanvas
         ref={board}
+        className="canvas"
         style={{ width: 3000, height: 3000, position: "relative" }}
       >
         <svg

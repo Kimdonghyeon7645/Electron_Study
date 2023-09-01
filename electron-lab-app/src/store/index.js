@@ -23,6 +23,7 @@ const useBaseStore = create((set) => ({
   inputBoxWidth: 10,
   isFullScreen: false,
   zoomScreen: 100,
+  printInfo: {},
 
   setMode: (mode) => {
     set({ mode: mode, tempSymbol: {} });
@@ -178,6 +179,7 @@ const useBaseStore = create((set) => ({
   setIsOptionModalOpen: (value) =>
     set({ isOptionModalOpen: value, optionModalInfo: {}, insertTargetOptions: {} }),
   setOptionModalInfo: (info) => set({ optionModalInfo: info }),
+  setPrintInfo: (info) => set({ printInfo: info }),
 }));
 
 export default useBaseStore;

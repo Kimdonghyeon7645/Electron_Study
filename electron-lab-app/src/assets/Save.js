@@ -1,7 +1,7 @@
-const Move = ({ fill = "#000000" }) => (
+const Save = ({ fill = "#000000" }) => (
   <svg
-    height="24"
-    width="24"
+    height="32"
+    width="32"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -9,4 +9,4 @@ const Move = ({ fill = "#000000" }) => (
   </svg>
 );
 
-export default Move;
+export default Save;
