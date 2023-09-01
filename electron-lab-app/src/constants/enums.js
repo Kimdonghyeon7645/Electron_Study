@@ -3,7 +3,6 @@ export const MODE = {
     EDIT: "EDIT",
     VIEW: "VIEW",
     SIMULATION: "SIMULATION",
-    DEBUG: "DEBUG",
 };
 
 export const CMD = {
