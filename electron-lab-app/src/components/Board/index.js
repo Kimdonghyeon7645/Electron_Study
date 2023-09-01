@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { BoardCanvas, BoardWrapper } from "./styles";
 import useBaseStore from "store";
-import { INSERTABLE_OBJ, MODE } from "constants/enums";
+import { CMD, INSERTABLE_OBJ, MODE } from "constants/enums";
 import { LineDraw, TempLineDraw } from "./Draw/LineDraw";
 import { SymbolDraw, TempSymbolDraw } from "./Draw/SymbolDraw";
 import { SYMBOLS } from "constants/symbols";
@@ -10,11 +10,13 @@ import { TextDraw, TextInputBoxDraw } from "./Draw/TextDraw";
 
 const INSERT_THRESHOLD = 6; // 전선,심볼 삽입시 전선과 인접하는 경우의 보정값
 const LINE_DOT_THRESHOLD = 6; // 전선 삽입시 전선의 끝과 인접하는 경우의 보정값
+const REMOVE_THRESHOLD = 3; // 객체 삭제시 전선,심볼 인접하는 경우의 보정값
 const LINE_MINIMUM_SIZE = 10; // 전선 최소 사이즈 (이보다 작게 작도할 수 없음)
 
 const Board = () => {
   const {
     mode,
+    command,
     insertTarget,
     wirePoint1,
     setWirePoint1,
@@ -186,6 +188,81 @@ const Board = () => {
             break;
           /** 텍스트 선택 */
           case INSERTABLE_OBJ.TEXT:
+            break;
+          default:
+            break;
+        }
+        break;
+      /** 편집 모드(MODE.VIEW) */
+      case MODE.EDIT:
+        switch (command) {
+          case CMD.REMOVE_OBJ:
+            for (const line of lines) {
+              // 1-1. 글자 중 마우스 위치와 인접한 글자가 있는지 확인
+              const isVertical = line.start.x === line.end.x;
+              if (
+                (isVertical &&
+                  line.start.x - REMOVE_THRESHOLD <= x &&
+                  x <= line.end.x + REMOVE_THRESHOLD &&
+                  line.start.y - REMOVE_THRESHOLD <= y &&
+                  y <= line.end.y + REMOVE_THRESHOLD) ||
+                (!isVertical &&
+                  line.start.x - REMOVE_THRESHOLD <= x &&
+                  x <= line.end.x + REMOVE_THRESHOLD &&
+                  line.start.y - REMOVE_THRESHOLD <= y &&
+                  y <= line.end.y + REMOVE_THRESHOLD)
+              ) {
+                id = line.id;
+                break;
+              }              
+            }
+            if (id === -1) {
+              for (const line of lines) {
+                // 1-2. 심볼 중 마우스 위치와 인접한 심볼이 있는지 확인
+                const isVertical = line.start.x === line.end.x;
+                if (
+                  (isVertical &&
+                    line.start.x - REMOVE_THRESHOLD <= x &&
+                    x <= line.end.x + REMOVE_THRESHOLD &&
+                    line.start.y - REMOVE_THRESHOLD <= y &&
+                    y <= line.end.y + REMOVE_THRESHOLD) ||
+                  (!isVertical &&
+                    line.start.x - REMOVE_THRESHOLD <= x &&
+                    x <= line.end.x + REMOVE_THRESHOLD &&
+                    line.start.y - REMOVE_THRESHOLD <= y &&
+                    y <= line.end.y + REMOVE_THRESHOLD)
+                ) {
+                  id = line.id;
+                  break;
+                }              
+              }
+            }
+            if (id === -1) {
+              for (const line of lines) {
+                // 1-3. 전선 중 마우스 위치와 인접한 전선이 있는지 확인
+                const isVertical = line.start.x === line.end.x;
+                if (
+                  (isVertical &&
+                    line.start.x - REMOVE_THRESHOLD <= x &&
+                    x <= line.end.x + REMOVE_THRESHOLD &&
+                    line.start.y - REMOVE_THRESHOLD <= y &&
+                    y <= line.end.y + REMOVE_THRESHOLD) ||
+                  (!isVertical &&
+                    line.start.x - REMOVE_THRESHOLD <= x &&
+                    x <= line.end.x + REMOVE_THRESHOLD &&
+                    line.start.y - REMOVE_THRESHOLD <= y &&
+                    y <= line.end.y + REMOVE_THRESHOLD)
+                ) {
+                  id = line.id;
+                  break;
+                }              
+              }
+            }
+
+            if (id !== -1) {
+              // 2. 마우스 위치와 인접한 글자, 심볼, 전선에 대하여 삭제 작업
+              console.log(id);
+            }
             break;
           default:
             break;
