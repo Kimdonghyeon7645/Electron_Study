@@ -116,7 +116,7 @@ export const RibbonMenuItem = styled.div`
 `;
 
 export const RibbonMenuItemLabel = styled.div`
-  margin-top: ${(props) => (props.marginTop ? props.marginTop : "6px")};
+  margin-top: ${(props) => (props.margintop ? props.margintop : "6px")};
 `;
 
 export const RibbonMenuHr = styled.hr`

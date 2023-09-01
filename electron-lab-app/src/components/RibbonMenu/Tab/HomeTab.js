@@ -50,11 +50,11 @@ const HomeTab = () => {
         onClick={() => saveFile({ symbols: symbols, lines: lines, dots: dots, texts: texts })}
       >
         <Save />
-        <RibbonMenuItemLabel marginTop="3px">프로젝트 저장</RibbonMenuItemLabel>
+        <RibbonMenuItemLabel margintop="3px">프로젝트 저장</RibbonMenuItemLabel>
       </RibbonMenuItem>
       <RibbonMenuItem onClick={() => fileInputRef.current.click()}>
         <Folder />
-        <RibbonMenuItemLabel marginTop="3px">불러오기</RibbonMenuItemLabel>
+        <RibbonMenuItemLabel margintop="3px">불러오기</RibbonMenuItemLabel>
         <input
           type="file"
           ref={fileInputRef}
@@ -64,11 +64,11 @@ const HomeTab = () => {
       </RibbonMenuItem>
       {/* <RibbonMenuItem>
         <ImageAdd />
-        <RibbonMenuItemLabel marginTop="3px">이미지로 저장</RibbonMenuItemLabel>
+        <RibbonMenuItemLabel margintop="3px">이미지로 저장</RibbonMenuItemLabel>
       </RibbonMenuItem> */}
       <RibbonMenuItem onClick={handlePrint}>
         <Printer />
-        <RibbonMenuItemLabel marginTop="3px">인쇄</RibbonMenuItemLabel>
+        <RibbonMenuItemLabel margintop="3px">인쇄</RibbonMenuItemLabel>
       </RibbonMenuItem>
     </RibbonMenuSection>
   );

@@ -15,8 +15,7 @@ const {
 } = require("../styles");
 
 const ViewTab = () => {
-  const { isFullScreen, toggleFullScreen, zoomScreen, setZoom } =
-    useBaseStore();
+  const { isFullScreen, toggleFullScreen, zoomScreen, setZoom } = useBaseStore();
 
   return (
     <RibbonMenuSection>
@@ -24,24 +23,24 @@ const ViewTab = () => {
         <RibbonMenuGroupItem>
           <RibbonMenuItem onClick={() => setZoom(zoomScreen + 10)}>
             <ZoomIn />
-            <RibbonMenuItemLabel marginTop="6px">확대</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="6px">확대</RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem onClick={() => setZoom(zoomScreen - 10)}>
             <ZoomOut />
-            <RibbonMenuItemLabel marginTop="6px">축소</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="6px">축소</RibbonMenuItemLabel>
           </RibbonMenuItem>
-          <RibbonMenuItem onClick={() => setZoom(100)} style={{marginTop: "1.5px"}}>
+          <RibbonMenuItem onClick={() => setZoom(100)} style={{ margintop: "1.5px" }}>
             <ZoomDefault />
-            <RibbonMenuItemLabel marginTop="4px">100% 배율</RibbonMenuItemLabel>
-          </RibbonMenuItem>
-          <RibbonMenuItem onClick={() => toggleFullScreen()}>
-            <FullScreen isFullScreen={isFullScreen} size={30} />
-            <RibbonMenuItemLabel marginTop="4px">전체화면</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="4px">100% 배율</RibbonMenuItemLabel>
           </RibbonMenuItem>
         </RibbonMenuGroupItem>
         <RibbonMenuGroupLabel>배율</RibbonMenuGroupLabel>
       </RibbonMenuGroup>
       <RibbonMenuHr />
+      <RibbonMenuItem onClick={() => toggleFullScreen()}>
+        <FullScreen isFullScreen={isFullScreen} size={30} />
+        <RibbonMenuItemLabel margintop="4px">전체화면</RibbonMenuItemLabel>
+      </RibbonMenuItem>
     </RibbonMenuSection>
   );
 };

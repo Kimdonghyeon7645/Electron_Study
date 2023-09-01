@@ -36,7 +36,6 @@ export const TempSymbolDraw = React.memo(({ tempSymbol }) => {
 });
 
 export const SymbolDraw = React.memo(({ symbols }) => {
-  console.log(symbols)
   return (
     <>
       {symbols.map((sym, index) => (

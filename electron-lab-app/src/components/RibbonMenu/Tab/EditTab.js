@@ -24,11 +24,11 @@ const EditTab = () => {
         <RibbonMenuGroupItem>
           <RibbonMenuItem>
             <Move />
-            <RibbonMenuItemLabel marginTop="4px">위치이동</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="4px">위치이동</RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem>
             <ShapeSquare />
-            <RibbonMenuItemLabel marginTop="4px">
+            <RibbonMenuItemLabel margintop="4px">
               크기/길이조절
             </RibbonMenuItemLabel>
           </RibbonMenuItem>
@@ -40,24 +40,20 @@ const EditTab = () => {
         <RibbonMenuGroupItem>
           <RibbonMenuItem>
             <Cut />
-            <RibbonMenuItemLabel marginTop="6px">부분삭제</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="6px">부분삭제</RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem>
             <Eraser />
-            <RibbonMenuItemLabel marginTop="6px">객체삭제</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="6px">객체삭제</RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem onClick={() => clearCanvas()}>
             <Trash />
-            <RibbonMenuItemLabel marginTop="4px">전체삭제</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="4px">전체삭제</RibbonMenuItemLabel>
           </RibbonMenuItem>
         </RibbonMenuGroupItem>
         <RibbonMenuGroupLabel>삭제</RibbonMenuGroupLabel>
       </RibbonMenuGroup>
-      <RibbonMenuHr />
-      <RibbonMenuItem>
-        <Trash />
-        <RibbonMenuItemLabel marginTop="4px">ETC</RibbonMenuItemLabel>
-      </RibbonMenuItem>
+      {/* <RibbonMenuHr /> */}
     </RibbonMenuSection>
   );
 };
