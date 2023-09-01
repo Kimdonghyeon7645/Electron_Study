@@ -24,12 +24,12 @@ const EditTab = () => {
         <RibbonMenuGroupItem>
           <RibbonMenuItem>
             <Move />
-            <RibbonMenuItemLabel margintop="4px">위치이동</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="4px">위치이동<br/><small>(미완)</small></RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem>
             <ShapeSquare />
             <RibbonMenuItemLabel margintop="4px">
-              크기/길이조절
+              크기/길이조절<br/><small>(미완)</small>
             </RibbonMenuItemLabel>
           </RibbonMenuItem>
         </RibbonMenuGroupItem>
@@ -40,7 +40,7 @@ const EditTab = () => {
         <RibbonMenuGroupItem>
           <RibbonMenuItem>
             <Cut />
-            <RibbonMenuItemLabel margintop="6px">부분삭제</RibbonMenuItemLabel>
+            <RibbonMenuItemLabel margintop="6px">부분삭제<br/><small>(미완)</small></RibbonMenuItemLabel>
           </RibbonMenuItem>
           <RibbonMenuItem>
             <Eraser />

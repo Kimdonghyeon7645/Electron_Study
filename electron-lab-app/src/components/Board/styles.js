@@ -21,17 +21,7 @@ export const BoardCanvas = styled.div`
       ${gridLineColor} ${gridLineSize},
       transparent ${gridLineSize}
     ),
-    linear-gradient(
-      90deg,
-      ${gridLineColor} ${gridLineSize},
-      transparent ${gridLineSize}
-    ),
-    linear-gradient(
-      ${gridLineColor} ${gridLineSize},
-      transparent ${gridLineSize}
-    ),
-    linear-gradient(
-      ${gridLineColor} ${gridLineSize},
-      transparent ${gridLineSize}
-    );
+    linear-gradient(90deg, ${gridLineColor} ${gridLineSize}, transparent ${gridLineSize}),
+    linear-gradient(${gridLineColor} ${gridLineSize}, transparent ${gridLineSize}),
+    linear-gradient(${gridLineColor} ${gridLineSize}, transparent ${gridLineSize});
 `;

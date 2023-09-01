@@ -2,7 +2,7 @@ const { RibbonMenuSection, RibbonMenuItem } = require("../styles");
 
 const SimulationTab = () => {
   return <RibbonMenuSection>
-    <RibbonMenuItem>시뮬레이션</RibbonMenuItem>
+    <RibbonMenuItem>(미완)</RibbonMenuItem>
   </RibbonMenuSection>;
 };
 

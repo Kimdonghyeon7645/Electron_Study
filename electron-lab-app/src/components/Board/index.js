@@ -53,7 +53,7 @@ const Board = () => {
       maxX = line.end.x > maxX ? line.end.x : maxX;
       maxY = line.end.y > maxY ? line.end.y : maxY;
     }
-    setPrintInfo({content: board, height: maxY, width: maxX,});
+    setPrintInfo({ content: board, height: maxY, width: maxX });
   }, [board, setPrintInfo, lines]);
 
   /**
@@ -70,8 +70,8 @@ const Board = () => {
   const handleMouseMove = (e) => {
     const wpr = wrapper.current;
     const top = wpr.getBoundingClientRect().top;
-    let x = wpr.scrollLeft + e.clientX  * 100 / zoomScreen;
-    let y = wpr.scrollTop + e.clientY * 100 / zoomScreen - top;
+    let x = wpr.scrollLeft + (e.clientX * 100) / zoomScreen;
+    let y = wpr.scrollTop + (e.clientY * 100) / zoomScreen - top;
     let id = -1;
 
     switch (mode) {
@@ -246,8 +246,8 @@ const Board = () => {
           case INSERTABLE_OBJ.TEXT:
             const wpr = wrapper.current;
             const top = wpr.getBoundingClientRect().top;
-            let x = wpr.scrollLeft + e.clientX  * 100 / zoomScreen;
-            let y = wpr.scrollTop + e.clientY * 100 / zoomScreen - top;
+            let x = wpr.scrollLeft + (e.clientX * 100) / zoomScreen;
+            let y = wpr.scrollTop + (e.clientY * 100) / zoomScreen - top;
 
             if (!inputBox?.x) {
               setInputBox({ x: x, y: y, value: "" });
