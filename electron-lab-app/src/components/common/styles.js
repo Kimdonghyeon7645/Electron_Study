@@ -69,7 +69,7 @@ export const CircularWrapper = styled.div`
   letter-spacing: -0.5px;
   cursor: default;
 
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
   color: ${(props) => (props.fill ? props.fill : "#000000")};
   overflow: hidden;

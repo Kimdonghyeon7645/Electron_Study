@@ -149,6 +149,7 @@ const Board = () => {
           case INSERTABLE_OBJ.LAMP:
           case INSERTABLE_OBJ.MOTOR:
           case INSERTABLE_OBJ.MC:
+          case INSERTABLE_OBJ.BASIC:
             for (const line of lines) {
               const isVertical = line.start.x === line.end.x;
               if (
@@ -316,6 +317,7 @@ const Board = () => {
           case INSERTABLE_OBJ.LAMP:
           case INSERTABLE_OBJ.MOTOR:
           case INSERTABLE_OBJ.MC:
+          case INSERTABLE_OBJ.BASIC:
             if (tempSymbol?.isInsertable) {
               addSymbol();
             }
