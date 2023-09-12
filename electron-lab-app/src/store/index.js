@@ -24,6 +24,7 @@ const useBaseStore = create((set) => ({
   isFullScreen: false,
   zoomScreen: 100,
   printInfo: {},
+  editTarget: {},
 
   setMode: (mode) => {
     set({ mode: mode, wirePoint1: {}, wirePoint2: {}, tempSymbol: {} });
@@ -187,6 +188,7 @@ const useBaseStore = create((set) => ({
       dots: [...data.dots],
       texts: [...data.texts],
     }),
+  setEditTarget: (id) => set({editTarget: id}),
 }));
 
 export default useBaseStore;

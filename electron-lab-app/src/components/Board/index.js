@@ -39,6 +39,8 @@ const Board = () => {
     zoomScreen,
     selectOption,
     setPrintInfo,
+    editTarget,
+    setEditTarget,
   } = useBaseStore();
   const wrapper = useRef(null);
   const board = useRef(null);
@@ -217,52 +219,56 @@ const Board = () => {
                 break;
               }              
             }
-            if (id === -1) {
-              for (const line of lines) {
-                // 1-2. 심볼 중 마우스 위치와 인접한 심볼이 있는지 확인
-                const isVertical = line.start.x === line.end.x;
-                if (
-                  (isVertical &&
-                    line.start.x - REMOVE_THRESHOLD <= x &&
-                    x <= line.end.x + REMOVE_THRESHOLD &&
-                    line.start.y - REMOVE_THRESHOLD <= y &&
-                    y <= line.end.y + REMOVE_THRESHOLD) ||
-                  (!isVertical &&
-                    line.start.x - REMOVE_THRESHOLD <= x &&
-                    x <= line.end.x + REMOVE_THRESHOLD &&
-                    line.start.y - REMOVE_THRESHOLD <= y &&
-                    y <= line.end.y + REMOVE_THRESHOLD)
-                ) {
-                  id = line.id;
-                  break;
-                }              
-              }
-            }
-            if (id === -1) {
-              for (const line of lines) {
-                // 1-3. 전선 중 마우스 위치와 인접한 전선이 있는지 확인
-                const isVertical = line.start.x === line.end.x;
-                if (
-                  (isVertical &&
-                    line.start.x - REMOVE_THRESHOLD <= x &&
-                    x <= line.end.x + REMOVE_THRESHOLD &&
-                    line.start.y - REMOVE_THRESHOLD <= y &&
-                    y <= line.end.y + REMOVE_THRESHOLD) ||
-                  (!isVertical &&
-                    line.start.x - REMOVE_THRESHOLD <= x &&
-                    x <= line.end.x + REMOVE_THRESHOLD &&
-                    line.start.y - REMOVE_THRESHOLD <= y &&
-                    y <= line.end.y + REMOVE_THRESHOLD)
-                ) {
-                  id = line.id;
-                  break;
-                }              
-              }
-            }
+            // if (id === -1) {
+            //   for (const line of lines) {
+            //     // 1-2. 심볼 중 마우스 위치와 인접한 심볼이 있는지 확인
+            //     const isVertical = line.start.x === line.end.x;
+            //     if (
+            //       (isVertical &&
+            //         line.start.x - REMOVE_THRESHOLD <= x &&
+            //         x <= line.end.x + REMOVE_THRESHOLD &&
+            //         line.start.y - REMOVE_THRESHOLD <= y &&
+            //         y <= line.end.y + REMOVE_THRESHOLD) ||
+            //       (!isVertical &&
+            //         line.start.x - REMOVE_THRESHOLD <= x &&
+            //         x <= line.end.x + REMOVE_THRESHOLD &&
+            //         line.start.y - REMOVE_THRESHOLD <= y &&
+            //         y <= line.end.y + REMOVE_THRESHOLD)
+            //     ) {
+            //       id = line.id;
+            //       break;
+            //     }              
+            //   }
+            // }
+            // if (id === -1) {
+            //   for (const line of lines) {
+            //     // 1-3. 전선 중 마우스 위치와 인접한 전선이 있는지 확인
+            //     const isVertical = line.start.x === line.end.x;
+            //     if (
+            //       (isVertical &&
+            //         line.start.x - REMOVE_THRESHOLD <= x &&
+            //         x <= line.end.x + REMOVE_THRESHOLD &&
+            //         line.start.y - REMOVE_THRESHOLD <= y &&
+            //         y <= line.end.y + REMOVE_THRESHOLD) ||
+            //       (!isVertical &&
+            //         line.start.x - REMOVE_THRESHOLD <= x &&
+            //         x <= line.end.x + REMOVE_THRESHOLD &&
+            //         line.start.y - REMOVE_THRESHOLD <= y &&
+            //         y <= line.end.y + REMOVE_THRESHOLD)
+            //     ) {
+            //       id = line.id;
+            //       break;
+            //     }              
+            //   }
+            // }
 
             if (id !== -1) {
               // 2. 마우스 위치와 인접한 글자, 심볼, 전선에 대하여 삭제 작업
-              console.log(id);
+              console.log(id)
+              setEditTarget(id);
+            }
+            else {
+              setEditTarget(-1);
             }
             break;
           default:
@@ -379,7 +385,7 @@ const Board = () => {
           }}
         >
           <TempLineDraw point1={wirePoint1} point2={wirePoint2} />
-          <LineDraw lines={lines} />
+          <LineDraw lines={lines} editTarget={editTarget} />
           <TempDotDraw dots={[tempDot1, tempDot2]} />
           <DotDraw dots={dots} />
         </svg>

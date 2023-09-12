@@ -15,7 +15,10 @@ export const TempLineDraw = React.memo(({ point1, point2 }) => {
     );
 });
 
-export const LineDraw = React.memo(({ lines }) => {
+export const LineDraw = React.memo(({ lines, editTarget }) => {
+  const getFillColor = (id) => id === editTarget ? "#ff0000" : "black";
+  console.log(editTarget)
+
   return (
     <>
       {lines.map((line, index) => {
@@ -29,7 +32,7 @@ export const LineDraw = React.memo(({ lines }) => {
                 y1={line.start.y}
                 x2={isVertical ? line.start.x : line.symbols[0].x + 0.5}
                 y2={isVertical ? line.symbols[0].y + 0.5 : line.start.y}
-                stroke="black"
+                stroke={getFillColor(line.id)}
                 strokeWidth="1.5"
               />
               {line.symbols.slice(1).map((sym, j) => {
@@ -50,7 +53,7 @@ export const LineDraw = React.memo(({ lines }) => {
                     }
                     x2={isVertical ? line.start.x : sym.x}
                     y2={isVertical ? sym.y + 0.5 : line.start.y}
-                    stroke="black"
+                    stroke={getFillColor(line.id)}
                     strokeWidth="1.5"
                   />
                 );
@@ -71,7 +74,7 @@ export const LineDraw = React.memo(({ lines }) => {
                 }
                 x2={line.end.x}
                 y2={line.end.y}
-                stroke="black"
+                stroke={getFillColor(line.id)}
                 strokeWidth="1.5"
               />
             </React.Fragment>
@@ -84,7 +87,7 @@ export const LineDraw = React.memo(({ lines }) => {
               y1={line.start.y}
               x2={line.end.x}
               y2={line.end.y}
-              stroke="black"
+              stroke={getFillColor(line.id)}
               strokeWidth="1.5"
             />
           );
