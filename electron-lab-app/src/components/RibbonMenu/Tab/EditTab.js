@@ -5,6 +5,7 @@ import ShapeSquare from "assets/ShapeSquare";
 import Trash from "assets/Trash";
 import { CMD } from "constants/enums";
 import useBaseStore from "store";
+import useCommandStore from "store/commandStore";
 
 const {
   RibbonMenuSection,
@@ -17,7 +18,8 @@ const {
 } = require("../styles");
 
 const EditTab = () => {
-  const { clearCanvas, command, setCommand } = useBaseStore();
+  const { clearCanvas } = useBaseStore();
+  const { command, setCommand } = useCommandStore();
 
   const handleClickRemoveObj = () => {
     setCommand(CMD.REMOVE_OBJ === command ? null : CMD.REMOVE_OBJ);

@@ -1,16 +1,6 @@
 import { create } from "zustand";
-import { CMD, MODE } from "../constants/enums";
-import { toggleFullScreen } from "helpers/toggleFullScreen";
-import { updateZoom } from "helpers/zoomScreen";
 
 const useBaseStore = create((set) => ({
-  mode: MODE.INSERT,
-  command: null,
-  insertTarget: null,
-  selectOption: {},
-  insertTargetOptions: [],
-  isOptionModalOpen: false,
-  optionModalInfo: {},
   wirePoint1: {},
   wirePoint2: {},
   isFixWirePoint1: false,
@@ -21,47 +11,22 @@ const useBaseStore = create((set) => ({
   texts: [],
   inputBox: {},
   inputBoxWidth: 10,
-  isFullScreen: false,
-  zoomScreen: 100,
-  printInfo: {},
   editTarget: {},
 
-  setMode: (mode) => {
-    set({ mode: mode, wirePoint1: {}, wirePoint2: {}, tempSymbol: {} });
-    if (mode === MODE.INSERT) set({ insertTarget: null, isOptionModalOpen: false });
-  },
-  setCommand: (cmd) => set({ command: cmd }),
-  setInsertTarget: (obj) => {
-    set({
-      command: CMD.INSERT,
-      insertTarget: obj,
-      tempSymbol: {},
-      wirePoint1: {},
-      wirePoint2: {},
-      inputBox: {},
-      isFixWirePoint1: false,
-      isOptionModalOpen: false,
-      selectOption: {},
-    });
-  },
-  setSelectOption: (option) => set({ selectOption: option }),
-  setInsertTargetOptions: (options) => set({ insertTargetOptions: options }),
   setWirePoint1: (point) => set({ wirePoint1: point }),
   setWirePoint2: (point) => {
     set((state) => {
       const dx = Math.abs(point.x - state.wirePoint1.x);
       const dy = Math.abs(point.y - state.wirePoint1.y);
       return {
-        wirePoint2:
-          dy > dx ? { x: state.wirePoint1.x, y: point.y } : { x: point.x, y: state.wirePoint1.y },
+        wirePoint2: dy > dx ? { x: state.wirePoint1.x, y: point.y } : { x: point.x, y: state.wirePoint1.y },
       };
     });
   },
   fixWirePoint1: () => set({ isFixWirePoint1: true }),
   insertLine: (dots) =>
     set((state) => {
-      const isReverse =
-        state.wirePoint1.x > state.wirePoint2.x || state.wirePoint1.y > state.wirePoint2.y;
+      const isReverse = state.wirePoint1.x > state.wirePoint2.x || state.wirePoint1.y > state.wirePoint2.y;
       const point1 = isReverse ? state.wirePoint2 : state.wirePoint1;
       const point2 = isReverse ? state.wirePoint1 : state.wirePoint2;
       const newLines = [...state.lines];
@@ -75,10 +40,7 @@ const useBaseStore = create((set) => ({
         if (!dotDat?.x) continue;
 
         const targetLine = { ...newLines[dotDat.line] };
-        const anotherDots = targetLine.dots.filter(
-          (e) =>
-            e.x < dotDat.x + 2 && dotDat.x - 2 < e.x && e.y < dotDat.y + 2 && dotDat.y - 2 < e.y
-        );
+        const anotherDots = targetLine.dots.filter((e) => e.x < dotDat.x + 2 && dotDat.x - 2 < e.x && e.y < dotDat.y + 2 && dotDat.y - 2 < e.y);
         if (anotherDots.length > 0) {
           const targetDot = { ...anotherDots[0] };
           targetDot.isCommon = true;
@@ -87,8 +49,7 @@ const useBaseStore = create((set) => ({
           newDots[targetDot.id] = targetDot;
         } else {
           const dot = {
-            id:
-              (state.dots.length > 0 ? state.dots[state.dots.length - 1].id + 1 : 0) + dotIdOffset,
+            id: (state.dots.length > 0 ? state.dots[state.dots.length - 1].id + 1 : 0) + dotIdOffset,
             x: dotDat.x,
             y: dotDat.y,
             lines: [dotDat.line],
@@ -167,20 +128,6 @@ const useBaseStore = create((set) => ({
     }),
 
   clearCanvas: () => set({ symbols: [], lines: [], dots: [], texts: [] }),
-  toggleFullScreen: () => {
-    toggleFullScreen();
-    set((state) => ({ isFullScreen: !state.isFullScreen }));
-  },
-  setZoom: (zoom) => {
-    if (70 <= zoom && zoom <= 300) {
-      set({ zoomScreen: zoom });
-      updateZoom(zoom);
-    }
-  },
-  setIsOptionModalOpen: (value) =>
-    set({ isOptionModalOpen: value, optionModalInfo: {}, insertTargetOptions: {} }),
-  setOptionModalInfo: (info) => set({ optionModalInfo: info }),
-  setPrintInfo: (info) => set({ printInfo: info }),
   loadDataFile: (data) =>
     set({
       symbols: [...data.symbols],
@@ -188,7 +135,7 @@ const useBaseStore = create((set) => ({
       dots: [...data.dots],
       texts: [...data.texts],
     }),
-  setEditTarget: (id) => set({editTarget: id}),
+  setEditTarget: (id) => set({ editTarget: id }),
 }));
 
 export default useBaseStore;

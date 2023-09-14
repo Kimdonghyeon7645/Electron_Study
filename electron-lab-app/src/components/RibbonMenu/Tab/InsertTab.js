@@ -1,8 +1,8 @@
 import { SYMBOLS } from "constants/symbols";
 import { RibbonMenuItem, RibbonMenuItemLabel, RibbonMenuSection } from "../styles";
-import useBaseStore from "store";
 import DownArrow from "assets/DownArrow";
 import { useRef } from "react";
+import useCommandStore from "store/commandStore";
 
 const InsertTab = () => {
   const {
@@ -12,7 +12,7 @@ const InsertTab = () => {
     setInsertTargetOptions,
     setOptionModalInfo,
     selectOption,
-  } = useBaseStore();
+  } = useCommandStore();
   const menuRef = useRef();
 
   const handleItemClick = (target) => {

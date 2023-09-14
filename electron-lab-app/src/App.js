@@ -3,11 +3,11 @@ import { Body } from "components/common/styles";
 import Board from "./components/Board";
 import RibbonMenu from "./components/RibbonMenu";
 import StatusBar from "./components/StatusBar";
-import useBaseStore from "store";
 import RibbonModal from "components/RibbonModal";
+import useViewStore from "store/viewStore";
 
 function App() {
-  const { zoomScreen } = useBaseStore();
+  const { zoomScreen } = useViewStore();
 
   return (
     <Body

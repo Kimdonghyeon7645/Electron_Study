@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { BoardCanvas, BoardWrapper } from "./styles";
 import useBaseStore from "store";
 import { CMD, INSERTABLE_OBJ, MODE } from "constants/enums";
@@ -7,6 +7,8 @@ import { SymbolDraw, TempSymbolDraw } from "./Draw/SymbolDraw";
 import { SYMBOLS } from "constants/symbols";
 import { DotDraw, TempDotDraw } from "./Draw/DotDraw";
 import { TextDraw, TextInputBoxDraw } from "./Draw/TextDraw";
+import useViewStore from "store/viewStore";
+import useCommandStore from "store/commandStore";
 
 const INSERT_THRESHOLD = 6; // 전선,심볼 삽입시 전선과 인접하는 경우의 보정값
 const LINE_DOT_THRESHOLD = 6; // 전선 삽입시 전선의 끝과 인접하는 경우의 보정값
@@ -15,9 +17,6 @@ const LINE_MINIMUM_SIZE = 10; // 전선 최소 사이즈 (이보다 작게 작�
 
 const Board = () => {
   const {
-    mode,
-    command,
-    insertTarget,
     wirePoint1,
     setWirePoint1,
     wirePoint2,
@@ -36,29 +35,19 @@ const Board = () => {
     setInputBox,
     saveInputBox,
     texts,
-    zoomScreen,
-    selectOption,
-    setPrintInfo,
+
     editTarget,
     setEditTarget,
   } = useBaseStore();
+  const { zoomScreen } = useViewStore();
+  const { mode, command, insertTarget, selectOption } = useCommandStore();
+
   const wrapper = useRef(null);
   const board = useRef(null);
   const [isClicking, setIsClicking] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [tempDot1, setTempDot1] = useState({});
   const [tempDot2, setTempDot2] = useState({});
-
-  useEffect(() => {
-    if (!board.current) return;
-    let maxX = 0;
-    let maxY = 0;
-    for (const line of lines) {
-      maxX = line.end.x > maxX ? line.end.x : maxX;
-      maxY = line.end.y > maxY ? line.end.y : maxY;
-    }
-    setPrintInfo({ content: board, height: maxY, width: maxX });
-  }, [board, setPrintInfo, lines]);
 
   /**
    * 마우스 클릭을 시작했을 때 이벤트 핸들러
@@ -122,10 +111,7 @@ const Board = () => {
             }
 
             if (isFixWirePoint1) {
-              if (
-                Math.abs(x - wirePoint1.x) > LINE_MINIMUM_SIZE ||
-                Math.abs(y - wirePoint1.y) > LINE_MINIMUM_SIZE
-              ) {
+              if (Math.abs(x - wirePoint1.x) > LINE_MINIMUM_SIZE || Math.abs(y - wirePoint1.y) > LINE_MINIMUM_SIZE) {
                 setWirePoint2({ x: x, y: y });
                 setTempDot2(id !== -1 ? { x: x, y: y, line: id } : {});
               }
@@ -155,16 +141,8 @@ const Board = () => {
             for (const line of lines) {
               const isVertical = line.start.x === line.end.x;
               if (
-                (isVertical &&
-                  line.start.x <= x + INSERT_THRESHOLD &&
-                  x <= line.end.x + INSERT_THRESHOLD &&
-                  line.start.y <= y &&
-                  y <= line.end.y) ||
-                (!isVertical &&
-                  line.start.x <= x &&
-                  x <= line.end.x &&
-                  line.start.y <= y + INSERT_THRESHOLD &&
-                  y <= line.end.y + INSERT_THRESHOLD)
+                (isVertical && line.start.x <= x + INSERT_THRESHOLD && x <= line.end.x + INSERT_THRESHOLD && line.start.y <= y && y <= line.end.y) ||
+                (!isVertical && line.start.x <= x && x <= line.end.x && line.start.y <= y + INSERT_THRESHOLD && y <= line.end.y + INSERT_THRESHOLD)
               ) {
                 x = isVertical ? line.start.x : x;
                 y = !isVertical ? line.start.y : y;
@@ -217,7 +195,7 @@ const Board = () => {
               ) {
                 id = line.id;
                 break;
-              }              
+              }
             }
             // if (id === -1) {
             //   for (const line of lines) {
@@ -237,7 +215,7 @@ const Board = () => {
             //     ) {
             //       id = line.id;
             //       break;
-            //     }              
+            //     }
             //   }
             // }
             // if (id === -1) {
@@ -258,16 +236,15 @@ const Board = () => {
             //     ) {
             //       id = line.id;
             //       break;
-            //     }              
+            //     }
             //   }
             // }
 
             if (id !== -1) {
               // 2. 마우스 위치와 인접한 글자, 심볼, 전선에 대하여 삭제 작업
-              console.log(id)
+              console.log(id);
               setEditTarget(id);
-            }
-            else {
+            } else {
               setEditTarget(-1);
             }
             break;
@@ -337,11 +314,7 @@ const Board = () => {
             if (!inputBox?.x) {
               setInputBox({ x: x, y: y, value: "" });
             } else {
-              const isInputBoxClick =
-                inputBox.x - 2 < x &&
-                x < inputBox.x + inputBoxWidth + 5 &&
-                inputBox.y - 2 < y &&
-                y < inputBox.y + 25;
+              const isInputBoxClick = inputBox.x - 2 < x && x < inputBox.x + inputBoxWidth + 5 && inputBox.y - 2 < y && y < inputBox.y + 25;
               if (!isInputBoxClick) {
                 saveInputBox();
               }
@@ -371,11 +344,7 @@ const Board = () => {
         width: `calc(100vw * 100 / ${zoomScreen} - 2.5px)`,
       }}
     >
-      <BoardCanvas
-        ref={board}
-        className="canvas"
-        style={{ width: 3000, height: 3000, position: "relative" }}
-      >
+      <BoardCanvas ref={board} className="canvas" style={{ width: 3000, height: 3000, position: "relative" }}>
         <svg
           style={{
             height: 3000,

@@ -1,5 +1,4 @@
 import { MODE } from "constants/enums.js";
-import useBaseStore from "store/index.js";
 import EditTab from "./Tab/EditTab.js";
 import HomeTab from "./Tab/HomeTab.js";
 import InsertTab from "./Tab/InsertTab.js";
@@ -12,6 +11,7 @@ import {
   RibbonTapSection,
 } from "./styles.js";
 import { useState } from "react";
+import useCommandStore from "store/commandStore.js";
 
 const tabInfo = [
   { title: "홈", component: <HomeTab />, mode: MODE.EDIT },
@@ -22,7 +22,7 @@ const tabInfo = [
 ];
 
 const RibbonMenu = () => {
-  const { setMode } = useBaseStore();
+  const { setMode } = useCommandStore();
   const [tabIndex, setTabIndex] = useState(0);
 
   const onTabClick = (index) => {

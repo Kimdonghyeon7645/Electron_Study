@@ -1,6 +1,7 @@
-import useBaseStore from "store";
 import { RibbonMenuModal, RibbonMenuModalItem, RibbonMenuModalWrapper } from "./styles";
 import { useEffect } from "react";
+import useViewStore from "store/viewStore";
+import useCommandStore from "store/commandStore";
 
 const RibbonModal = () => {
   const {
@@ -9,9 +10,11 @@ const RibbonModal = () => {
     insertTargetOptions,
     optionModalInfo,
     setInsertTarget,
-    zoomScreen,
     setSelectOption,
-  } = useBaseStore();
+  } = useCommandStore();
+  const {
+    zoomScreen,
+  } = useViewStore();
 
   const closeModal = () => {
     setIsOptionModalOpen(false);

@@ -1,25 +1,15 @@
 import { INSERTABLE_OBJ, MODE } from "constants/enums";
-import useBaseStore from "store";
-import {
-  Delimiter,
-  StatusBarBtnWrapper,
-  StatusBarGroup,
-  StatusBarWrapper,
-} from "./styles";
+import { Delimiter, StatusBarBtnWrapper, StatusBarGroup, StatusBarWrapper } from "./styles";
 import { SYMBOLS } from "constants/symbols";
 import FullScreen from "assets/FullScreen";
 import Plus from "assets/Plus";
 import Minus from "assets/Minus";
+import useViewStore from "store/viewStore";
+import useCommandStore from "store/commandStore";
 
 const StatusBar = () => {
-  const {
-    mode,
-    insertTarget,
-    isFullScreen,
-    toggleFullScreen,
-    zoomScreen,
-    setZoom,
-  } = useBaseStore();
+  const { mode, insertTarget } = useCommandStore();
+  const { isFullScreen, toggleFullScreen, zoomScreen, setZoom } = useViewStore();
 
   const getModeLabel = () => {
     if (mode === MODE.INSERT) return "삽입 모드";
@@ -31,21 +21,18 @@ const StatusBar = () => {
 
   const getTarget = () => {
     if (insertTarget === null) return "선택한 요소 없음";
-    else if (Object.keys(SYMBOLS).includes(insertTarget))
-      return `${SYMBOLS[insertTarget].name}${
-        SYMBOLS[insertTarget].subLabel || ""
-      } 선택`;
+    else if (Object.keys(SYMBOLS).includes(insertTarget)) return `${SYMBOLS[insertTarget].name}${SYMBOLS[insertTarget].subLabel || ""} 선택`;
     else if (insertTarget === INSERTABLE_OBJ.TEXT) return "글자 선택";
   };
 
   return (
     <StatusBarWrapper>
       <StatusBarGroup>
-        <div style={{paddingBottom: "2px"}}>{getModeLabel()}</div>
+        <div style={{ paddingBottom: "2px" }}>{getModeLabel()}</div>
         {mode === MODE.INSERT && (
           <>
-            <Delimiter style={{paddingBottom: "4px"}}>|</Delimiter>
-            <div style={{paddingBottom: "2px"}}>{getTarget()}</div>
+            <Delimiter style={{ paddingBottom: "4px" }}>|</Delimiter>
+            <div style={{ paddingBottom: "2px" }}>{getTarget()}</div>
           </>
         )}
       </StatusBarGroup>

@@ -2,7 +2,7 @@ import FullScreen from "assets/FullScreen";
 import ZoomDefault from "assets/ZoomDefault";
 import ZoomIn from "assets/ZoomIn";
 import ZoomOut from "assets/ZoomOut";
-import useBaseStore from "store";
+import useViewStore from "store/viewStore";
 
 const {
   RibbonMenuSection,
@@ -15,7 +15,7 @@ const {
 } = require("../styles");
 
 const ViewTab = () => {
-  const { isFullScreen, toggleFullScreen, zoomScreen, setZoom } = useBaseStore();
+  const { isFullScreen, toggleFullScreen, zoomScreen, setZoom } = useViewStore();
 
   return (
     <RibbonMenuSection>

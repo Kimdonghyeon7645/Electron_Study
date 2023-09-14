@@ -18,22 +18,22 @@ const {
 } = require("../styles");
 
 const HomeTab = () => {
-  const { printInfo, symbols, lines, dots, texts, loadDataFile } = useBaseStore();
+  const { symbols, lines, dots, texts, loadDataFile } = useBaseStore();
   const fileInputRef = useRef(null);
-  const handlePrint = useReactToPrint({
-    pageStyle: `@media print {
-      @page {
-        size: ${(printInfo.width ?? 0) + 30}px ${(printInfo.height ?? 0) + 30}px;
-        margin: 0;
-      }
-      .canvas {
-        max-height: ${(printInfo.height ?? 0) + 20}px;
-        max-width: ${(printInfo.width ?? 0) + 20}px;
-        overflow: hidden;
-      }
-    }`,
-    content: () => printInfo.content?.current,
-  });
+  // const handlePrint = useReactToPrint({
+  //   pageStyle: `@media print {
+  //     @page {
+  //       size: ${(printInfo.width ?? 0) + 30}px ${(printInfo.height ?? 0) + 30}px;
+  //       margin: 0;
+  //     }
+  //     .canvas {
+  //       max-height: ${(printInfo.height ?? 0) + 20}px;
+  //       max-width: ${(printInfo.width ?? 0) + 20}px;
+  //       overflow: hidden;
+  //     }
+  //   }`,
+  //   content: () => printInfo.content?.current,
+  // });
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -75,14 +75,10 @@ const HomeTab = () => {
       </RibbonMenuGroup>
       <RibbonMenuHr />
 
-      {/* <RibbonMenuItem>
-        <ImageAdd />
-        <RibbonMenuItemLabel margintop="3px">이미지로 저장</RibbonMenuItemLabel>
-      </RibbonMenuItem> */}
-      <RibbonMenuItem onClick={handlePrint}>
+      {/* <RibbonMenuItem onClick={handlePrint}>
         <Printer />
         <RibbonMenuItemLabel margintop="3px">인쇄</RibbonMenuItemLabel>
-      </RibbonMenuItem>
+      </RibbonMenuItem>  */}
     </RibbonMenuSection>
   );
 };
