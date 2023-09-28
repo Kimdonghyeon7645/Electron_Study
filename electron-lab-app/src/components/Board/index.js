@@ -35,7 +35,6 @@ const Board = () => {
     setInputBox,
     saveInputBox,
     texts,
-
     editTarget,
     setEditTarget,
   } = useBaseStore();
