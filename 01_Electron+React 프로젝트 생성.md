@@ -6,7 +6,7 @@
 npx create-react-app $프로젝트명
 cd $프로젝트명
 npm install --save-dev electron electron-builder concurrently wait-on cross-env
-npm instsall --save electron-is-dev
+npm install --save electron-is-dev
 ```
 
 ## 2. 일렉트론 기본 js 파일 추가
