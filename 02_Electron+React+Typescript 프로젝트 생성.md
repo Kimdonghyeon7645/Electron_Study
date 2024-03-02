@@ -13,7 +13,7 @@ npm install --save-dev electron electron-builder concurrently wait-on cross-env 
 ```
 
 ## 2. 일렉트론 기본 ts 파일 추가
-    
+
 ```ts
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
@@ -66,6 +66,7 @@ app.on("activate", () => {
 ## 3. 패키지 파일 수정
 
 - 아래에서 `public/electron.ts` 를 2번에서 추가한 ts 파일의 경로로 기입
+
 ```json
   "main": "public/electron.ts",
   "homepage": "./",
@@ -75,8 +76,30 @@ app.on("activate", () => {
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "tsc ./public/electron.ts && concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build": "npm run react-build && electron-builder",
+    "build": "tsc ./public/electron/main.ts && npm run react-build && electron-builder",
     "release": "npm run react-build && electron-builder --publish=always",
     "lint": "eslint './src**/*.{ts,tsx}'"
   }
+```
+
+## 4. 실행파일 배포
+
+- 다시한번 `package.json` 을 아래 내용을 추가하여 저장한 후, `npm run build` 실행
+- build 명령어도 start 와 같이 tsc 로 타입스크립트를 빌드해야함 (`"build": "tsc ./public/electron/main.ts && npm run react-build && electron-builder",`)
+
+```json
+  "build": {
+    "appId": "com.dorumu.electron-eel",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "extraMetadata": {
+      "main": "build/electron/main.js"
+    },
+    "extends": null
+  },
 ```
