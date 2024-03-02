@@ -2,23 +2,23 @@
 
 > - 01\_에서 진행한 방식과 동일하나, typescript만 추가됨
 >   [참고](https://velog.io/@dev_hikun/Electron-React-typescript-%EB%8D%B0%EC%8A%A4%ED%81%AC%ED%83%91-%EC%95%B1-%EB%A7%8C%EB%93%A4%EA%B8%B0-1-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95)
+> - (24.03.02 추가) `electron-is-dev` import 이슈로 `app.isPackaged` 로 대체하여 사용
 
 ## 1. 프로젝트 생성 - 라이브러리 설치
 
 ```sh
-npx create-react-app $프로젝트명 --template typescript
-cd $프로젝트명
-npm install --save electron-is-dev
+npx create-react-app 프로젝트명 --template typescript
+cd 프로젝트명
 npm install --save-dev electron electron-builder concurrently wait-on cross-env typescript
 ```
 
-## 2. 일렉트론 기본 js 파일 추가
+## 2. 일렉트론 기본 ts 파일 추가
     
 ```ts
 import { app, BrowserWindow } from "electron";
-import * as isDev from "electron-is-dev";
 import * as path from "path";
 
+const isDev = !app.isPackaged;
 let mainWindow: BrowserWindow;
 
 const createWindow = () => {
@@ -26,14 +26,12 @@ const createWindow = () => {
     width: 900,
     height: 680,
     center: true,
-    kiosk: !isDev,
     resizable: true,
     fullscreen: false,
     fullscreenable: true,
     webPreferences: {
       // node환경처럼 사용하기
       nodeIntegration: true,
-      enableRemoteModule: true,
       // 개발자도구
       devTools: isDev,
     },
@@ -67,10 +65,9 @@ app.on("activate", () => {
 
 ## 3. 패키지 파일 수정
 
+- 아래에서 `public/electron.ts` 를 2번에서 추가한 ts 파일의 경로로 기입
 ```json
-{
-  // ...전략
-  "main": "public/electron.js", // 2. 단계에서 생성한 파일경로와 파일명을 대입
+  "main": "public/electron.ts",
   "homepage": "./",
   "scripts": {
     "react-start": "react-scripts start",
@@ -82,6 +79,4 @@ app.on("activate", () => {
     "release": "npm run react-build && electron-builder --publish=always",
     "lint": "eslint './src**/*.{ts,tsx}'"
   }
-  // ...후략
-}
 ```
