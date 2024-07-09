@@ -1,4 +1,4 @@
-# 02_Electron+React+Typescript 프로젝트 생성
+# 02_Electron+React+Typescript+CRA 프로젝트 생성
 
 > - 01\_에서 진행한 방식과 동일하나, typescript만 추가됨
 >   [참고](https://velog.io/@dev_hikun/Electron-React-typescript-%EB%8D%B0%EC%8A%A4%ED%81%AC%ED%83%91-%EC%95%B1-%EB%A7%8C%EB%93%A4%EA%B8%B0-1-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95)
